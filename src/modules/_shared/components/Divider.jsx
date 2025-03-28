@@ -7,10 +7,10 @@
 export default function Divider({direction, className}) {
     let extraClasses = "h-[2px] border-none rounded-3xl w-full " + className;
     switch (direction) {
-        case "left": 
+        case "right": 
             extraClasses += " bg-gradient-to-l from-55% from-accent to-background";
             break;
-        case "right":
+        case "left":
             extraClasses += " bg-gradient-to-r from-55% from-accent to-background";
             break;
         default:
