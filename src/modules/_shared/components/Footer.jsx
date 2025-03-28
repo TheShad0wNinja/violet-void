@@ -19,7 +19,7 @@ const links = [
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary-dark bottom-0 mt-42 flex w-full flex-col items-center justify-center gap-4 py-8">
+    <footer className="bg-secondary-900 bottom-0 mt-42 flex w-full flex-col items-center justify-center gap-4 py-8">
       <Branding />
       <nav className="flex flex-wrap items-center justify-center gap-8">
         {links.map(link => (
