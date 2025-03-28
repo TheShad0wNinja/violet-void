@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import { NotFoundPage, RootLayout } from "@modules/_shared/App";
-import { BrowsePage, HomePage } from "@modules/store/App";
+import { HomePage } from "@modules/store/App";
 
 const routesLinks = [
   {
@@ -10,10 +10,6 @@ const routesLinks = [
         path: "/",
         element: <HomePage />
       },
-      {
-        path: "/store/browse",
-        element: <BrowsePage />
-      }
     ]
   },
   {
