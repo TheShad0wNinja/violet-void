@@ -1,20 +1,38 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import { NotFoundPage, RootLayout } from "@modules/_shared/App";
-import { HomePage} from "@modules/store/App";
-import ProductPage from "@modules/store/pages/ProductPage.jsx";
-export default function VVRoutes() {
-    return (
-      <BrowserRouter>
-        <Routes>
-          <Route element={<RootLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/store/product" element={<ProductPage />} />
+import { HomePage } from "@modules/store/App";
 
-          </Route>
-          {NotFoundRoute}
-        </Routes>
-      </BrowserRouter>
-    );
+const routesLinks = [
+  {
+    element: <RootLayout />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />
+      },
+    ]
+  },
+  {
+    element: <NotFoundPage />,
+    path: "*"
+  }
+];
+
+function getLinks(links) {
+  return links.map(link => {
+    if (link.children) {
+      return <Route element={link.element}>{getLinks(link.children)}</Route>;
+    }
+    return <Route path={link.path} element={link.element} />;
+  });
 }
 
-const NotFoundRoute = <Route path="*" element={<NotFoundPage />} />;
+export default function VVRoutes() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        {getLinks(routesLinks)}
+      </Routes>
+    </BrowserRouter>
+  );
+}
