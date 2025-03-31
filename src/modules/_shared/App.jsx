@@ -5,6 +5,9 @@ export {default as Title} from './components/Title.jsx'
 export {default as Divider} from './components/Divider.jsx'
 export {default as Footer} from "./components/Footer.jsx"
 export {default as Branding} from "./components/Branding.jsx"
+export {default as GameHolderBox} from './components/GameHolderBox.jsx'
+export {default as GamesHolder} from './components/GamesHolder.jsx'
+export {default as PurpleHolder} from './components/PurpleHolder.jsx'
 export {default as Drawer} from "./components/Drawer.jsx"
 export {default as Button} from "./components/inputs/Button.jsx"
 export {default as DoubleSlider} from "./components/inputs/DoubleSlider.jsx"
