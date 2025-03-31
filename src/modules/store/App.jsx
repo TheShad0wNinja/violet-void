@@ -8,3 +8,4 @@ export { default as PhotoCollage } from "./Components/PhotoCollage";
 export { default as PurchaseDetails } from "./Components/PurchaseDetails";
 export { default as Stars } from "./Components/Stars";
 export { default as WishlistButton } from "./Components/WishlistButton";
+export { default as BrowsePage } from "./pages/BrowsePage";
