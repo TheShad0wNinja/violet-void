@@ -1,6 +1,6 @@
 import { getGamesList } from "../utils/mockData";
 import { Container, Divider, Title } from "@modules/_shared/App";
-import GameCard from "../components/GameCard";
+import GameCard from "../components/GameCard.jsx";
 import FilterBtn from "../components/filters/FilterBtn";
 import FilterDrawer from "../components/filters/FilterDrawer";
 import { useState } from "react";
