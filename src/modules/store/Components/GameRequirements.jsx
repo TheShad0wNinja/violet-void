@@ -4,16 +4,16 @@ import "aos/dist/aos.css"; // Import AOS styles
 
 function GameRequirements() {
   return (
-    <div data-aos="fade-up" className="h-fit mt-8 bg-secondary-dark flex rounded-2xl p-4">
-      <div className="grid grid-cols-2 gap-8 mt-8 mb-8 w-full">
-        <div>
+    <div data-aos="fade-up" className="h-fit mt-8 bg-secondary-900 flex rounded-2xl p-4">
+      <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-8 mt-8 mb-8 w-[95%] ">
+        <div className="ml-4">
           <h1 className="text-xl font-semibold mb-2">Minimum</h1>
           <div className="grid grid-cols-2 gap-y-2 mt-3">
             <h1 className="text-md text-text-dark w-auto">OS</h1>
             <h1 className="text-md text-text-dark w-auto ">Windows 10</h1>
 
             <h1 className="text-md text-text-dark w-auto">Processor</h1>
-            <h1 className="text-md text-text-dark w-auto "> Intel Core i5-2300 | AMD FX-6350</h1>
+            <h1 className="text-md text-text-dark w-auto ">Intel Core i5-2300 | AMD FX-6350</h1>
 
             <h1 className="text-md text-text-dark w-auto">Memory</h1>
             <h1 className="text-md text-text-dark w-auto ">8 GB RAM</h1>
@@ -30,14 +30,14 @@ function GameRequirements() {
           </div>
         </div>
 
-        <div>
+        <div className="ml-4">
           <h1 className="text-xl font-semibold mb-2">Recommended</h1>
           <div className="grid grid-cols-2 gap-y-2 mt-3">
           <h1 className="text-md text-text-dark w-auto">OS</h1>
             <h1 className="text-md text-text-dark w-auto ">Windows 10</h1>
 
             <h1 className="text-md text-text-dark w-auto">Processor</h1>
-            <h1 className="text-md text-text-dark w-auto "> Intel Core i5-2300 | AMD FX-6350</h1>
+            <h1 className="text-md text-text-dark w-auto ">Intel Core i5-2300 | AMD FX-6350</h1>
 
             <h1 className="text-md text-text-dark w-auto">Memory</h1>
             <h1 className="text-md text-text-dark w-auto ">8 GB RAM</h1>

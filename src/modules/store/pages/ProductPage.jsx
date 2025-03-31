@@ -1,29 +1,23 @@
 import React, { useEffect } from "react";
-import Stars from "../Components/Stars";
-import PhotoCollage from "../Components/PhotoCollage";
-import PurchaseDetails from "../Components/PurchaseDetails";
-
 import Container from "@modules/_shared/components/Container";
-import GenreHolder from "../Components/GenreHolder";
-import GameRequirements from "../Components/GameRequirements";
-import GamesHolder from "@modules/_shared/components/GamesHolder";
+import {GamesHolder} from "@modules/_shared/App";
+import {GameRequirements,GenreHolder,Stars,PhotoCollage,PurchaseDetails,GameRating} from "@modules/store/App";
+
 import StarChecked from "@modules/_shared/Assets/starLighter.png";
 import AOS from "aos";
 
 import "aos/dist/aos.css"; // Import AOS styles
-import GameRating from "../Components/GameRating";
 function ProductPage() {
   useEffect(() => {
     AOS.init({ once: false });
   }, []);
   
-
   return (
     <Container>
-      <div>
+      <div> 
         <div className="flex  gap-5 mb-3.5">
           <h1 className="text-3xl font-bold ">Game Name</h1>
-          <div className="flex justify-center items-center gap-1.5 bg-secondary-light  pl-1.5 pr-1.5 rounded-md  ">
+          <div className="flex justify-center items-center gap-1.5 bg-secondary  pl-1.5 pr-1.5 rounded-md  ">
             <h1 className="text-xl  font-semibold text-primary  ">6.4</h1>
             <div className="w-5 h-5">
               <img className="object-cover" src={StarChecked} />

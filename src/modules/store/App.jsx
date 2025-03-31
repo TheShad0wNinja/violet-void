@@ -1,2 +1,10 @@
 export { default as HomePage } from "./pages/HomePage";
 export { default as ProductPage } from "./pages/ProductPage";
+export { default as CartButton } from "./Components/CartButton";
+export { default as GameRating } from "./Components/GameRating";
+export { default as GameRequirements } from "./Components/GameRequirements";
+export { default as GenreHolder } from "./Components/GenreHolder";
+export { default as PhotoCollage } from "./Components/PhotoCollage";
+export { default as PurchaseDetails } from "./Components/PurchaseDetails";
+export { default as Stars } from "./Components/Stars";
+export { default as WishlistButton } from "./Components/WishlistButton";
