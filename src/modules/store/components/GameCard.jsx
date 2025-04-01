@@ -1,18 +1,18 @@
-export default function GameCard({ game }) {
+export default function GameCard({ game, withoutPrice = false, withoutType = false, onMouseOver }) {
   const { coverImageUrl, title, price, type } = game;
   return (
-    <div className="w-full flex flex-col justify-center items-center cursor-pointer hover:scale-105 hover:saturate-[120%] transition-transform">
-      <div className="relative w-full h-[300px] sm:h-[280px] xl:h-[300px] rounded-xl overflow-hidden">
+    <div onMouseOver={onMouseOver} className="flex w-full cursor-pointer flex-col items-center justify-center transition-transform hover:brightness-75">
+      <div className="relative h-[300px] w-full overflow-hidden rounded-xl sm:h-[280px] xl:h-[300px]">
         <img
-          className="absolute w-full h-full object-cover top-1/2 left-1/2 -translate-1/2 aspect-[3/4]"
+          className="absolute top-1/2 left-1/2 aspect-[3/5] h-full w-full -translate-1/2 object-cover"
           src={coverImageUrl}
           alt={title + " cover"}
         />
       </div>
-      <div className="flex flex-col w-full mt-2">
-        <p className="text-xs text-gray-400">{type}</p>
-        <p className="font-semibold text-sm md:text-base line-clamp-2">{title}</p>
-        <p className="text-xs md:text-sm text-gray-200">${price}</p>
+      <div className="mt-2 flex w-full flex-col">
+        {!withoutType && <p className="text-xs text-gray-400">{type}</p>}
+        <p className="line-clamp-2 text-xl font-semibold ">{title}</p>
+        {!withoutPrice && <p className="text-xs text-gray-200 md:text-sm">${price}</p>}
       </div>
     </div>
   );
