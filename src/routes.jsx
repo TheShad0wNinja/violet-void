@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import { NotFoundPage, RootLayout } from "@modules/_shared/App";
-import { ProductPage, BrowsePage, HomePage, CartPage, CartProvider, CheckoutPage } from "@modules/store/App";
+import { ProductPage, BrowsePage, HomePage, CartPage, CartProvider, CheckoutPage, LibraryPage } from "@modules/store/App";
 
 const routesLinks = [
   {
@@ -29,6 +29,10 @@ const routesLinks = [
       {
         path: "/cart/checkout",
         element: <CheckoutPage />
+      },
+      {
+        path: "/store/library",
+        element: <LibraryPage />
       }
     ]
   },

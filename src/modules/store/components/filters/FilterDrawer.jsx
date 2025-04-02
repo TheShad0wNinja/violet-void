@@ -95,9 +95,9 @@ export default function FilterDrawer({ isOpen, setIsOpen }) {
           <DoubleSlider
             rangeLabel={"Price"}
             isMoney={true}
-            currMin={Number(filters.priceMin)}
-            currMax={Number(filters.priceMax)}
-            setCurrRange={(min, max) => setFilters({ priceMin: min, priceMax: max })}
+            currentMin={Number(filters.priceMin)}
+            currentMax={Number(filters.priceMax)}
+            setCurrentRange={(min, max) => setFilters({ priceMin: min, priceMax: max })}
             minRange={0}
             maxRange={400}
           />

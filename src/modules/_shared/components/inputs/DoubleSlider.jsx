@@ -3,25 +3,25 @@ import { useMemo } from "react";
 export default function DoubleSlider({
   maxRange,
   minRange,
-  currMin,
-  currMax,
-  setCurrRange,
+  currentMin,
+  currentMax,
+  setCurrentRange,
   rangeLabel,
   isMoney,
   step = 10
 }) {
   const getPercentage = value => Math.round(((value - minRange) / (maxRange - minRange)) * 100);
 
-  const minPercent = useMemo(() => getPercentage(currMin), [currMin]);
-  const maxPercent = useMemo(() => getPercentage(currMax), [currMax]);
+  const minPercent = useMemo(() => getPercentage(currentMin), [currentMin]);
+  const maxPercent = useMemo(() => getPercentage(currentMax), [currentMax]);
 
   const handleSliderChange = (isMin, value) => {
     if (isMin) {
-      const newValue = Math.min(value, currMax);
-      setCurrRange(newValue, currMax);
+      const newValue = Math.min(value, currentMax);
+      setCurrentRange(newValue, currentMax);
     } else {
-      const newValue = Math.max(currMin, value);
-      setCurrRange(currMin, newValue);
+      const newValue = Math.max(currentMin, value);
+      setCurrentRange(currentMin, newValue);
     }
   };
 
@@ -29,7 +29,7 @@ export default function DoubleSlider({
     <>
       <div className="mb-2.5 flex flex-nowrap justify-between select-none">
         <h3>{rangeLabel} range</h3>
-        <p>{`${isMoney ? "$" : ""}${currMin} - ${isMoney ? "$" : ""}${currMax}`}</p>
+        <p>{`${isMoney ? "$" : ""}${currentMin} - ${isMoney ? "$" : ""}${currentMax}`}</p>
       </div>
       <div className="relative w-full">
         {/* Min Thumb */}
@@ -37,7 +37,7 @@ export default function DoubleSlider({
           className="accent-secondary-500 pointer-events-none absolute top-1/2 z-30 w-full -translate-y-1/2 appearance-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:cursor-grab"
           type="range"
           min={minRange}
-          value={currMin}
+          value={currentMin}
           max={maxRange}
           name="min"
           step={step}
@@ -49,7 +49,7 @@ export default function DoubleSlider({
           className="accent-secondary-500 pointer-events-none absolute top-1/2 z-40 w-full -translate-y-1/2 appearance-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:cursor-grab"
           type="range"
           min={minRange}
-          value={currMax}
+          value={currentMax}
           max={maxRange}
           name="max"
           step={step}
