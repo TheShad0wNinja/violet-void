@@ -1,3 +1,3 @@
 export default function ArtworkPage() {
-  return <></>;
+  return <>Rosoomat</>;
 }
