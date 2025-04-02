@@ -1,13 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import { NotFoundPage, RootLayout } from "@modules/_shared/App";
 import { ProductPage, BrowsePage, HomePage, LibraryPage } from "@modules/store/App";
-import DiscoverPage from "@modules/community/pages/DiscoverPage";
-import ArtworkPage from "@modules/community/pages/ArtworkPage";
-import DiscussionPage from "@modules/community/pages/DiscussionsPage";
-import GuidesPage from "@modules/community/pages/GuidesPage";
-import NewsPage from "@modules/community/pages/NewsPage";
-import ReviewsPage from "@modules/community/pages/ReviewsPage";
-import ScreenshotsPage from "@modules/community/pages/SceenshotsPage";
+import { ArtworkPage, DiscoverPage, DiscussionPage, GuidesPage, NewsPage, ReviewsPage, ScreenshotsPage } from "@modules/community/App";
+
 
 const routesLinks = [
   {
