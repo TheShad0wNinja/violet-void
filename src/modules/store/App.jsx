@@ -2,6 +2,8 @@ export { default as HomePage } from "./pages/HomePage";
 export { default as ProductPage } from "./pages/ProductPage";
 export { default as WishlistPage } from "./pages/WishlistPage";
 
+export { default as GameCard } from "./components/GameCard";
+export { default as GameCardRanking } from "./components/GameCardRanking";
 export { default as CartButton } from "./components/CartButton";
 export { default as GameRating } from "./components/GameRating";
 export { default as GameRequirements } from "./components/GameRequirements";

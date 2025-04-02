@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getGamesList, getRankingGamesList } from "../utils/mockData";
-import { Pagination, TextInput, Title } from "@modules/_shared/App";
-import GameCard from "../components/GameCard.jsx";
-import { Container } from "@modules/_shared/App";
+import { Pagination, TextInput, Title,Container } from "@modules/_shared/App";
+import {GameCard,GameCardRanking} from "../App";
 import useUrlFilters from "../hooks/useUrlFilters";
-import GameCardRanking from "../components/GameCardRanking";
 
 function mockPagination(page, limit = 8) {
   const games = getGamesList();
@@ -28,7 +26,7 @@ function WishlistPage() {
     setGamesTotalCount(totalGameCount);
     setGames(gameList);
   }, [filters.page]);
-  
+
   useEffect(() => {
     const { totalGameCount, gameList } = mockPagination(Number(filters.pagedlc ?? 1) - 1);
     setDlcsTotalCount(totalGameCount);
