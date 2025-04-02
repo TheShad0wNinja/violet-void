@@ -1,140 +1,77 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { getGamesList } from "../utils/mockData";
-import { Container } from "@modules/_shared/App";
+import { Button, Container, Divider, Title } from "@modules/_shared/App";
+import { useCart } from "../context/cartContext";
+import { Link } from "react-router";
 
 const games = getGamesList().slice(0, 3);
 
 export default function CartPage() {
-  const [cartItems, setCartItems] = useState(games);
+  const { cartItems, setCartItems } = useCart();
 
-  // Calculate subtotal
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const priceTotal = cartItems.reduce((sum, item) => sum + item.price, 0);
 
-  // Update item quantity
-  const updateQuantity = (id, newQuantity) => {
-    if (newQuantity < 1) return;
+  // // Update item quantity
+  // const updateQuantity = (id, newQuantity) => {
+  //   if (newQuantity < 1) return;
 
-    setCartItems(
-      cartItems.map(item => (item.id === id ? { ...item, quantity: newQuantity } : item))
-    );
-  };
+  //   setCartItems(
+  //     cartItems.map(item => (item.id === id ? { ...item, quantity: newQuantity } : item))
+  //   );
+  // };
 
   // Remove item from cart
-  const removeItem = id => {
-    setCartItems(cartItems.filter(item => item.id !== id));
+  const handleRemove = item => {
+    setCartItems(cartItems.filter(i => i.title !== item.title));
   };
 
   return (
     <Container>
-      <h1 className="mb-8 text-3xl font-bold">Your Cart</h1>
-
+      <Title withDivider>My Cart</Title>
       {cartItems.length === 0 ? (
-        <div className="py-12 text-center">
-          <p className="mb-4 text-xl">Your cart is empty</p>
-          <button className="rounded-md bg-blue-500 px-6 py-2 text-white hover:bg-blue-600">
-            Browse Games
-          </button>
-        </div>
+        <h1>Go buy shit brokie</h1>
       ) : (
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {/* Cart Items */}
-          <div className="lg:col-span-2">
-            <div className="overflow-hidden rounded-lg bg-white shadow-md">
-              <div className="hidden grid-cols-12 bg-gray-100 p-4 font-medium md:grid">
-                <div className="col-span-6">Product</div>
-                <div className="col-span-2 text-center">Price</div>
-                <div className="col-span-2 text-center">Quantity</div>
-                <div className="col-span-2 text-center">Total</div>
-              </div>
-
-              {cartItems.map(item => (
-                <div key={item.id} className="grid grid-cols-12 items-center border-b p-4">
-                  {/* Product Info */}
-                  <div className="col-span-6 flex items-center">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="mr-4 h-16 w-16 rounded object-cover"
-                    />
-                    <div>
-                      <h3 className="font-medium">{item.name}</h3>
+        <div className="flex w-full flex-col justify-stretch gap-10 md:flex-row">
+          <div className="grid flex-3/5 gap-2">
+            {cartItems.map((item, idx) => (
+              <React.Fragment key={item.title}>
+                <div className="flex gap-2">
+                  <img
+                    className="h-[200px] w-[180px] flex-none rounded-lg object-cover"
+                    src={item.coverImageUrl}
+                    alt={item.title + " Cover"}
+                  />
+                  <div className="flex w-full flex-col flex-nowrap gap-2">
+                    <div className="flex justify-between">
+                      <h5 className="bg-secondary-700 block w-fit rounded-md px-1.5 py-1 text-sm text-white">
+                        {item.type}
+                      </h5>
+                      <h6 className="text-lg text-gray-200">${item.price}$</h6>
+                    </div>
+                    <h3 className="text-lg font-bold sm:text-xl lg:text-2xl">{item.title}</h3>
+                    <div className="mt-auto self-end">
                       <button
-                        onClick={() => removeItem(item.id)}
-                        className="mt-1 text-sm text-red-500 hover:text-red-700"
+                        onClick={() => handleRemove(item)}
+                        className="cursor-pointer rounded-lg bg-red-800 px-2.5 py-2 text-sm hover:bg-red-700 active:scale-95"
                       >
                         Remove
                       </button>
                     </div>
                   </div>
-
-                  {/* Price */}
-                  <div className="col-span-2 text-center">
-                    <span className="mr-2 text-gray-500 md:hidden">Price:</span>$
-                    {item.price.toFixed(2)}
-                  </div>
-
-                  {/* Quantity */}
-                  <div className="col-span-2 flex justify-center">
-                    <div className="flex items-center rounded-md border">
-                      <button
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="px-3 py-1 text-lg"
-                      >
-                        -
-                      </button>
-                      <span className="border-x px-3 py-1">{item.quantity}</span>
-                      <button
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="px-3 py-1 text-lg"
-                      >
-                        +
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Total */}
-                  <div className="col-span-2 text-center">
-                    <span className="mr-2 text-gray-500 md:hidden">Total:</span>$
-                    {(item.price * item.quantity).toFixed(2)}
-                  </div>
                 </div>
-              ))}
-            </div>
+                {idx !== cartItems.length - 1 && <Divider className="my-4" />}
+              </React.Fragment>
+            ))}
           </div>
-
-          {/* Order Summary */}
-          <div className="lg:col-span-1">
-            <div className="rounded-lg bg-white p-6 shadow-md">
-              <h2 className="mb-4 text-xl font-bold">Order Summary</h2>
-
-              <div className="space-y-4">
-                <div className="flex justify-between">
-                  <span>Subtotal</span>
-                  <span>${subtotal.toFixed(2)}</span>
-                </div>
-
-                <div className="flex justify-between">
-                  <span>Shipping</span>
-                  <span className="text-green-500">Free</span>
-                </div>
-
-                <div className="flex justify-between border-t pt-4 text-lg font-bold">
-                  <span>Total</span>
-                  <span>${subtotal.toFixed(2)}</span>
-                </div>
-
-                <button className="mt-4 w-full rounded-md bg-green-500 py-3 font-medium text-white hover:bg-green-600">
-                  Proceed to Checkout
-                </button>
-
-                <p className="mt-2 text-center text-sm text-gray-500">
-                  or{" "}
-                  <a href="#" className="text-blue-500">
-                    Continue Shopping
-                  </a>
-                </p>
-              </div>
+          <div className="flex-2/5">
+            <h3 className="mb-4 text-2xl font-semibold">Items Summary</h3>
+            <div className="flex w-full flex-nowrap justify-between">
+              <p>Total Price</p>
+              <p className="text-lg font-bold">${priceTotal}</p>
             </div>
+            <Link to="/cart/checkout" className="bg-accent block text-center hover:bg-accent-400 mt-4 w-full cursor-pointer rounded-md p-2">
+              Checkout
+            </Link>
           </div>
         </div>
       )}

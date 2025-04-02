@@ -1,10 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import { NotFoundPage, RootLayout } from "@modules/_shared/App";
-import { ProductPage, BrowsePage, HomePage, CartPage } from "@modules/store/App";
+import { ProductPage, BrowsePage, HomePage, CartPage, CartProvider, CheckoutPage } from "@modules/store/App";
 
 const routesLinks = [
   {
-    element: <RootLayout />,
+    element: (
+      <CartProvider>
+        <RootLayout />
+      </CartProvider>
+    ),
     children: [
       {
         path: "/",
@@ -21,6 +25,10 @@ const routesLinks = [
       {
         path: "/cart",
         element: <CartPage />
+      },
+      {
+        path: "/cart/checkout",
+        element: <CheckoutPage />
       }
     ]
   },
