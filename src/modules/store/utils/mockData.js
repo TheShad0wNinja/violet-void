@@ -85,6 +85,43 @@ const games = [
   }
 ];
 
+const GameRanking = [
+  {
+    coverImageUrl: "https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg",
+    bannerImageUrl: "https://cdn2.steamgriddb.com/hero/33e25ce2b801662e46a7b801301d5b94.jpg",
+    type: "Base Game",
+    Ranking:"1",
+    title: "The Witcher 3: Wild Hunt",
+    price: 59.9
+  },
+  {
+    coverImageUrl: "https://i.redd.it/w44jvkcns8461.png",
+    bannerImageUrl: "https://cdn2.steamgriddb.com/hero_thumb/5988319f8fdeb1b2d254a9a38518f52e.jpg",
+    type: "Base Game",
+    Ranking:"2",
+    title: "Cyberpunk 2077",
+    price: 59.9
+  },
+  {
+    coverImageUrl: "https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg",
+    bannerImageUrl: "https://cdn2.steamgriddb.com/hero_thumb/33e70269806c88720e2d89ed1d3f1be3.jpg",
+    type: "Base Game",
+    Ranking:"3",
+    title: "God of War",
+    price: 49.99
+  },
+  {
+    coverImageUrl: "https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg",
+    bannerImageUrl: "https://cdn2.steamgriddb.com/hero_thumb/33e70269806c88720e2d89ed1d3f1be3.jpg",
+    type: "Base Game",
+    Ranking:"4",
+    title: "God of War",
+    price: 49.99
+  }
+]
 export function getGamesList() {
   return games;
+}
+export function getRankingGamesList() {
+  return GameRanking;
 }
