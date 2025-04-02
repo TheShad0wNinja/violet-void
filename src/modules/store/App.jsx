@@ -11,3 +11,4 @@ export { default as PurchaseDetails } from "./components/PurchaseDetails";
 export { default as Stars } from "./components/Stars";
 export { default as WishlistButton } from "./components/WishlistButton";
 export { default as BrowsePage } from "./pages/BrowsePage";
+export { default as LibraryPage } from "./pages/LibraryPage";

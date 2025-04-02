@@ -1,8 +1,11 @@
-export default function Button({ children, onClick, className }) {
+export default function Button({ children, onClick, className, fullWidth = false }) {
   return (
     <button
       onClick={onClick}
-      className={"bg-accent w-full rounded-md p-2 hover:bg-accent-400 cursor-pointer active:scale-95 " + (className ? className : "")}
+      className={
+        `bg-secondary hover:bg-accent-400 ${ fullWidth ? "w-full" : "" } cursor-pointer rounded-md p-2 active:scale-95 ` +
+        (className ? className : "")
+      }
     >
       {children}
     </button>
