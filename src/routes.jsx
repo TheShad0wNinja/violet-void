@@ -1,6 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import { NotFoundPage, RootLayout } from "@modules/_shared/App";
 import { ProductPage, BrowsePage, HomePage, LibraryPage } from "@modules/store/App";
+import DiscoverPage from "@modules/community/pages/DiscoverPage";
+import ArtworkPage from "@modules/community/pages/ArtworkPage";
+import DiscussionPage from "@modules/community/pages/DiscussionsPage";
+import GuidesPage from "@modules/community/pages/GuidesPage";
+import NewsPage from "@modules/community/pages/NewsPage";
+import ReviewsPage from "@modules/community/pages/ReviewsPage";
+import ScreenshotsPage from "@modules/community/pages/SceenshotsPage";
 
 const routesLinks = [
   {
@@ -21,6 +28,34 @@ const routesLinks = [
       {
         path: "/store/library",
         element: <LibraryPage />
+      },
+      {
+        path: "/community",
+        element: <DiscoverPage />
+      },
+      {
+        path: "/community/artwork",
+        element: <ArtworkPage />
+      },
+      {
+        path: "/community/discussions",
+        element: <DiscussionPage />
+      },
+      {
+        path: "/community/guides",
+        element: <GuidesPage />
+      },
+      {
+        path: "/community/news",
+        element: <NewsPage />
+      },
+      {
+        path: "/community/reviews",
+        element: <ReviewsPage />
+      },
+      {
+        path: "/community/screenshots",
+        element: <ScreenshotsPage />
       }
     ]
   },
