@@ -1,17 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getGamesList, getRankingGamesList } from "../utils/mockData";
-import { TextInput, Title } from "@modules/_shared/App";
+import { Pagination, TextInput, Title } from "@modules/_shared/App";
 import GameCard from "../components/GameCard.jsx";
 import { Container } from "@modules/_shared/App";
 import useUrlFilters from "../hooks/useUrlFilters";
 import GameCardRanking from "../components/GameCardRanking";
 
-function WishlistPage() {
+function mockPagination(page, limit = 8) {
   const games = getGamesList();
-  const Rankedgames = getRankingGamesList();
 
+  const pagedGameList = games.slice(page * limit, page * limit + limit);
+
+  return { totalGameCount: games.length, gameList: pagedGameList };
+}
+function WishlistPage() {
+  const [games, setGames] = useState([]);
+  const [dlcs, setDlcs] = useState([]);
+
+  const Rankedgames = getRankingGamesList();
   const [searchQuery, setSearchQuery] = useState("");
   const { filters, setFilter } = useUrlFilters("");
+  const [gamesTotalCount, setGamesTotalCount] = useState(20);
+  const [dlcsTotalCount, setDlcsTotalCount] = useState(20);
+
+  useEffect(() => {
+    const { totalGameCount, gameList } = mockPagination(Number(filters.page ?? 1) - 1);
+    setGamesTotalCount(totalGameCount);
+    setGames(gameList);
+  }, [filters.page]);
+  
+  useEffect(() => {
+    const { totalGameCount, gameList } = mockPagination(Number(filters.pagedlc ?? 1) - 1);
+    setDlcsTotalCount(totalGameCount);
+    setDlcs(gameList);
+  }, [filters.pagedlc]);
 
   return (
     <Container>
@@ -50,7 +72,7 @@ function WishlistPage() {
                 key={game.title}
                 className="relative"
                 style={{
-                  marginTop: game.Ranking > 3 ?  '80px': `${(index % 3) * 40}px`, // Cascading effect for Rank > 3
+                  marginTop: game.Ranking > 3 ? "80px" : `${(index % 3) * 40}px` // Cascading effect for Rank > 3
                 }}
               >
                 <GameCardRanking game={game} />
@@ -58,16 +80,29 @@ function WishlistPage() {
             ))}
           </div>
         </div>
+        <div className="mt-4">
+          <Title>Games</Title>
 
-        <Title>Games</Title>
+          <div className="mt-5 grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+            {games.length > 0 && games.map(game => <GameCard game={game} key={game.title} />)}
+          </div>
+          <Pagination
+            totalItems={gamesTotalCount}
+            itemsPerPage={8}
+            onPageChange={page => setFilter("page", page)}
+            maxVisiblePages={7}
+          />
 
-        <div className="grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-          {games.length > 0 && games.map(game => <GameCard game={game} key={game.title} />)}
-        </div>
-
-        <Title>Add ons</Title>
-        <div className="grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-          {games.length > 0 && games.map(game => <GameCard game={game} key={game.title} />)}
+          <Title>Add ons</Title>
+          <div className="grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+            {dlcs.length > 0 && dlcs.map(game => <GameCard game={game} key={game.title} />)}
+          </div>
+          <Pagination
+            totalItems={dlcsTotalCount}
+            itemsPerPage={8}
+            onPageChange={pagedlc => setFilter("pagedlc", pagedlc)}
+            maxVisiblePages={7}
+          />
         </div>
       </div>
     </Container>
