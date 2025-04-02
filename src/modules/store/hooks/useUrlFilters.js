@@ -1,5 +1,32 @@
 import { useSearchParams } from "react-router";
 
+/**
+ * A custom hook for managing URL search parameters as filters.
+ * 
+ * @function
+ * @param {Object} [initialFilters={}] - Initial filter values (will be merged with URL params)
+ * @returns {Object} An object containing filter utilities
+ * @returns {Object} returns.filters - Current filter values (merged from URL and initialFilters)
+ * @returns {Function} returns.setFilter - Function to update a single filter
+ * @returns {Function} returns.setFilters - Function to update multiple filters
+ * @returns {Function} returns.resetFilters - Function to reset filters to initial values
+ * 
+ * @example
+ * // Basic usage
+ * const { filters, setFilter, resetFilters } = useUrlFilters({
+ *   sort: 'price',
+ *   category: 'games'
+ * });
+ * 
+ * // Update a single filter
+ * setFilter('category', 'accessories');
+ * 
+ * // Update multiple filters
+ * setFilters({ category: 'consoles', price: 'under-100' });
+ * 
+ * // Reset to initial filters
+ * resetFilters();
+ */
 export default function useUrlFilters(initialFilters = {}) {
   const [searchParams, setSearchParams] = useSearchParams();
 
