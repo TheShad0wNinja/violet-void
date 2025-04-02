@@ -36,7 +36,7 @@ export default function CheckoutPage() {
           <p className="text-lg font-semibold">${cartItems.reduce((acc, i) => acc += i.price, 0)}</p>
         </div>
         <p className="text-sm mt-4 text-gray-300">You are purchasing a digital license for this product.<br />By clicking "Place Order" below, I represent that I am over 18 and an authorized user of this payment method.</p>
-        <Button fullWidth className=" mt-4" >Place Order</Button>
+        <Button uppercased fullWidth className=" mt-4" >Place Order</Button>
       </div>
     </div>
   </Container>;
