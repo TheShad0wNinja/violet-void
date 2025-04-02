@@ -3,7 +3,7 @@ export default function Button({ children, onClick, className, fullWidth = false
     <button
       onClick={onClick}
       className={
-        `bg-secondary hover:bg-accent-400 ${ fullWidth ? "w-full" : "" } cursor-pointer rounded-md p-2 active:scale-95 ` +
+        `bg-secondary uppercase font-semibold hover:bg-accent-400 ${ fullWidth ? "w-full" : "" } cursor-pointer rounded-md p-2 active:scale-95 ` +
         (className ? className : "")
       }
     >
