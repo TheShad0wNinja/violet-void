@@ -12,3 +12,4 @@ export { default as BrowsePage } from "./pages/BrowsePage";
 export { default as CartPage } from './pages/CartPage'
 export { CartProvider } from "./context/cartContext";
 export { default as LibraryPage } from "./pages/LibraryPage";
+export { default as CheckoutPage } from './pages/CheckoutPage'
