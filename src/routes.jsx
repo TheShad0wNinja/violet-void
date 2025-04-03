@@ -1,12 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import { NotFoundPage, RootLayout } from "@modules/_shared/App";
-import { ProductPage, BrowsePage, HomePage, LibraryPage } from "@modules/store/App";
+import { ProductPage, BrowsePage, HomePage, CartPage, CartProvider, CheckoutPage, LibraryPage } from "@modules/store/App";
 import { ArtworkPage, DiscoverPage, DiscussionPage, GuidesPage, NewsPage, ReviewsPage, ScreenshotsPage } from "@modules/community/App";
-
 
 const routesLinks = [
   {
-    element: <RootLayout />,
+    element: (
+      <CartProvider>
+        <RootLayout />
+      </CartProvider>
+    ),
     children: [
       {
         path: "/",
@@ -19,6 +22,14 @@ const routesLinks = [
       {
         path: "/store/browse",
         element: <BrowsePage />
+      },
+      {
+        path: "/cart",
+        element: <CartPage />
+      },
+      {
+        path: "/cart/checkout",
+        element: <CheckoutPage />
       },
       {
         path: "/store/library",
