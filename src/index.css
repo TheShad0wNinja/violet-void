@@ -3,9 +3,32 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @theme {
   --color-background: #050112;
+  --color-background-50: oklch(87.7% 0.062 295.27);
+  --color-background-100: oklch(82.65% 0.09 295.11);
+  --color-background-200: oklch(70.67% 0.158 292.79);
+  --color-background-300: oklch(59.33% 0.22 288.51);
+  --color-background-400: oklch(50.73% 0.264 282.33);
+  --color-background-500: oklch(44.33% 0.27 275.85);
+  --color-background-600: oklch(37.31% 0.225 276.32);
+  --color-background-700: oklch(30.64% 0.182 277.46);
+  --color-background-800: oklch(23.05% 0.13 279.85);
+  --color-background-900: oklch(15.33% 0.08 286.15);
+  --color-background-950: oklch(10.49% 0.047 294.1);
 
-  --color-primary: oklch(63.509% 0.20406 289.97);
-  --color-primary-50: oklch(97.994% 0.01077 297.63);
+  --color-primary: #5512c1;
+  --color-primary-50: oklch(94.34% 0.029 303.08);
+  --color-primary-100: oklch(88.5% 0.061 303.15);
+  --color-primary-200: oklch(77.15% 0.122 301.11);
+  --color-primary-300: oklch(67.25% 0.178 299.38);
+  --color-primary-400: oklch(57.14% 0.233 295.55);
+  --color-primary-500: oklch(49.45% 0.266 289.31);
+  --color-primary-600: oklch(42.6% 0.231 288.89);
+  --color-primary-700: oklch(34.92% 0.185 289.74);
+  --color-primary-800: oklch(26.89% 0.138 290.97);
+  --color-primary-900: oklch(17.52% 0.081 295.58);
+  --color-primary-950: oklch(12.55% 0.051 300.8);
+
+  /* --color-primary-50: oklch(97.994% 0.01077 297.63);
   --color-primary-100: oklch(92.867% 0.03682 295.86);
   --color-primary-200: oklch(82.814% 0.09275 295.43);
   --color-primary-300: oklch(73.021% 0.14857 292.96);
@@ -15,10 +38,24 @@
   --color-primary-700: oklch(37.819% 0.23469 274.85);
   --color-primary-800: oklch(29.582% 0.17982 276.2);
   --color-primary-900: oklch(20.667% 0.12098 279.44);
-  --color-primary-950: oklch(15.899% 0.09004 283.24);
+  --color-primary-950: oklch(15.899% 0.09004 283.24); */
 
-  --color-accent: oklch(54.99% 0.17083 290.48);
-  --color-accent-50: oklch(93.111% 0.02469 298.6);
+  --color-accent: #aa8ee9;
+  --color-accent-50: oklch(95.63% 0.019 299.07);
+  --color-accent-100: oklch(90.2% 0.043 298.8);
+  --color-accent-200: oklch(80.1% 0.089 298.44);
+  --color-accent-300: oklch(70.81% 0.132 297.06);
+  --color-accent-400: oklch(59.4% 0.185 293.79);
+  --color-accent-500: oklch(49.76% 0.228 289.09);
+  --color-accent-600: oklch(41.75% 0.206 287.23);
+  --color-accent-700: oklch(34.81% 0.167 288.03);
+  --color-accent-800: oklch(26.42% 0.121 289.12);
+  --color-accent-900: oklch(18.4% 0.072 291);
+  --color-accent-950: oklch(12.99% 0.04 296.78);
+
+   
+  /* --color-accent: #4d1ee6; */
+  /* --color-accent-50: oklch(93.111% 0.02469 298.6);
   --color-accent-100: oklch(89.022% 0.03873 297.05);
   --color-accent-200: oklch(80.532% 0.0707 294.85);
   --color-accent-300: oklch(71.826% 0.1044 294.47);
@@ -28,10 +65,22 @@
   --color-accent-700: oklch(37.428% 0.15064 287.82);
   --color-accent-800: oklch(29.412% 0.11134 288.8);
   --color-accent-900: oklch(20.861% 0.06779 290.86);
-  --color-accent-950: oklch(16.486% 0.04289 291.98);
+  --color-accent-950: oklch(16.486% 0.04289 291.98); */
 
-  --color-secondary: oklch(34.76% 0.14831 286.62);
-  --color-secondary-50: oklch(82.913% 0.06608 295.65);
+  --color-secondary: #361d89;
+  --color-secondary-50: oklch(94.51% 0.023 296.73);
+  --color-secondary-100: oklch(88.96% 0.046 296.56);
+  --color-secondary-200: oklch(78.87% 0.09 295.19);
+  --color-secondary-300: oklch(67.67% 0.14 292.82);
+  --color-secondary-400: oklch(56.89% 0.188 289.77);
+  --color-secondary-500: oklch(48.07% 0.225 284.78);
+  --color-secondary-600: oklch(41% 0.203 283.74);
+  --color-secondary-700: oklch(34.45% 0.165 284.23);
+  --color-secondary-800: oklch(26.94% 0.121 285.63);
+  --color-secondary-900: oklch(18.26% 0.069 287.84);
+  --color-secondary-950: oklch(12.83% 0.04 293.59);
+
+  /* --color-secondary-50: oklch(82.913% 0.06608 295.65);
   --color-secondary-100: oklch(78.584% 0.08262 295.51);
   --color-secondary-200: oklch(69.905% 0.11921 293.73);
   --color-secondary-300: oklch(61.335% 0.15479 292.18);
@@ -41,7 +90,7 @@
   --color-secondary-700: oklch(34.76% 0.14831 286.62);
   --color-secondary-800: oklch(26.71% 0.10613 288.13);
   --color-secondary-900: oklch(17.971% 0.05859 289.96);
-  --color-secondary-950: oklch(13.042% 0.03267 293.28);
+  --color-secondary-950: oklch(13.042% 0.03267 293.28); */
 
   --container-default: 100rem;
 }
