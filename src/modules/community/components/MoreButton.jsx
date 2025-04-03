@@ -5,7 +5,7 @@ export default function MoreButton({ to, className }) {
     <Link
       to={"/community/" + to}
       className={
-        "bg-secondary hover:bg-accent-400 mr-15 ml-auto block w-fit cursor-pointer rounded-md p-2 active:scale-95 " +
+        "bg-secondary hover:bg-accent-400 block h-min w-fit cursor-pointer text-nowrap rounded-md p-2 active:scale-95 " +
         (className ? className : "")
       }
     >
