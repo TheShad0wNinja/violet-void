@@ -38,20 +38,22 @@ export default function ArtworkPage() {
           <div
             className="bg-accent-900 max-h-fit max-w-fit overflow-hidden rounded-4xl"
             key={artist.art}
-            id={"art" + index++}
-            data-aos="fade-up"
-            data-aos-delay="100"
-            data-aos-anchor={index == 1 ? "" : "#art" + (index - 2)}
+            // data-aos="fade-up"
+            data-aos-delay={100 * index}
           >
             <img
               src={artist.art}
               alt={artist.game + " by " + artist.name}
               className={ratios[artist.art] > 1 ? "aspect-auto max-h-80" : "aspect-auto max-w-80"}
             />
-            <div className="bg-accent flex flex-wrap items-center">
-              <img className="ml-5 max-h-16 rounded-full" src={artist.profilePic} />
-              <span>{artist.name}</span>
-              <span className="bg-accent-600 rounded-2xl px-1.5">{"@" + artist.handle}</span>
+            <div className="bg-accent flex items-center gap-3 p-3">
+              <img className="h-12 w-12 rounded-full" src={artist.profilePic} />
+              <div className="flex flex-col">
+                <span className="font-medium">{artist.name}</span>
+                <span className="bg-accent-600 rounded-2xl px-2 py-0.5 text-sm">
+                  {"@" + artist.handle}
+                </span>
+              </div>
             </div>
           </div>
         ))}
