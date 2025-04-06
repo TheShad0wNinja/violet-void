@@ -1,9 +1,29 @@
-export default function Button({ children, onClick, className, fullWidth = false }) {
+/**
+ * A button component
+ * 
+ * @param {Object} props
+ * @param {Function} props.onClick The function trigger on button click
+ * @param {string} props.className Additional classes to be added to the component
+ * @param {boolean} [props.fullWidth=false] If the button should take full width of the container
+ * @param {boolean} [props.uppercased=false] If the text should be UPPERCASED or not
+ *
+ * @example
+ * <Button onClick={handleClick} className="mt-4" fullWidth uppercased>
+ *  Create
+ * </Button>
+ */
+export default function Button({
+  children,
+  onClick,
+  className,
+  fullWidth = false,
+  uppercased = false
+}) {
   return (
     <button
       onClick={onClick}
       className={
-        `bg-secondary hover:bg-accent-400 ${ fullWidth ? "w-full" : "" } cursor-pointer rounded-md p-2 active:scale-95 ` +
+        `bg-secondary ${uppercased ? "uppercase" : "capitalize"} hover:bg-accent-400 font-semibold ${fullWidth ? "w-full" : ""} cursor-pointer rounded-md px-3 py-2 active:scale-95 ` +
         (className ? className : "")
       }
     >
