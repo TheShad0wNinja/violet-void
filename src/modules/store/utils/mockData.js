@@ -46,7 +46,7 @@ const games = [
   },
   {
     coverImageUrl:
-      "https://media.wired.com/photos/5f6cf5ec6f32a729dc0b3a89/master/w_1600%2Cc_limit/Culture_inline_Hades_PackArt.jpg",
+      "https://media.wired.com/photOs/5f6cf5ec6f32a729dc0b3a89/master/w_1600%2Cc_limit/Culture_inline_Hades_PackArt.jpg",
     bannerImageUrl: "https://cdn2.steamgriddb.com/hero_thumb/ca2fb9274851370321bfa0017a5cc0d8.jpg",
     type: "Base Game",
     title: "Hades",
@@ -120,9 +120,200 @@ const GameRanking = [
     price: 34.99
   }
 ];
+
+const gamesPageData = [
+  {
+    id: 101,
+    name: "Cyber Nexus Odyssey",
+    rating: 8.4,
+    price: 59.99,
+    discount: 20,
+    platforms: ["PC", "PlayStation 5", "Xbox Series X"],
+    releaseDate: "2023-11-15",
+    releaseYear: 2023,
+    developer: "Neon Giant StudiOs",
+    publisher: "Digital Horizon Interactive",
+    metacriticScore: 78,
+    similarGames: ["Cyberpunk 2077", "Deus Ex: Mankind Divided"],
+    tags: ["RPG", "Open World", "Cyberpunk", "Action", "Singleplayer"],
+    gameFeatures: [
+      "Multiplayer", "CrOss-play", "Crafting", "Stealth Mechanics", "Dynamic Weather", "Player Choices Matter"
+    ],
+    description: "An open-world action RPG set in a dystopian cyberpunk future.",
+    detailedDescription: "Explore a vast cyberpunk city filled with intrigue and danger in this deep narrative RPG with branching storylines and revolutionary gameplay mechanics.",
+    images: [
+      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+    ],
+    requirements: {
+      minimum: {
+        Os: "Windows 10 64-bit",
+        processor: "Intel Core i5-4460",
+        memory: "8 GB RAM",
+        graphics: "NVIDIA GTX 960"
+      },
+      recommended: {
+        Os: "Windows 10/11 64-bit",
+        processor: "Intel Core i7-8700K",
+        memory: "16 GB RAM",
+        graphics: "NVIDIA RTX 2060"
+      }
+    },
+    dlcs: [
+      {
+        id: 1011,
+        name: "Neon Underground",
+        price: 14.99,
+        image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+      },
+      {
+        id: 1012,
+        name: "Cyber Samurai Pack",
+        price: 4.99,
+        image: "https://images.unsplash.com/photo-1518655048521-f130df041f66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+      }
+    ],
+    ageRating: "Mature 17+",
+    playersAmount: "1-4"
+  },
+  {
+    id: 102,
+    name: "Elden Realms",
+    rating: 9.2,
+    price: 49.99,
+    discount: 10,
+    platforms: ["PC", "PlayStation 4", "PlayStation 5", "Xbox One", "Xbox Series X"],
+    releaseDate: "2022-02-25",
+    releaseYear: 2022,
+    developer: "FromSoftware",
+    publisher: "Bandai Namco",
+    metacriticScore: 94,
+    similarGames: ["Cyberpunk 2077", "Deus Ex: Mankind Divided"],
+    tags: ["RPG", "Souls-like", "Fantasy", "Difficult", "Multiplayer"],
+    gameFeatures: ["Multiplayer", "Co-op", "Stealth Mechanics", "Player Choices Matter"],
+    description: "A challenging open-world fantasy RPG with deep combat mechanics.",
+    detailedDescription: "Journey through the Lands Between, a world of vast landscapes and ominous dungeons. Encounter adversaries with profound backgrounds and meet characters with their own motivations.",
+    images: [
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      "https://images.unsplash.com/photo-1509198397868-475647b2a044?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1193&q=80",
+      "https://images.unsplash.com/photo-1513828583688-c52646db42da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+    ],
+    requirements: {
+      minimum: {
+        Os: "Windows 10",
+        processor: "Intel Core i5-8400",
+        memory: "12 GB RAM",
+        graphics: "NVIDIA GTX 1060"
+      },
+      recommended: {
+        Os: "Windows 10/11",
+        processor: "Intel Core i7-8700K",
+        memory: "16 GB RAM",
+        graphics: "NVIDIA RTX 2070"
+      }
+    },
+    dlcs: [
+      {
+        id: 1021,
+        name: "Shadow of the Erdtree",
+        price: 19.99,
+        image: "https://images.unsplash.com/photo-1560253023-3ec5d502959f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+      }
+    ],
+    ageRating: "Mature 17+",
+    playersAmount: "1-2"
+  },
+  {
+    id: 103,
+    name: "Starfleet Command",
+    rating: 7.8,
+    price: 39.99,
+    discount: 30,
+    platforms: ["PC", "PlayStation 5", "Xbox Series X"],
+    releaseDate: "2023-05-18",
+    releaseYear: 2023,
+    developer: "Quantum Games",
+    publisher: "Universal Interactive",
+    metacriticScore: 82,
+    similarGames: ["Cyberpunk 2077", "Deus Ex: Mankind Divided"],
+    tags: ["Strategy", "Space", "Simulation", "Multiplayer", "Sci-fi"],
+    gameFeatures: ["Multiplayer", "Co-op", "PvP", "Space Exploration", "Fleet Management"],
+    description: "Command your own starship in this epic space strategy game.",
+    detailedDescription: "Take control of a massive starship and its crew as you explore unknown sectors of space, engage in tactical combat, and make decisions that affect the fate of your crew and the galaxy.",
+    images: [
+      "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1211&q=80",
+      "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1073&q=80",
+      "https://images.unsplash.com/photo-1501862700950-18382cd41497?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1179&q=80"
+    ],
+    requirements: {
+      minimum: {
+        Os: "Windows 10",
+        processor: "Intel Core i5-6500",
+        memory: "8 GB RAM",
+        graphics: "NVIDIA GTX 970"
+      },
+      recommended: {
+        Os: "Windows 10/11",
+        processor: "Intel Core i7-9700K",
+        memory: "16 GB RAM",
+        graphics: "NVIDIA RTX 2060"
+      }
+    },
+    dlcs: [
+      {
+        id: 1031,
+        name: "Klingon Armada",
+        price: 12.99,
+        image: "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
+      },
+      {
+        id: 1032,
+        name: "Borg Invasion",
+        price: 14.99,
+        image: "https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+      }
+    ],
+    ageRating: "Teen",
+    playersAmount: "1-4"
+  }
+];
+
+// Example similar games data with actual images
+const similarGamesData = [
+  {
+    id: 201,
+    name: "Cyberpunk 2077",
+    price: 49.99,
+    rating: 7.9,
+    image: "https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+  },
+  {
+    id: 202,
+    name: "Deus Ex: Mankind Divided",
+    price: 19.99,
+    rating: 8.1,
+    image: "https://images.unsplash.com/photo-1562976540-1502c2145186?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+  },
+  {
+    id: 203,
+    name: "The Ascent",
+    price: 29.99,
+    rating: 7.5,
+    image: "https://images.unsplash.com/photo-1638549811659-19eab16a1e9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+  }
+];
+
+
 export function getGamesList() {
   return games;
 }
 export function getRankingGamesList() {
   return GameRanking;
+}
+export function getGamesPageData() {
+  return gamesPageData;
+}
+export function getSimilarGamesData() {
+  return similarGamesData;
 }

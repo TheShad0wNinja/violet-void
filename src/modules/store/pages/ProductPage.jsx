@@ -1,66 +1,73 @@
 import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Container from "@modules/_shared/components/Container";
-import {GamesHolder} from "@modules/_shared/App";
-import {GameRequirements,GenreHolder,Stars,PhotoCollage,PurchaseDetails,GameRating} from "@modules/store/App";
-
+import { GamesHolder } from "@modules/_shared/App";
+import {
+  GameRequirements,
+  GenreHolder,
+  PhotoCollage,
+  PurchaseDetails,
+  GameRating
+} from "@modules/store/App";
+import { getGamesPageData, getSimilarGamesData } from "../utils/mockData";
 import StarChecked from "@modules/_shared/Assets/starLighter.png";
 import AOS from "aos";
 
 import "aos/dist/aos.css"; // Import AOS styles
+
 function ProductPage() {
   useEffect(() => {
     AOS.init({ once: false });
   }, []);
-  
+
+  const { gamesName } = useParams();
+  const game = getGamesPageData().find(g => g.name == gamesName);
+
+
+  if (!game) {
+    return <h1>Game not found</h1>; // switch to 404 page later
+  }
+  const similarGameList = getSimilarGamesData().filter(g => game.similarGames.includes(g.name));
+
   return (
     <Container>
-      <div> 
-        <div className="flex  gap-5 mb-3.5">
-          <h1 className="text-3xl font-bold ">Game Name</h1>
-          <div className="flex justify-center items-center gap-1.5 bg-secondary  pl-1.5 pr-1.5 rounded-md  ">
-            <h1 className="text-xl  font-semibold text-primary  ">6.4</h1>
-            <div className="w-5 h-5">
+      <div className="m-5">
+        <div className="mb-3.5 flex gap-5">
+          <h1 className="text-3xl font-bold">{game.name}</h1>
+          <div className="bg-secondary flex items-center justify-center gap-1.5 rounded-md pr-1.5 pl-1.5">
+            <h1 className="text-accent text-xl font-semibold">{game.rating}</h1>
+            <div className="h-5 w-5">
               <img className="object-cover" src={StarChecked} />
             </div>
           </div>
         </div>
-        <div className="w-[90] h-[1px]  bg-gradient-to-r  from-accent via-accent to-background"></div>
+        <div className="from-accent via-accent to-background h-[1px] w-[90] bg-gradient-to-r"></div>
         {/*faded line*/}
-        <div className="md:flex sm:flex-n gap-4 items-start ">
-          <div className="md:w-[75%] sm:w-fit" data-aos="fade-up">
-            <PhotoCollage></PhotoCollage>
-            <div >
+        <div className="sm:flex-n items-start gap-4 md:flex">
+          <div className="sm:w-fit md:w-[75%]" data-aos="fade-up">
+            <PhotoCollage images={game.images} />
+            <div>
               <h1 className="mt-4" data-aos="fade-up">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lorem nisl,
-                tempus eu mattis sed, tincidunt vel dui. Nam felis ante, condimentum sit amet Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lorem nisl, tempus eu
-                mattis sed, tincidunt vel dui. Nam felis ante, condimentum sit amet
+                {game.description}
               </h1>
-              <GenreHolder></GenreHolder>
-              <h1 className="text-2xl m-2 font-bold w-fit  mt-5 " data-aos="fade-up">
-                More about Gamename
+              <GenreHolder tags={game.tags} features={game.gameFeatures} />
+              <h1 className="m-2 mt-5 w-fit text-2xl font-bold" data-aos="fade-up">
+                More about {game.name}
               </h1>
-              <h1 className="m-2  w-fit text-text-dark" data-aos="fade-up">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lorem nisl,
-                tempus eu mattis sed, tincidunt vel dui. Nam felis ante, condimentum sit amet
-                facilisis in, vestibulum non nisl. Integer eu ligula commodo, blandit sem ut,
-                porttitor neque. Orci varius natoque penatibus et magnis dis parturient montes,
-                nascetur ridiculus mus. Phasellus quis eros id erat scelerisque tempor. Vivamus vel
-                sem sit amet felis condimentum volutpat ut non augue. Donec finibus cursus risus id
-                tristique. Nulla fermentum non odio ut vehicula. Duis posuere lectus id ligula
-                feugiat, eu porta orci porta. Phasellus at tempus nibh, et sollicitudin tortor.
+              <h1 className="text-text-dark m-2 w-fit" data-aos="fade-up">
+                {game.detailedDescription}
               </h1>
-              <GameRating></GameRating>
+              <GameRating rating={game.rating} />
             </div>
           </div>
 
-          <PurchaseDetails></PurchaseDetails>
+          <PurchaseDetails game={game} />
         </div>
-        <div className="w-[95%] m-4" data-aos="fade-up">
-          <h1 className="text-2xl m-2 font-bold w-fit  mt-5 ">System requirements</h1>
-          <GameRequirements></GameRequirements>
-          <GamesHolder Sectionname="Game DLCS"></GamesHolder>
-          <GamesHolder Sectionname="Game similar to"></GamesHolder>
+        <div className="m-4 w-[95%]" data-aos="fade-up">
+          <h1 className="m-2 mt-5 w-fit text-2xl font-bold">System requirements</h1>
+          <GameRequirements requirements={game.requirements} />
+          <GamesHolder Sectionname="Game DLCS" games={similarGameList} />
+          <GamesHolder Sectionname="Games similar to" games={similarGameList} />
         </div>
       </div>
     </Container>

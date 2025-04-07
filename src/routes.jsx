@@ -15,7 +15,7 @@ const routesLinks = [
         element: <HomePage />
       },
       {
-        path: "/store/product",
+        path: "/store/product/:gamesName",
         element: <ProductPage />
       },
       {
