@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import { NotFoundPage, RootLayout } from "@modules/_shared/App";
 import { ProductPage, BrowsePage, HomePage, CartPage, CartProvider, CheckoutPage,WishlistPage,LibraryPage } from "@modules/store/App";
+import { AdminHomePage, AdminLayout } from "@modules/admin/App";
 
 const routesLinks = [
   {
@@ -40,6 +41,15 @@ const routesLinks = [
       }
     ]
   },
+	{
+		element: <AdminLayout/>,
+		children: [
+			{
+				path: "/admin/",
+				element: <AdminHomePage />
+			}
+		]
+	},
   {
     element: <NotFoundPage />,
     path: "*"

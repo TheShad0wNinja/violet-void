@@ -8,6 +8,10 @@ function Header() {
       label: "Home",
       href: "/"
     },
+		{
+			label: "Admin", 
+			href: "/admin"
+		},
     {
       label: "Store",
       href: "/store/browse"
