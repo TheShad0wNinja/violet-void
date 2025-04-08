@@ -43,7 +43,7 @@ export default function ArtworkPage() {
 
             return (
               <div
-                className={`bg-accent-900 relative max-h-fit max-w-fit overflow-hidden rounded-2xl ${className}`}
+                className={`bg-accent-900 border-accent-900 hover:border-secondary-500 relative max-h-fit max-w-fit cursor-pointer overflow-hidden rounded-2xl border-2 ${className}`}
                 key={artist.art}
                 onMouseEnter={() => setArtistHover(index)}
                 onMouseLeave={() => setArtistHover(null)}
