@@ -3,10 +3,13 @@ import PostCard from "../components/PostCard";
 import MoreButton from "../components/MoreButton";
 import { getDiscussions } from "../utils/disscusionData";
 import { Link, useLocation } from "react-router-dom";
+import PostPopUp from "../components/PostPopUp";
+import { useState } from "react";
 
 export default function DiscussionPage() {
   const location = useLocation();
   const isCommunitiesPage = location.pathname === "/community";
+  const [selectedPost, setSelectedPost] = useState(null);
 
   return (
     <Container>
@@ -48,9 +51,20 @@ export default function DiscussionPage() {
         </div>
 
         <Divider className="mb-4" />
+
         {getDiscussions().map((post, index) => (
-          <PostCard post={post} key={index} />
+          <div key={index} onClick={() => setSelectedPost(post)}>
+            <PostCard post={post} />
+          </div>
         ))}
+
+        {selectedPost && (
+          <PostPopUp
+            isOpen={!!selectedPost}
+            post={selectedPost}
+            onClose={() => setSelectedPost(null)}
+          />
+        )}
       </div>
     </Container>
   );

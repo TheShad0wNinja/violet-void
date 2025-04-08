@@ -18,6 +18,7 @@ export default function PostCard({ post }) {
             className="rounded-mb w-auto object-contain object-left"
           />
         </div>
+        
       )}
 
       <div className="flex space-x-6 text-sm text-gray-400">
