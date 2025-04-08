@@ -3,7 +3,7 @@ import { Stars } from "../App";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import AOS styles
 
-function GameRating() {
+function GameRating({rating}) {
   return (
     <div
       data-aos="fade-up"
@@ -13,7 +13,7 @@ function GameRating() {
       <h1 className="text-lg md:text-2xl font-bold mb-2 hidden md:block">
         Rate GameName
       </h1>
-      <Stars />
+      <Stars rating={rating} />
     </div>
   );
 }

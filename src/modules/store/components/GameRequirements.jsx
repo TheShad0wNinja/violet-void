@@ -2,55 +2,35 @@ import React from "react";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import AOS styles
 
-function GameRequirements() {
+function GameRequirements({ requirements }) {
+  const { minimum, recommended } = requirements;
+
   return (
-    <div data-aos="fade-up" className="h-fit mt-8 bg-secondary-900 flex rounded-2xl p-4">
-      <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-8 mt-8 mb-8 w-[95%] ">
+    <div data-aos="fade-up" className="mt-8 bg-secondary-900 w-full rounded-2xl p-4">
+      <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-8 my-8">
+        {/* Minimum Requirements */}
         <div className="ml-4">
           <h1 className="text-xl font-semibold mb-2">Minimum</h1>
           <div className="grid grid-cols-2 gap-y-2 mt-3">
-            <h1 className="text-md text-text-dark w-auto">OS</h1>
-            <h1 className="text-md text-text-dark w-auto ">Windows 10</h1>
-
-            <h1 className="text-md text-text-dark w-auto">Processor</h1>
-            <h1 className="text-md text-text-dark w-auto ">Intel Core i5-2300 | AMD FX-6350</h1>
-
-            <h1 className="text-md text-text-dark w-auto">Memory</h1>
-            <h1 className="text-md text-text-dark w-auto ">8 GB RAM</h1>
-
-            <h1 className="text-md text-text-dark w-auto">Graphics</h1>
-            <h1 className="text-md text-text-dark w-auto ">
-              NVIDIA GeForce GTX 650 Ti, 2 GB | AMD Radeon R7 360, 2 GB
-            </h1>
-
-            <h1 className="text-md text-text-dark w-auto">DirectX</h1>
-            <h1 className="text-md text-text-dark w-auto ">Version 12</h1>
-            <h1 className="text-md text-text-dark w-auto">Storage</h1>
-            <h1 className="text-md text-text-dark w-auto ">10 GB available space</h1>
+            {minimum && Object.entries(minimum).map(([key, value]) => (
+              <React.Fragment key={key}>
+                <h1 className="text-md text-text-dark w-auto">{key}</h1>
+                <h1 className="text-md text-text-dark w-auto">{value}</h1>
+              </React.Fragment>
+            ))}
           </div>
         </div>
 
+        {/* Recommended Requirements */}
         <div className="ml-4">
           <h1 className="text-xl font-semibold mb-2">Recommended</h1>
           <div className="grid grid-cols-2 gap-y-2 mt-3">
-          <h1 className="text-md text-text-dark w-auto">OS</h1>
-            <h1 className="text-md text-text-dark w-auto ">Windows 10</h1>
-
-            <h1 className="text-md text-text-dark w-auto">Processor</h1>
-            <h1 className="text-md text-text-dark w-auto ">Intel Core i5-2300 | AMD FX-6350</h1>
-
-            <h1 className="text-md text-text-dark w-auto">Memory</h1>
-            <h1 className="text-md text-text-dark w-auto ">8 GB RAM</h1>
-
-            <h1 className="text-md text-text-dark w-auto">Graphics</h1>
-            <h1 className="text-md text-text-dark w-auto ">
-              NVIDIA GeForce GTX 650 Ti, 2 GB | AMD Radeon R7 360, 2 GB
-            </h1>
-
-            <h1 className="text-md text-text-dark w-auto">DirectX</h1>
-            <h1 className="text-md text-text-dark w-auto ">Version 12</h1>
-            <h1 className="text-md text-text-dark w-auto">Storage</h1>
-            <h1 className="text-md text-text-dark w-auto ">10 GB available space</h1>
+            {recommended && Object.entries(recommended).map(([key, value]) => (
+              <React.Fragment key={key}>
+                <h1 className="text-md text-text-dark w-auto">{key}</h1>
+                <h1 className="text-md text-text-dark w-auto">{value}</h1>
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </div>

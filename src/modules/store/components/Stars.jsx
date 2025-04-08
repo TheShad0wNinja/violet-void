@@ -3,7 +3,7 @@ import StarChecked from "@modules/_shared/Assets/starLighter.png";
 import StarUnchecked from "@modules/_shared/Assets/starDarker.png";
 import HalfStar from "@modules/_shared/Assets/halfStar.png";
 
-const Stars = ({ rating = 5.4, maxStars = 10 }) => {
+const Stars = ({ rating , maxStars = 5 }) => {
   const totalStars = 5; // Displayed stars
   const scaledRating = (rating / maxStars) * totalStars; // Convert rating to 5-star scale
   const [selectedRating, setSelectedRating] = useState(scaledRating); // Supports decimals
@@ -16,7 +16,7 @@ const Stars = ({ rating = 5.4, maxStars = 10 }) => {
 
   return (
     <div className="flex gap-1.5 justify-center items-center">
-      <h1 className="text-lg md:text-2xl sm-lg font-semibold text-primary mr-1">
+      <h1 className="text-lg md:text-2xl sm-lg font-semibold text-accent mr-1">
         {isHovered ? (hoverIndex + 1).toFixed(1) : selectedRating.toFixed(1)}
       </h1>
 
