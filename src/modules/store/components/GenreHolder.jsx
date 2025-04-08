@@ -10,7 +10,7 @@ function GenreHolder({ tags,features }) {
         <h1 className="mb-2 text-2xl font-bold">Genre</h1>
         <div className="flex flex-wrap gap-2.5">
           {tags.map((game, index) => (
-            <PurpleHolder propName={tags[index]}></PurpleHolder>
+            <PurpleHolder key={tags[index]} propName={tags[index]}></PurpleHolder>
           ))}
         </div>
       </div>
@@ -18,7 +18,7 @@ function GenreHolder({ tags,features }) {
         <h1 className="mb-2 text-2xl font-bold">Features</h1>
         <div className="flex flex-wrap gap-2.5">
         {features.map((game, index) => (
-            <PurpleHolder propName={features[index]}></PurpleHolder>
+            <PurpleHolder key={features[index]} propName={features[index]}></PurpleHolder>
           ))}
         </div>
       </div>
