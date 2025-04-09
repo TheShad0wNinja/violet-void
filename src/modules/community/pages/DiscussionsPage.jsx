@@ -1,8 +1,9 @@
 import { Container, Divider, Title } from "@modules/_shared/App";
-import { MoreButton, PostCard, PostPopUp } from "../App";
+import { MoreButton, PostCard } from "../App";
 import { getDiscussions } from "../utils/disscusionData";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
+import PostPopUp from "../components/DiscussionsPostPopUp";
 
 export default function DiscussionPage() {
   const location = useLocation();
