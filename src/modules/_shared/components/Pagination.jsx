@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 /**
  * A customizable pagination component that displays page navigation controls.
  *
@@ -8,6 +6,7 @@ import { useState } from "react";
  * @param {number} [props.itemsPerPage=10] - Number of items to display per page
  * @param {function} props.onPageChange - Callback fired when page changes
  * @param {number} [props.maxVisiblePages=2] - Maximum number of visible page buttons (excluding navigation)
+ * @param {number} props.currentPage - The current pagination value
  * @returns {JSX.Element} The pagination component
  *
  * @example
@@ -22,14 +21,13 @@ export default function Pagination({
   totalItems,
   itemsPerPage = 10,
   onPageChange,
+	currentPage,
   maxVisiblePages = 2
 }) {
-  const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const handlePageChange = page => {
     if (page < 1 || page > totalPages) return;
-    setCurrentPage(page);
     onPageChange(page);
   };
 
