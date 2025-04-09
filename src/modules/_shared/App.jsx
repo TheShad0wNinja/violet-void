@@ -16,3 +16,4 @@ export { default as Select } from "./components/inputs/Select.jsx";
 export { default as Collapsible } from "./components/Collapsible.jsx";
 export { default as TextInput } from "./components/inputs/TextInput.jsx";
 export { default as Pagination } from "./components/Pagination.jsx";
+export { default as Carousel } from "./components/Carousel.jsx";

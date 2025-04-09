@@ -6,8 +6,8 @@ function GameRequirements({ requirements }) {
   const { minimum, recommended } = requirements;
 
   return (
-    <div data-aos="fade-up" className="h-fit mt-8 bg-secondary-900 flex rounded-2xl p-4">
-      <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-8 mt-8 mb-8 w-[95%]">
+    <div data-aos="fade-up" className="mt-8 bg-secondary-900 w-full rounded-2xl p-4">
+      <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-8 my-8">
         {/* Minimum Requirements */}
         <div className="ml-4">
           <h1 className="text-xl font-semibold mb-2">Minimum</h1>
