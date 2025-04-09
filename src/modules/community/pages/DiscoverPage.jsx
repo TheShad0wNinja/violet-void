@@ -4,7 +4,7 @@ import {
   DiscussionPage,
   GuidesPage,
   NewsPage,
-  ReviewsPage,
+  ReviewsComponent,
   ScreenshotComponent
 } from "@modules/community/App";
 
@@ -15,7 +15,7 @@ export default function DiscoverPage() {
       <Divider direction="left" className="my-10" />
       <NewsPage />
       <Divider direction="left" className="my-10" />
-      <ReviewsPage />
+      <ReviewsComponent />
       <Divider direction="left" className="my-10" />
       <DiscussionPage />
       <Divider direction="left" className="my-10" />

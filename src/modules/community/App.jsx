@@ -10,3 +10,5 @@ export { default as PostCard } from "./components/PostCard";
 export { default as PostPopUp } from "./components/PostPopUp";
 export { default as ArtworkComponent } from "./components/ArtworkComponent";
 export { default as ScreenshotComponent } from "./components/ScreenshotComponent";
+export { default as ReviewsComponent } from "./components/ReviewsComponent";
+export { default as MiniReviewsComponent } from "./components/MiniReviewsComponent";
