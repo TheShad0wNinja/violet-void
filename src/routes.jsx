@@ -10,8 +10,6 @@ import {
   WishlistPage,
   LibraryPage
 } from "@modules/store/App";
-import { AdminHomePage, AdminLayout, AdminProductsPage } from "@modules/admin/App";
-import { Children } from "react";
 
 const routesLinks = [
   {
@@ -60,14 +58,12 @@ const routesLinks = [
     element: <AdminLayout />,
     children: [
       {
-        path: "admin",
-        // element: <AdminHomePage />,
-        children: [
-          {
-            path: "products",
-            element: <AdminProductsPage />
-          }
-        ]
+        path: "/store/wishlist",
+        element: <WishlistPage />
+      },
+      {
+        path: "/store/library",
+        element: <LibraryPage />
       }
     ]
   },
