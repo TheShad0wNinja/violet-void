@@ -1,3 +1,4 @@
+import { IconX } from "@tabler/icons-react";
 import Divider from "./Divider";
 import Title from "./Title";
 
@@ -46,8 +47,8 @@ export default function Drawer({ children, isOpen, header, setIsOpen, position }
     >
       <section className="flex items-center justify-between">
         <Title>{header}</Title>
-        <button className="bg-accent hover:bg-accent-400 hover:scale-105 cursor-pointer rounded-md py-1 px-3 text-base" onClick={() => setIsOpen(false)}>
-          x
+        <button className="hover:scale-110 transition-transform hover:rotate-90 duration-100 cursor-pointer rounded-md p-1 text-base" onClick={() => setIsOpen(false)}>
+          <IconX size={22} />
         </button>
       </section>
       <Divider className="mt-2 mb-4" direction="right" />

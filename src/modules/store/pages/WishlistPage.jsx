@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getGamesList, getRankingGamesList } from "../utils/mockData";
-import { Pagination, TextInput, Title,Container } from "@modules/_shared/App";
-import {GameCard,GameCardRanking} from "../App";
+import { Pagination, TextInput, Title, Container } from "@modules/_shared/App";
+import { GameCard, GameCardRanking } from "../App";
 import useUrlFilters from "../hooks/useUrlFilters";
+import { IconSearch } from "@tabler/icons-react";
 
 function mockPagination(page, limit = 8) {
   const games = getGamesList();
@@ -17,7 +18,7 @@ function WishlistPage() {
 
   const Rankedgames = getRankingGamesList();
   const [searchQuery, setSearchQuery] = useState("");
-  const { filters, setFilter } = useUrlFilters({page: 1, pagedlc: 1});
+  const { filters, setFilter } = useUrlFilters({ page: 1, pagedlc: 1 });
   const [gamesTotalCount, setGamesTotalCount] = useState(20);
   const [dlcsTotalCount, setDlcsTotalCount] = useState(20);
 
@@ -39,24 +40,7 @@ function WishlistPage() {
         <div className="flex w-full justify-between p-2">
           <Title>Wishlist</Title>
           <TextInput
-            rightSection={
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width={20}
-                height={20}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={1}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="icon icon-tabler icons-tabler-outline icon-tabler-search"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-                <path d="M21 21l-6 -6" />
-              </svg>
-            }
+            rightSection={<IconSearch size={20} />}
             value={searchQuery}
             setValue={val => setSearchQuery(val)}
             placeholder="Search..."
@@ -88,7 +72,7 @@ function WishlistPage() {
             totalItems={gamesTotalCount}
             itemsPerPage={8}
             onPageChange={page => setFilter("page", page)}
-						currentPage={Number(filters["page"])}
+            currentPage={Number(filters["page"])}
             maxVisiblePages={7}
           />
 
@@ -100,7 +84,7 @@ function WishlistPage() {
             totalItems={dlcsTotalCount}
             itemsPerPage={8}
             onPageChange={pagedlc => setFilter("pagedlc", pagedlc)}
-						currentPage={Number(filters["pagedlc"])}
+            currentPage={Number(filters["pagedlc"])}
             maxVisiblePages={7}
           />
         </div>
