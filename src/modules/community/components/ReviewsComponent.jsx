@@ -2,6 +2,7 @@ import { Container, Divider, Title } from "@modules/_shared/App";
 import { getReviews } from "../utils/reviewData";
 import MiniReviewsComponent from "./MiniReviewsComponent";
 import MoreButton from "./MoreButton";
+import { Link } from "react-router";
 
 const reviews = getReviews();
 
@@ -9,7 +10,9 @@ export default function ReviewsComponent() {
   return (
     <Container>
       <div className="flex flex-nowrap items-center justify-between">
-        <Title>Reviews</Title>
+      <Link to="reviews">
+              <Title>Reviews</Title>
+            </Link>
         <MoreButton to="reviews" />
       </div>
       <Divider direction="center" className="mt-1 mb-4" />

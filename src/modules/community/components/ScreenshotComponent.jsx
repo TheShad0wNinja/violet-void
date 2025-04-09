@@ -1,6 +1,7 @@
 import { Carousel, Container, Divider, Title } from "@modules/_shared/App";
 import { MoreButton } from "@modules/community/App";
 import { getShuffledScreenshotData } from "../utils/mockScreenshotsData";
+import { Link } from "react-router";
 
 const ScreenshotData = getShuffledScreenshotData();
 
@@ -15,7 +16,9 @@ export default function ScreenshotComponent() {
     <>
       <Container>
         <div className="flex flex-nowrap items-center justify-between">
-          <Title>Screenshots</Title>
+          <Link to="screenshots">
+            <Title>Screenshots</Title>
+          </Link>
           <MoreButton to="screenshots" />
         </div>
         <Divider direction="center" className="mt-1 mb-4" />
@@ -52,12 +55,12 @@ export default function ScreenshotComponent() {
               <div className="space-y-4">
                 {group.slice(2, 4).map(post => (
                   <div className="bg-background-900 relative overflow-hidden rounded-xl">
-                  <img src={post.imageSrc} className="h-90 w-full object-contain" />
-                  <div className="bg-secondary/90 absolute bottom-0 left-0 max-w-1/2 rounded-tr-4xl p-4">
-                    <h2 className="mb-2 text-xl font-semibold">{post.title}</h2>
-                    <p className="text-accent">{post.author}</p>
+                    <img src={post.imageSrc} className="h-90 w-full object-contain" />
+                    <div className="bg-secondary/90 absolute bottom-0 left-0 max-w-1/2 rounded-tr-4xl p-4">
+                      <h2 className="mb-2 text-xl font-semibold">{post.title}</h2>
+                      <p className="text-accent">{post.author}</p>
+                    </div>
                   </div>
-                </div>
                 ))}
               </div>
             </div>
