@@ -3,7 +3,7 @@ import PostCard from "../components/PostCard";
 import MoreButton from "../components/MoreButton";
 import { getDiscussions } from "../utils/disscusionData";
 import { Link, useLocation } from "react-router-dom";
-import PostPopUp from "../components/PostPopUp";
+import PostPopUp from "../components/DiscussionsPostPopUp";
 import { useState } from "react";
 
 export default function DiscussionPage() {
