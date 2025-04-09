@@ -1,7 +1,17 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import { NotFoundPage, RootLayout } from "@modules/_shared/App";
-import { ProductPage, BrowsePage, HomePage, CartPage, CartProvider, CheckoutPage,WishlistPage,LibraryPage } from "@modules/store/App";
-import { AdminHomePage, AdminLayout } from "@modules/admin/App";
+import {
+  ProductPage,
+  BrowsePage,
+  HomePage,
+  CartPage,
+  CartProvider,
+  CheckoutPage,
+  WishlistPage,
+  LibraryPage
+} from "@modules/store/App";
+import { AdminHomePage, AdminLayout, AdminProductsPage } from "@modules/admin/App";
+import { Children } from "react";
 
 const routesLinks = [
   {
@@ -16,12 +26,25 @@ const routesLinks = [
         element: <HomePage />
       },
       {
-        path: "/store/product/:id",
-        element: <ProductPage />
-      },
-      {
-        path: "/store/browse",
-        element: <BrowsePage />
+        path: "store",
+        children: [
+          {
+            path: "product/:id",
+            element: <ProductPage />
+          },
+          {
+            path: "browse",
+            element: <BrowsePage />
+          },
+          {
+            path: "wishlist",
+            element: <WishlistPage />
+          },
+          {
+            path: "library",
+            element: <LibraryPage />
+          }
+        ]
       },
       {
         path: "/cart",
@@ -30,26 +53,24 @@ const routesLinks = [
       {
         path: "/cart/checkout",
         element: <CheckoutPage />
-      },
-      {
-        path: "/store/wishlist",
-        element: <WishlistPage/>
-      },
-      {
-        path: "/store/library",
-        element: <LibraryPage />
       }
     ]
   },
-	{
-		element: <AdminLayout/>,
-		children: [
-			{
-				path: "/admin/",
-				element: <AdminHomePage />
-			}
-		]
-	},
+  {
+    element: <AdminLayout />,
+    children: [
+      {
+        path: "admin",
+        // element: <AdminHomePage />,
+        children: [
+          {
+            path: "products",
+            element: <AdminProductsPage />
+          }
+        ]
+      }
+    ]
+  },
   {
     element: <NotFoundPage />,
     path: "*"

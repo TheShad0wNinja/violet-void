@@ -1,19 +1,22 @@
 import { Outlet } from "react-router";
 import AdminNavbar from "./AdminNavbar";
-import { Branding } from "@modules/_shared/App";
+import { Branding, Button } from "@modules/_shared/App";
+import { useState } from "react";
 
 export default function AdminLayout() {
+  const [navIsOpen, setNavIsOpen] = useState(true);
   return (
-    <div >
-      <div className="fixed top-0 z-50 w-full p-6 border-b border-accent">
+    <div>
+      <div className="border-accent fixed top-0 z-50 flex w-full gap-2 border-b p-6">
+        <button onClick={() => setNavIsOpen(!navIsOpen)}>Burger</button>
         <Branding />
       </div>
-			<div className="gap-4 mt-21">
-				<AdminNavbar />
-				<div className="sm:pl-72 pt-4">
-					<Outlet />
-				</div>
-			</div>
+      <div className="mt-21 gap-4">
+        <AdminNavbar isOpen={navIsOpen} />
+        <div className={"pt-4 transition-all duration-100" + (navIsOpen ? " sm:pl-72" : " pl-0")}>
+          <Outlet />
+        </div>
+      </div>
     </div>
   );
 }

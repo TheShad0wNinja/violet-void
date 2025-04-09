@@ -20,7 +20,7 @@ const sections = [
 export default function AdminNavbar({ isOpen = false }) {
   return (
     <aside
-      className={`${isOpen ? "translate-x-0" : "-translate-x-full"} border-accent border-t border-r fixed left-0 h-screen w-full p-4 transition-transform duration-75 sm:w-72 sm:translate-x-0`}
+      className={`${isOpen ? "translate-x-0" : "-translate-x-full"} border-accent border-t border-r fixed left-0 h-screen w-full p-4 transition-transform duration-75 sm:w-72`}
     >
       <ul>
         {sections.map(section => (
