@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
+import { IconX, IconHeartFilled, IconMessageCircleFilled, IconShare } from "@tabler/icons-react";
 
 export default function PostPopUp({ isOpen, onClose, post }) {
   useEffect(() => {
@@ -37,15 +38,17 @@ export default function PostPopUp({ isOpen, onClose, post }) {
           >
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 cursor-pointer text-2xl font-bold text-gray-500 hover:text-red-500"
+              className="absolute top-4 right-4 cursor-pointer text-2xl font-bold text-gray-500"
             >
-              &times;
+              <IconX size={20} className="hover:text-white" />
             </button>
 
             <div className="overflow-y-auto p-6">
               <div className="mb-4">
                 <div className="flex items-center gap-2 text-sm text-gray-400">
-                  <span className=" text-gray-400 hover:text-accent cursor-pointer font-medium">{post.subreddit}</span>
+                  <span className="hover:text-accent cursor-pointer font-medium text-gray-400">
+                    {post.subreddit}
+                  </span>
                   <span>•</span>
                   <span>{post.time}</span>
                 </div>
@@ -65,17 +68,16 @@ export default function PostPopUp({ isOpen, onClose, post }) {
                 )}
               </div>
               <div className="flex gap-4 border-t border-b py-3 text-sm text-gray-400">
-                <span className="flex items-center gap-1">
-                  <span>❤️</span>
-                  <span className="hover:text-accent cursor-pointer">{post.upvotes}</span>
+                <span className="hover:text-accent flex cursor-pointer items-center gap-1">
+                  <IconHeartFilled size={18} />
+                  {post.upvotes}
                 </span>
                 <span className="flex items-center gap-1">
-                  <span>💬</span>
-                  <span>{post.comments}</span>
+                  <IconMessageCircleFilled size={18} />
+                  {post.comments}
                 </span>
-                <span className="flex items-center gap-1">
-                  <span>🔗</span>
-                  <span className="hover:text-accent cursor-pointer">Share</span>
+                <span className="hover:text-accent flex cursor-pointer items-center gap-1">
+                  <IconShare size={18} /> Share
                 </span>
               </div>
 
