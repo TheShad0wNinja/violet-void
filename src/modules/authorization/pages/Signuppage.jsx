@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import authobackground from "../assets/authobackground.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import WhiteTextInputBox from "../components/WhiteTextInputBox";
+import WhiteDobBox from "../components/WhiteDobBox";
 
 function Signuppage() {
   const [signupData, setSignupData] = useState({
@@ -22,10 +24,30 @@ function Signuppage() {
         >
           <div className="bg-primary/25 bg-op flex h-full w-1/2 items-center rounded-l-2xl text-white">
             <div className="h-[80%] w-full">
-              <h1 className="mb-4 text-center text-5xl font-bold">Create an account</h1>
+              <h1 className="mb-10 text-center text-5xl font-bold">Create an account</h1>
               <Formik>
                 <Form>
-                  <Field></Field>
+                  <WhiteTextInputBox
+                    name="UserName"
+                    placeholder="UserName"
+                    // value={formik.values.email}
+                    // onChange={formik.handleChange}
+                  ></WhiteTextInputBox>
+                  <WhiteTextInputBox
+                    name="email"
+                    placeholder="Email"
+                    // value={formik.values.email}
+                    // onChange={formik.handleChange}
+                  ></WhiteTextInputBox>
+                  <WhiteTextInputBox
+                    name="Password"
+                    placeholder="Password"
+                    // value={formik.values.email}
+                    // onChange={formik.handleChange}
+                  ></WhiteTextInputBox>
+                  <WhiteDobBox
+                   datevalue="" dateonchange="" monthvalue="" monthonchange="" yearvalue="" yearonchange=""
+                  ></WhiteDobBox>
                 </Form>
               </Formik>
             </div>
