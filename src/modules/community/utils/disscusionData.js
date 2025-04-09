@@ -26,6 +26,15 @@ const discussions = [
         upvotes: 354,
         comments: 273,
       },
+      {
+        subreddit: 'MichealJackson',
+        time: '1 hour ago',
+        title: 'People claim he is a pedophile',
+        body: 'I can Prove that by saying he is not, now if you disagree u are not invited to my birdthday party',
+        image: 'https://preview.redd.it/nuh-nuh-uh-v0-35zg3kohyxuc1.jpg?width=320&crop=smart&auto=webp&s=84fd558f0cbe1a277bcbe993dfefa6bf65d4ea57',
+        upvotes: 7684,
+        comments: 9213,
+      },
 ];
 
 export function getDiscussions() {
