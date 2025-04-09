@@ -60,34 +60,23 @@ const sortByOptions = [
 ];
 
 const initalFilters = {
-  genres: "",
+  genres: [],
   priceMin: 0,
   priceMax: 400,
-  types: "",
+  types: [],
   sortBy: "name-asc"
 };
 
 export default function FilterDrawer({ isOpen, setIsOpen }) {
   const { filters, setFilter, setFilters, resetFilters } = useUrlFilters(initalFilters);
 
-  const selectedGenres = filters.genres ? filters.genres.split(",") : [];
-  const selectedTypes = filters.types ? filters.types.split(",") : [];
-
-  const handleGenreSelect = items => {
-    setFilter("genres", items.join(","));
-  };
-
-  const handleTypesSelect = items => {
-    setFilter("types", items.join(","));
-  };
-
   return (
     <Drawer header="Filter" isOpen={isOpen} setIsOpen={setIsOpen} position="right">
       <div className="grid grid-cols-1 items-start justify-center gap-6">
         <Collapsible header="Genre">
           <MultiSelectSearch
-            setSelectedItems={handleGenreSelect}
-            selectedItems={selectedGenres}
+            setSelectedItems={items => setFilter("genres", items)}
+            selectedItems={filters["genres"]}
             options={genreOptions}
           />
         </Collapsible>
@@ -104,8 +93,8 @@ export default function FilterDrawer({ isOpen, setIsOpen }) {
         </Collapsible>
         <Collapsible header="Types">
           <MultiSelectSearch
-            setSelectedItems={handleTypesSelect}
-            selectedItems={selectedTypes}
+            setSelectedItems={items => setFilter("types", items)}
+            selectedItems={filters["types"]}
             options={typeOptions}
           />
         </Collapsible>
