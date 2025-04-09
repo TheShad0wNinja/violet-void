@@ -22,7 +22,9 @@ export default function LibraryPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [gamesTotalCount, setGamesTotalCount] = useState(0);
 
-  const { filters, setFilter } = useUrlFilters({ search: "", sortBy: "", tag: "", page: 0 });
+  const { filters, setFilter } = useUrlFilters({  page: 1 });
+
+	console.log(filters)
 
   const [games, setGames] = useState([]);
 
@@ -110,6 +112,7 @@ export default function LibraryPage() {
           itemsPerPage={8}
           onPageChange={page => setFilter("page", page)}
           maxVisiblePages={7}
+					currentPage={Number(filters["page"])}
         />
       </Container>
     </>

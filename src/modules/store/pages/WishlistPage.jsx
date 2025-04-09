@@ -17,7 +17,7 @@ function WishlistPage() {
 
   const Rankedgames = getRankingGamesList();
   const [searchQuery, setSearchQuery] = useState("");
-  const { filters, setFilter } = useUrlFilters("");
+  const { filters, setFilter } = useUrlFilters({page: 1, pagedlc: 1});
   const [gamesTotalCount, setGamesTotalCount] = useState(20);
   const [dlcsTotalCount, setDlcsTotalCount] = useState(20);
 
@@ -88,6 +88,7 @@ function WishlistPage() {
             totalItems={gamesTotalCount}
             itemsPerPage={8}
             onPageChange={page => setFilter("page", page)}
+						currentPage={Number(filters["page"])}
             maxVisiblePages={7}
           />
 
@@ -99,6 +100,7 @@ function WishlistPage() {
             totalItems={dlcsTotalCount}
             itemsPerPage={8}
             onPageChange={pagedlc => setFilter("pagedlc", pagedlc)}
+						currentPage={Number(filters["pagedlc"])}
             maxVisiblePages={7}
           />
         </div>
