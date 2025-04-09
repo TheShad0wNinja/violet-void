@@ -53,7 +53,6 @@
   --color-accent-900: oklch(18.4% 0.072 291);
   --color-accent-950: oklch(12.99% 0.04 296.78);
 
-   
   /* --color-accent: #4d1ee6; */
   /* --color-accent-50: oklch(93.111% 0.02469 298.6);
   --color-accent-100: oklch(89.022% 0.03873 297.05);
@@ -93,4 +92,33 @@
   --color-secondary-950: oklch(13.042% 0.03267 293.28); */
 
   --container-default: 100rem;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1e2d;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f3f5a;
+  border-radius: 5px;
+  border: 2px solid #1e1e2d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #55557a;
+}
+
+::-webkit-scrollbar-corner {
+  background: #1e1e2d;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3f3f5a #1e1e2d;
 }
