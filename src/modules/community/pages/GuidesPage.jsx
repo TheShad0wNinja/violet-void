@@ -1,13 +1,15 @@
 import { Container, Divider, Title } from "@modules/_shared/App";
 import { useState } from "react";
 import { getGuides } from "../utils/guidesData";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router";
 import MoreButton from "../components/MoreButton";
+import GuidesPostPopUp from "../components/GuidesPostPopUp";
+import { IconHeartFilled, IconSearch, IconStarFilled, IconMessageCircleFilled, IconEyeFilled, IconStarHalfFilled} from "@tabler/icons-react";
 
 export default function GuidesPage() {
   const location = useLocation();
   const isCommunitiesPage = location.pathname === "/community";
-  const [selectedPost, setSelectedPost] = useState(null);
+  const [selectedGuide, setSelectedGuide] = useState(null);
 
   return (
     <Container>
@@ -21,15 +23,27 @@ export default function GuidesPage() {
             <Title>Guides</Title>
           )}
 
-          {isCommunitiesPage ? <MoreButton to="guides" /> : null}
+          {isCommunitiesPage ? (
+            <MoreButton to="guides" />
+          ) : (
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search Guides..."
+                className="bg-secondary-700 focus:ring-accent-400 w-full max-w-xs px-4 py-2 underline-offset-2 focus:ring-2 focus:outline-none"
+              />
+              <IconSearch size={22} className="absolute top-2.5 right-3 h-5 w-5 text-gray-400" />
+            </div>
+          )}
         </div>
         <Divider className="mb-4" />
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           {getGuides().map((guide, index) => (
             <div
               key={guide.id}
-              className={`bg-secondary-900 hover:bg-secondary-800 rounded-2xl p-6 transition-colors duration-200 ${index % 4 === 0 ? "col-span-3" : ""}`}
+              className={`bg-secondary-900 hover:bg-secondary-800 rounded-2xl p-6 transition-colors duration-200 ${index % 4 === 0 ? "sm:col-span-3" : ""} `}
+              onClick={() => setSelectedGuide(guide)}
             >
               <div className="cursor-pointer">
                 <div className="mb-2 flex items-start justify-between">
@@ -43,22 +57,22 @@ export default function GuidesPage() {
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <span className="text-yellow-400">★★★★★</span>
+                    <span className="text-yellow-400 flex items-center gap-1"><IconStarFilled size={18}/><IconStarFilled size={18}/><IconStarFilled size={18}/><IconStarFilled size={18}/><IconStarHalfFilled size={18}/></span>
                     <span className="ml-1 text-xs text-gray-400">{guide.ratings}</span>
                   </div>
                   <div className="flex space-x-2 text-xs text-gray-400">
-                    <span className="hover:text-accent">❤️{guide.Likes}</span>
-                    <span className="hover:text-accent">💬{guide.Comments}</span>
-                    <span className="hover:text-accent">👁️{guide.Views}</span>
+                    <span className="hover:text-accent flex items-center gap-1"><IconHeartFilled size={18}/>{guide.Likes}</span>
+                    <span className="hover:text-accent flex items-center gap-1"><IconMessageCircleFilled size={18}/>{guide.Comments}</span>
+                    <span className="hover:text-accent flex items-center gap-1"><IconEyeFilled size={18}/>{guide.Views}</span>
                   </div>
                 </div>
               </div>
 
-              {selectedPost && (
-                <PostPopUp
-                  isOpen={!!selectedPost}
-                  post={selectedPost}
-                  onClose={() => setSelectedPost(null)}
+              {selectedGuide && (
+                <GuidesPostPopUp
+                  isOpen={!!selectedGuide}
+                  guide={selectedGuide}
+                  onClose={() => setSelectedGuide(null)}
                 />
               )}
             </div>

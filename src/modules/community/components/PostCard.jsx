@@ -1,3 +1,5 @@
+import { IconMessageCircleFilled, IconHeartFilled, IconShare } from "@tabler/icons-react";
+
 export default function PostCard({ post }) {
   return (
     <div className="bg-secondary-900 border-accent hover:border-accent-600 mx-auto mb-6 w-full max-w-6xl cursor-pointer rounded-2xl border p-4 text-white shadow-md">
@@ -18,13 +20,20 @@ export default function PostCard({ post }) {
             className="rounded-mb w-auto object-contain object-left"
           />
         </div>
-        
       )}
 
       <div className="flex space-x-6 text-sm text-gray-400">
-        <span className="hover:text-accent">❤️ {post.upvotes}</span>
-        <span className="hover:text-accent">💬 {post.comments} </span>
-        <span className="hover:text-accent">🔗 Share</span>
+        <span className="hover:text-accent flex cursor-pointer items-center gap-1">
+          <IconHeartFilled size={18} />
+          {post.upvotes}
+        </span>
+        <span className="hover:text-accent flex cursor-pointer items-center gap-1">
+          <IconMessageCircleFilled size={18} />
+          {post.comments}
+        </span>
+        <span className="hover:text-accent flex cursor-pointer items-center gap-1">
+          <IconShare size={18} /> Share
+        </span>
       </div>
     </div>
   );
