@@ -27,7 +27,7 @@ export default function ScreenshotComponent() {
               <div className="bg-secondary p-4">
                 <h2 className="mb-2 text-center text-xl font-semibold">{post.title}</h2>
                 <p className="text-accent-200 mb-2">{post.author}</p>
-                <p className="pb-5">{post.description}</p>
+                <p className="line-clamp-3 pb-5">{post.description}</p>
               </div>
             </div>
           )}
@@ -37,35 +37,33 @@ export default function ScreenshotComponent() {
         <Carousel
           items={desktopView}
           renderItem={group => (
-            <div className="grid grid-cols-2 gap-4 p-4">
+            <div className="mx-12 grid grid-cols-2 gap-4 p-4">
               <div className="space-y-4">
                 {group.slice(0, 2).map(post => (
-                  <div className="overflow-hidden rounded-xl">
-                    <img src={post.imageSrc} className="h-90 w-full object-cover" />
-                    <div className="bg-secondary p-4">
-                      <h2 className="mb-2 text-center text-xl font-semibold">{post.title}</h2>
-                      <p className="text-accent mb-2">{post.author}</p>
-                      <p className="pb-5">{post.description}</p>
+                  <div className="bg-background-900 relative overflow-hidden rounded-xl">
+                    <img src={post.imageSrc} className="h-90 w-full object-contain" />
+                    <div className="bg-secondary/90 absolute bottom-0 left-0 max-w-1/2 rounded-tr-4xl p-4">
+                      <h2 className="mb-2 text-xl font-semibold">{post.title}</h2>
+                      <p className="text-accent">{post.author}</p>
                     </div>
                   </div>
                 ))}
               </div>
               <div className="space-y-4">
                 {group.slice(2, 4).map(post => (
-                  <div className="overflow-hidden rounded-xl">
-                    <img src={post.imageSrc} className="h-90 w-full object-cover" />
-                    <div className="bg-secondary p-4">
-                      <h2 className="mb-2 text-center text-xl font-semibold">{post.title}</h2>
-                      <p className="text-accent mb-2">{post.author}</p>
-                      <p className="pb-5">{post.description}</p>
-                    </div>
+                  <div className="bg-background-900 relative overflow-hidden rounded-xl">
+                  <img src={post.imageSrc} className="h-90 w-full object-contain" />
+                  <div className="bg-secondary/90 absolute bottom-0 left-0 max-w-1/2 rounded-tr-4xl p-4">
+                    <h2 className="mb-2 text-xl font-semibold">{post.title}</h2>
+                    <p className="text-accent">{post.author}</p>
                   </div>
+                </div>
                 ))}
               </div>
             </div>
           )}
           autoSlideInterval={0}
-          containerClass="hidden sm:block"
+          containerClass="hidden mx-auto max-w-11/12 sm:block"
         />
       </Container>
     </>

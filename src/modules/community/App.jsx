@@ -4,7 +4,7 @@ export { default as DiscussionPage } from "./pages/DiscussionsPage";
 export { default as GuidesPage } from "./pages/GuidesPage";
 export { default as NewsPage } from "./pages/NewsPage";
 export { default as ReviewsPage } from "./pages/ReviewsPage";
-export { default as ScreenshotsPage } from "./pages/SceenshotsPage";
+export { default as ScreenshotsPage } from "./pages/ScreenshotsPage";
 export { default as MoreButton } from "./components/MoreButton";
 export { default as PostCard } from "./components/PostCard";
 export { default as PostPopUp } from "./components/PostPopUp";
