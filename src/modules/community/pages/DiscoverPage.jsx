@@ -1,29 +1,29 @@
 import { Divider } from "@modules/_shared/App";
 import {
-  ArtworkPage,
+  ArtworkComponent,
   DiscussionPage,
   GuidesPage,
   NewsPage,
   ReviewsPage,
-  ScreenshotsPage
+  ScreenshotComponent
 } from "@modules/community/App";
 
 export default function DiscoverPage() {
   return (
     <>
       Discover
-      <Divider direction="left" />
+      <Divider direction="left" className="my-10" />
       <NewsPage />
-      <Divider direction="left" />
+      <Divider direction="left" className="my-10" />
       <ReviewsPage />
-      <Divider direction="left" />
+      <Divider direction="left" className="my-10" />
       <DiscussionPage />
-      <Divider direction="left" />
+      <Divider direction="left" className="my-10" />
       <GuidesPage />
-      <Divider direction="left" />
-      <ScreenshotsPage />
-      <Divider direction="left" />
-      <ArtworkPage />
+      <Divider direction="left" className="my-10" />
+      <ScreenshotComponent />
+      <Divider direction="left" className="my-10" />
+      <ArtworkComponent />
     </>
   );
 }

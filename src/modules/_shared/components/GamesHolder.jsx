@@ -4,35 +4,23 @@ import rightArrow from "@modules/_shared/Assets/right-arrow.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-function GamesHolder({ Sectionname }) {
+function GamesHolder({ Sectionname, games }) {
   const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(false);
 
-  const gameSets = [
-    [
-      { gameName: "Game 1", gamePrice: "$10.99", gameDetails: "Details of Game 1" },
-      { gameName: "Game 2", gamePrice: "$14.99", gameDetails: "Details of Game 2" },
-      { gameName: "Game 3", gamePrice: "$19.99", gameDetails: "Details of Game 3" }
-    ],
-    [
-      { gameName: "Game 4", gamePrice: "$12.49", gameDetails: "Details of Game 4" },
-      { gameName: "Game 5", gamePrice: "$8.99", gameDetails: "Details of Game 5" },
-      { gameName: "Game 6", gamePrice: "$16.99", gameDetails: "Details of Game 6" }
-    ],
-    [
-      { gameName: "Game 7", gamePrice: "$9.99", gameDetails: "Details of Game 7" },
-      { gameName: "Game 8", gamePrice: "$18.99", gameDetails: "Details of Game 8" },
-      { gameName: "Game 9", gamePrice: "$11.99", gameDetails: "Details of Game 9" }
-    ]
-  ];
-
+  if (!games) {
+    return <h1>no games</h1>;
+  }
   const handleNext = () => {
     setFade(true); // Start animation
     setTimeout(() => {
-      setIndex(prevIndex => (prevIndex + 1) % gameSets.length);
+      setIndex(prevIndex => (prevIndex + 1) % games.length);
       setFade(false);
     }, 300);
   };
+  if (!games || games.length === 0) {
+    return <h1>No games available</h1>;
+  }
 
   return (
     <div>
@@ -48,12 +36,13 @@ function GamesHolder({ Sectionname }) {
           fade ? "translate-y-3 opacity-0" : "translate-y-0 opacity-100"
         }`}
       >
-        {gameSets[index].map((game, i) => (
+        {games.map((game, i) => (
           <GameHolderBox
             key={i}
-            gameName={game.gameName}
-            gamePrice={game.gamePrice}
-            gameDetails={game.gameDetails}
+            gameName={game.name}
+            gamePrice={game.price}
+            gameDetails={game.rating}
+            gameImage={game.image}
           />
         ))}
       </div>
