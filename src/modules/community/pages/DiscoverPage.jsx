@@ -1,4 +1,4 @@
-import { Divider } from "@modules/_shared/App";
+import { Container, Divider, Title } from "@modules/_shared/App";
 import {
   ArtworkComponent,
   DiscussionPage,
@@ -11,7 +11,10 @@ import {
 export default function DiscoverPage() {
   return (
     <>
-      Discover
+    <Container>
+    <div>
+      <Title>Discover</Title>
+      </div>
       <Divider direction="left" className="my-10" />
       <NewsPage />
       <Divider direction="left" className="my-10" />
@@ -24,6 +27,7 @@ export default function DiscoverPage() {
       <ScreenshotComponent />
       <Divider direction="left" className="my-10" />
       <ArtworkComponent />
+    </Container>
     </>
   );
 }

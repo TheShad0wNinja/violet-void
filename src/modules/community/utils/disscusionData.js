@@ -35,6 +35,15 @@ const discussions = [
         upvotes: 7684,
         comments: 9213,
       },
+      {
+        subreddit: 'MarvelRivals',
+        time: '50 mins ago',
+        title: 'Experimental Feature: Switch Shader Compilation Mode!',
+        body: 'To address the memory overload, we are unleashing an experimental feature in Season 2: the Switch Shader Compilation Mode. With the Season 2 update, players can activate this feature through the PC launcher. Once enabled, it brings these',
+        image: 'https://i.imgflip.com/7lsyd0.jpg?a484200',
+        upvotes: '13.k',
+        comments: '14.1k',
+      },
 ];
 
 export function getDiscussions() {

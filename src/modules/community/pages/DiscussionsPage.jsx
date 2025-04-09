@@ -12,8 +12,8 @@ export default function DiscussionPage() {
   const [selectedPost, setSelectedPost] = useState(null);
 
   return (
-    <Container className="top-0 max-h-200 overflow-auto">
-      <div className="bg-background sticky top-0 z-10">
+    <Container className={`${isCommunitiesPage ? "max-h-200 overflow-auto" : "h-auto"}`}>
+      <div className={`bg-background ${isCommunitiesPage ? "sticky" : ""} top-0 z-10`}>
         <div className="p-6">
           <div className="mb-4 flex items-center justify-between">
             {isCommunitiesPage ? (
