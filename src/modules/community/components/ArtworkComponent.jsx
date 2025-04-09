@@ -1,8 +1,19 @@
-import { Container, Divider, Title } from "@modules/_shared/App";
+import { Carousel, Container, Divider, Title } from "@modules/_shared/App";
 import { getShuffledArtists } from "../utils/mockUserData";
 import { MoreButton } from "@modules/community/App";
 
 const artists = getShuffledArtists();
+
+const mobileView = [];
+for (let i = 0; i < artists.length; i += 3) {
+  mobileView.push(artists.slice(i, i + 3));
+}
+
+const desktopView = [];
+for (let i = 0; i < artists.length; i += 5) {
+  desktopView.push(artists.slice(i, i + 5));
+}
+
 export default function ArtworkComponent() {
   return (
     <>
@@ -12,16 +23,44 @@ export default function ArtworkComponent() {
           <MoreButton to="artwork" />
         </div>
         <Divider direction="center" className="mt-1 mb-4" />
-        <div className="flex flex-wrap gap-x-5">
-          {artists.map(artist => (
-            <img
-              src={artist.art}
-              key={artist.art}
-              className="h-full max-h-90 w-fit rounded-2xl object-contain"
-            />
-          ))}
-        </div>
+        <Carousel
+          items={mobileView}
+          renderItem={panel => (
+            <div className="flex justify-center gap-4">
+              {panel.map(artist => (
+                <img
+                  key={artist.art}
+                  src={artist.art}
+                  className="bg-secondary-800 max-h-150 w-1/3 rounded-lg object-cover"
+                />
+              ))}
+            </div>
+          )}
+          autoSlideInterval={10000}
+          showIndicators={false}
+          itemClass="bg-secondary-800 flex justify-center"
+          containerClass="mx-auto w-full rounded-4xl block sm:hidden"
+        />
+        <Carousel
+          items={desktopView}
+          renderItem={panel => (
+            <div className="flex justify-center gap-4">
+              {panel.map(artist => (
+                <img
+                  key={artist.art}
+                  src={artist.art}
+                  className="bg-secondary-800 max-h-150 w-1/5 rounded-lg object-cover"
+                />
+              ))}
+            </div>
+          )}
+          autoSlideInterval={10000}
+          showIndicators={false}
+          itemClass="bg-secondary-800 flex justify-center"
+          containerClass="mx-auto w-full rounded-4xl hidden sm:block"
+        />
       </Container>
+      <div className="bg-secondary-800 flex justify-center" />
     </>
   );
 }
