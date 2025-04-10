@@ -19,7 +19,9 @@ import {
   NewsPage,
   ReviewsPage,
   ScreenshotAddingModal,
-  ScreenshotsPage
+  ScreenshotsPage,
+  DiscussionAddition,
+  GuideAddition
 } from "@modules/community/App";
 
 const routesLinks = [
@@ -77,11 +79,23 @@ const routesLinks = [
           },
           {
             path: "discussions",
-            element: <DiscussionPage />
+            element: <DiscussionPage />,
+            children: [
+              {
+                path: "add",
+                element: <DiscussionAddition />
+              }
+            ]
           },
           {
             path: "guides",
-            element: <GuidesPage />
+            element: <GuidesPage />,
+            children: [
+              {
+                path: "add",
+                element: <GuideAddition />
+              }
+            ]
           },
           {
             path: "news",

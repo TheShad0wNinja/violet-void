@@ -13,3 +13,5 @@ export { default as ReviewsComponent } from "./components/ReviewsComponent";
 export { default as MiniReviewsComponent } from "./components/MiniReviewsComponent";
 export { default as ArtworkItemModal } from "./components/ArtworkItemModal";
 export { default as ScreenshotAddingModal } from "./components/ScreenshotAddingModal";
+export { default as DiscussionAddition } from "./components/DiscussionAddition";
+export { default as GuideAddition } from "./components/GuideAddition";

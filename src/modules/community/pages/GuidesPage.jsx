@@ -1,4 +1,4 @@
-import { Container, Divider, Title } from "@modules/_shared/App";
+import { AnimatedOutlet, Container, Divider, Title } from "@modules/_shared/App";
 import { useState } from "react";
 import { getGuides } from "../utils/guidesData";
 import { Link, useLocation } from "react-router";
@@ -10,7 +10,8 @@ import {
   IconStarFilled,
   IconMessageCircleFilled,
   IconEyeFilled,
-  IconStarHalfFilled
+  IconStarHalfFilled,
+  IconPlus
 } from "@tabler/icons-react";
 
 export default function GuidesPage() {
@@ -94,7 +95,6 @@ export default function GuidesPage() {
                 </div>
               </div>
             </div>
-
             {selectedGuide && (
               <GuidesPostPopUp
                 isOpen={!!selectedGuide}
@@ -104,7 +104,18 @@ export default function GuidesPage() {
             )}
           </div>
         ))}
+        {!isCommunitiesPage ? (
+          <Link
+            to="add"
+            className="bg-accent hover:bg-accent-200 fixed right-10 bottom-10 rounded-2xl duration-100 ease-in"
+          >
+            <IconPlus size={50} />
+          </Link>
+        ) : (
+          ""
+        )}
       </div>
+      <AnimatedOutlet />
     </Container>
   );
 }

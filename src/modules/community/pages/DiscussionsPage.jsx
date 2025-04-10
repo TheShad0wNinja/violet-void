@@ -1,10 +1,10 @@
-import { Container, Divider, Title } from "@modules/_shared/App";
+import { AnimatedOutlet, Container, Divider, Title } from "@modules/_shared/App";
 import { MoreButton, PostCard } from "../App";
 import { getDiscussions } from "../utils/disscusionData";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import PostPopUp from "../components/DiscussionsPostPopUp";
-import { IconSearch } from "@tabler/icons-react";
+import { IconSearch, IconPlus } from "@tabler/icons-react";
 
 export default function DiscussionPage() {
   const location = useLocation();
@@ -48,7 +48,16 @@ export default function DiscussionPage() {
             <PostCard post={post} />
           </div>
         ))}
-
+        {!isCommunitiesPage ? (
+          <Link
+            to="add"
+            className="bg-accent hover:bg-accent-200 fixed right-10 bottom-10 rounded-2xl duration-100 ease-in"
+          >
+            <IconPlus size={50} />
+          </Link>
+        ) : (
+          ""
+        )}
         {selectedPost && (
           <PostPopUp
             isOpen={!!selectedPost}
@@ -57,6 +66,7 @@ export default function DiscussionPage() {
           />
         )}
       </div>
+      <AnimatedOutlet />
     </Container>
   );
 }
