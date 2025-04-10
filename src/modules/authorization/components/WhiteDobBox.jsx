@@ -1,9 +1,10 @@
 import React from "react";
 import { Field, ErrorMessage } from "formik";
+import AOS from "aos";
 
 function WhiteDobBox({ datevalue, dateonchange, monthvalue, monthonchange,yearvalue,yearonchange,condition,errormessage }) {
   return (
-    <div className="mt-4 w-full flex items-center justify-center">
+    <div className="mt-4 w-full flex items-center justify-center" data-aos-duration="1500"  data-aos="zoom-in">
       <div className="w-[65%]  items-center justify-center">
         <label className="text-center " >Date of Birth (dd/mm/yyyy)</label>
         <div className="flex mt-3 gap-2 ">

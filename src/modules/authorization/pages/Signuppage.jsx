@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import authobackground from "../assets/authobackground.png";
 import { useFormik } from "formik";
 import WhiteTextInputBox from "../components/WhiteTextInputBox";
 import WhiteDobBox from "../components/WhiteDobBox";
 import { Button } from "@modules/_shared/App";
 import * as Yup from "yup";
+import AOS from "aos";
 
 function Signuppage() {
+   useEffect(() => {
+      AOS.init({ once: false });
+    }, []);
+  
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -46,7 +51,7 @@ function Signuppage() {
   });
 
   return (
-    <div className="flex h-screen w-full items-center justify-center">
+    <div className="flex h-screen w-full items-center justify-center ">
       <div className="border-secondary relative flex h-[90%] w-[90%] items-center justify-center overflow-hidden rounded-2xl border-2">
         <div
           className="z-0 h-[95%] w-[95%] rounded-2xl"
@@ -55,10 +60,10 @@ function Signuppage() {
             backgroundSize: "cover",
             backgroundPosition: "center"
           }}
-        >
-          <div className="bg-primary/25 bg-op flex h-full transition-all duration-300 ease-in-out md:w-[50%] w-full items-center justify-center rounded-l-2xl text-white  overflow-y-auto">
+          data-aos="zoom-in"        >
+          <div className="bg-primary/25 bg-op flex h-full transition-all duration-300 ease-in-out md:w-[50%] w-full items-center justify-center rounded-l-2xl text-white  overflow-y-auto"  data-aos="fade-right" data-aos-duration="1500">
           <div className="h-[80%] w-full md:w-[85%]">
-          <h1 className="mb-10 text-center text-3xl font-bold md:text-4xl">Create an account</h1>
+          <h1 className="mb-10 text-center text-3xl font-bold md:text-4xl" data-aos="fade-up">Create an account</h1>
               <form onSubmit={formik.handleSubmit}>
                 <WhiteTextInputBox
                   name="username"
@@ -98,7 +103,7 @@ function Signuppage() {
                   }
                   errormessage={formik.errors.day || formik.errors.month || formik.errors.year}
                 />
-                <div className="mt-5 flex items-center justify-center">
+                <div className="mt-5 flex items-center justify-center" data-aos="fade-up">
                   <Button
                     onClick={formik.handleSubmit}
                     children="Sign up"
@@ -106,7 +111,7 @@ function Signuppage() {
                   ></Button>
                 </div>
               </form>
-              <h1 className="mt-3 text-center text-sm">
+              <h1 className="mt-3 text-center text-sm" data-aos="fade-up">
                 Already have an account?{" "}
                 <span className="text-primary-400 cursor-pointer font-bold">Login</span>
               </h1>
