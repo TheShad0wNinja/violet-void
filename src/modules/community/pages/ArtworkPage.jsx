@@ -1,9 +1,7 @@
 import { Container, Divider, Title } from "@modules/_shared/App";
 import { getShuffledArtists } from "../utils/mockUserData";
 import { useEffect, useState } from "react";
-
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { motion } from "motion/react";
 
 const artists = getShuffledArtists();
 const getRatio = url =>
@@ -22,9 +20,6 @@ export default function ArtworkPage() {
     Promise.all(artists.map(async artist => [artist.art, await getRatio(artist.art)])).then(data =>
       setRatios(Object.fromEntries(data))
     );
-
-    AOS.init();
-    window.scrollTo(0, 1);
   }, []);
 
   return (
@@ -42,13 +37,20 @@ export default function ArtworkPage() {
               className = `${isPortrait ? "col-span-1 row-span-2" : isLandscape ? "col-span-2 row-span-1" : "col-span-1 row-span-1"}`;
 
             return (
-              <div
+              <motion.div
                 className={`bg-accent-900 border-accent-900 hover:border-secondary-500 relative max-h-fit max-w-fit cursor-pointer overflow-hidden rounded-2xl border-2 ${className}`}
                 key={artist.art}
                 onMouseEnter={() => setArtistHover(index)}
                 onMouseLeave={() => setArtistHover(null)}
-                data-aos="fade-up"
-                data-aos-delay={25 * index}
+                initial={{ opacity: 0, y: "100%" }}
+                whileInView={{ opacity: 1, y: "0" }}
+                transition={{
+                  duration: 0.5,
+                  ease: "easeIn",
+                  type: "tween",
+                  delay: 0.1 * (index % 5)
+                }}
+                viewport={{ once: true, margin: "0% 0px 40% 0px" }}
               >
                 <img
                   src={artist.art}
@@ -66,7 +68,7 @@ export default function ArtworkPage() {
                     </span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
