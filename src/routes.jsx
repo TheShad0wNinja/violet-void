@@ -46,7 +46,7 @@ const routesLinks = [
     path: "*"
   },
   {
-    path: "/autho/signup",
+    path: "/auth/:page",
     element: <AuthPage />
   }
 ];

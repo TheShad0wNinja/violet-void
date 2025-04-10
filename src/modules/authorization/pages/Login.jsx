@@ -57,7 +57,7 @@ function Login({switchPage}) {
       </form>
       <h1 className="mt-3 text-center text-sm" data-aos="fade-up" data-aos-duration="1500">
         Don’t have an account?
-        <span className="text-primary-400 cursor-pointer font-bold"   onClick={() => switchPage(prev => !prev)}
+        <span className="text-primary-400 cursor-pointer font-bold"   onClick={() => switchPage()}
         > {" "} Sign up</span>
       </h1>
     </div>

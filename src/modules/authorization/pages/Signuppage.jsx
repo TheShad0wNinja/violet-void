@@ -92,7 +92,7 @@ function Signuppage({ switchPage }) {
           }
           errormessage={formik.errors.day || formik.errors.month || formik.errors.year}
         />
-        <div className="mt-5 flex items-center justify-center" data-aos="fade-up" data-aos-duration="1500">
+        <div className="mt-5 flex items-center justify-center" data-aos="fade-up" >
           <Button
             onClick={formik.handleSubmit}
             children="Sign up"
@@ -104,7 +104,7 @@ function Signuppage({ switchPage }) {
         Already have an account?
         <span
           className="text-primary-400 cursor-pointer font-bold"
-          onClick={() => switchPage(prev => !prev)}
+          onClick={() => switchPage()}
         >
           {" "}
           Login

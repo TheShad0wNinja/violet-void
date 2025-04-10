@@ -2,10 +2,17 @@ import React, { useState } from "react";
 import authobackground from "../assets/authobackground.png";
 import Signuppage from "./Signuppage";
 import Login from "./Login";
+import { useParams } from "react-router";
+import { BrowserRouter as Router, Route,  useNavigate } from "react-router-dom";
 
 function AuthPage() {
-    const [authMethod, setAuthMethod] = useState(false);
+  const [authMethod, setAuthMethod] = useState(false);
+  const { page } = useParams();
+  const navigate = useNavigate(); 
 
+  const handlePageChange = (newpage) => {
+    navigate(`/auth/${newpage}`);
+};
   return (
     <div className="flex h-screen w-full items-center justify-center">
       <div className="border-secondary relative flex h-[90%] w-[90%] items-center justify-center overflow-hidden rounded-2xl border-2">
@@ -24,7 +31,11 @@ function AuthPage() {
             data-aos-duration="1500"
           >
             <div className="h-auto w-full md:w-[85%]">
-              {authMethod ? <Login switchPage={setAuthMethod}></Login> : <Signuppage switchPage={setAuthMethod}></Signuppage>}
+             {page === "signup" ? (
+                <Signuppage switchPage={() => handlePageChange("login")} />
+              ) : (
+                <Login switchPage={() => handlePageChange("signup")} />
+              )}
             </div>
           </div>
         </div>
