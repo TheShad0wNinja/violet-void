@@ -1,13 +1,13 @@
 import { Container, Divider, Pagination, Title } from "@modules/_shared/App";
 import { getScreenshotData } from "../utils/mockScreenshotsData";
-import { useState } from "react";
+import useUrlFilters from "@modules/store/hooks/useUrlFilters";
 
 const ScreenshotData = getScreenshotData();
 export default function ScreenshotsPage() {
-  const [currentPage, setCurrentPage] = useState(1);
+  const { filters, setFilter } = useUrlFilters({ page: 1 });
   const itemsPerPage = 6;
 
-  const lastItem = currentPage * itemsPerPage;
+  const lastItem = Number(filters.page)  * itemsPerPage;
   const firstItem = lastItem - itemsPerPage;
   const items = ScreenshotData.slice(firstItem, lastItem);
 
@@ -42,7 +42,8 @@ export default function ScreenshotsPage() {
         <Pagination
           totalItems={ScreenshotData.length}
           itemsPerPage={itemsPerPage}
-          onPageChange={page => setCurrentPage(page)}
+          onPageChange={page => setFilter("page", page)}
+					currentPage={Number(filters.page)}
           maxVisiblePages={5}
         />
       </Container>
