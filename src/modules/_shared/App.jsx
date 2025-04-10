@@ -18,4 +18,6 @@ export { default as TextInput } from "./components/inputs/TextInput.jsx";
 export { default as Pagination } from "./components/Pagination.jsx";
 export { default as Carousel } from "./components/Carousel.jsx";
 export { default as PageModal } from "./components/PageModal.jsx";
-export { default as AnimatedOutlet } from './components/AnimatedOutlet.jsx'
+export { default as AnimatedOutlet } from "./components/AnimatedOutlet.jsx";
+export { default as SkeletonBox } from "./components/SkeletonBox.jsx";
+
