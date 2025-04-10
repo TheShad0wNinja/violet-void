@@ -1,17 +1,19 @@
 import React from "react";
-import { Field, ErrorMessage } from "formik";
 
-function WhiteTextInputBox({ name, placeholder, value, onchange }) {
+function WhiteTextInputBox({ name, placeholder, value, onChange, condition, errormessage }) {
   return (
-    <div className="flex justify-center items-center mt-5 w-full">
+    <div className="mt-5  w-full flex flex-col items-center justify-center"> {/* Use flex column */}
       <input
         type="text"
         name={name}
         placeholder={placeholder}
-        value={value}
-        onChange={onchange}
-        className="place border border-white text-white placeholder-white p-2 rounded-md w-[65%]"
-      ></input>
+        value={value} // Ensure value is coming from Formik state
+        onChange={onChange} // Ensure this is set to formik.handleChange
+        className="w-[65%] rounded-md border border-white p-2 text-white placeholder-white" // Centered input
+      />
+      {condition && ( // Only show error if condition is met
+        <p className="mt-2 w-[65%] text-sm text-red-500">{errormessage}</p> // Add margin-top for space between input and error
+      )}
     </div>
   );
 }
