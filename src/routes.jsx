@@ -10,6 +10,7 @@ import {
   WishlistPage,
   LibraryPage
 } from "@modules/store/App";
+import { AuthPage } from "@modules/authorization/App";
 
 const routesLinks = [
   {
