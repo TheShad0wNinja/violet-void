@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import { NotFoundPage, RootLayout } from "@modules/_shared/App";
 import { ProductPage, BrowsePage, HomePage, CartPage, CartProvider, CheckoutPage,WishlistPage,LibraryPage } from "@modules/store/App";
-import Signuppage from "@modules/authorization/pages/Signuppage"
+import AuthPage from "@modules/authorization/pages/AuthPage";
 const routesLinks = [
   {
     element: (
@@ -47,7 +47,7 @@ const routesLinks = [
   },
   {
     path: "/autho/signup",
-    element: <Signuppage />
+    element: <AuthPage />
   }
 ];
 

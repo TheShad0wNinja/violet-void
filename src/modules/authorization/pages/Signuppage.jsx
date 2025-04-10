@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import authobackground from "../assets/authobackground.png";
 import { useFormik } from "formik";
 import WhiteTextInputBox from "../components/WhiteTextInputBox";
 import WhiteDobBox from "../components/WhiteDobBox";
@@ -7,11 +6,10 @@ import { Button } from "@modules/_shared/App";
 import * as Yup from "yup";
 import AOS from "aos";
 
-function Signuppage() {
-   useEffect(() => {
-      AOS.init({ once: false });
-    }, []);
-  
+function Signuppage({ switchPage }) {
+  useEffect(() => {
+    AOS.init({ once: false });
+  }, []);
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -36,7 +34,7 @@ function Signuppage() {
         .matches(/^[0-9]{4}$/, "Must be a 4-digit year")
     }).test("is-valid-date", "Date of birth is not valid", function (values) {
       const { day, month, year } = values;
-      const date = new Date(`${ day}-${month}-${year}`);
+      const date = new Date(`${day}-${month}-${year}`);
 
       const isValidDate =
         date.getFullYear() === Number(year) &&
@@ -51,74 +49,67 @@ function Signuppage() {
   });
 
   return (
-    <div className="flex h-screen w-full items-center justify-center ">
-      <div className="border-secondary relative flex h-[90%] w-[90%] items-center justify-center overflow-hidden rounded-2xl border-2">
-        <div
-          className="z-0 h-[95%] w-[95%] rounded-2xl"
-          style={{
-            backgroundImage: `url(${authobackground})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center"
-          }}
-          data-aos="zoom-in"        >
-          <div className="bg-primary/25 bg-op flex h-full transition-all duration-300 ease-in-out md:w-[50%] w-full items-center justify-center rounded-l-2xl text-white  overflow-y-auto"  data-aos="fade-right" data-aos-duration="1500">
-          <div className="h-[80%] w-full md:w-[85%]">
-          <h1 className="mb-10 text-center text-3xl font-bold md:text-4xl" data-aos="fade-up">Create an account</h1>
-              <form onSubmit={formik.handleSubmit}>
-                <WhiteTextInputBox
-                  name="username"
-                  placeholder="UserName"
-                  value={formik.values.username}
-                  onChange={formik.handleChange}
-                  errormessage={formik.errors.username}
-                  condition={formik.touched.username && formik.errors.username}
-                />
-                <WhiteTextInputBox
-                  name="email"
-                  placeholder="Email"
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                  errormessage={formik.errors.email}
-                  condition={formik.touched.email && formik.errors.email}
-                />
-                <WhiteTextInputBox
-                  name="password"
-                  placeholder="Password"
-                  value={formik.values.password}
-                  onChange={formik.handleChange}
-                  errormessage={formik.errors.password}
-                  condition={formik.touched.password && formik.errors.password}
-                />
-                <WhiteDobBox
-                  datevalue={formik.values.day}
-                  dateonchange={formik.handleChange}
-                  monthvalue={formik.values.month}
-                  monthonchange={formik.handleChange}
-                  yearvalue={formik.values.year}
-                  yearonchange={formik.handleChange}
-                  condition={
-                    (formik.touched.day && formik.errors.day) ||
-                    (formik.touched.month && formik.errors.month) ||
-                    (formik.touched.year && formik.errors.year)
-                  }
-                  errormessage={formik.errors.day || formik.errors.month || formik.errors.year}
-                />
-                <div className="mt-5 flex items-center justify-center" data-aos="fade-up">
-                  <Button
-                    onClick={formik.handleSubmit}
-                    children="Sign up"
-                    className="!bg-primary-400 !w-[65%] !p-3 md:!p-4.5 text-md md:text-xl"
-                  ></Button>
-                </div>
-              </form>
-              <h1 className="mt-3 text-center text-sm" data-aos="fade-up">
-                Already have an account?{" "}
-                <span className="text-primary-400 cursor-pointer font-bold">Login</span>
-              </h1>
-            </div>
-          </div>
+    <div>
+      <h1 className="mb-10 text-center text-3xl font-bold md:text-4xl" data-aos="fade-up">
+        Create an account
+      </h1>
+      <form onSubmit={formik.handleSubmit}>
+        <WhiteTextInputBox
+          name="username"
+          placeholder="UserName"
+          value={formik.values.username}
+          onChange={formik.handleChange}
+          errormessage={formik.errors.username}
+          condition={formik.touched.username && formik.errors.username}
+        />
+        <WhiteTextInputBox
+          name="email"
+          placeholder="Email"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          errormessage={formik.errors.email}
+          condition={formik.touched.email && formik.errors.email}
+        />
+        <WhiteTextInputBox
+          name="password"
+          placeholder="Password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          errormessage={formik.errors.password}
+          condition={formik.touched.password && formik.errors.password}
+        />
+        <WhiteDobBox
+          datevalue={formik.values.day}
+          dateonchange={formik.handleChange}
+          monthvalue={formik.values.month}
+          monthonchange={formik.handleChange}
+          yearvalue={formik.values.year}
+          yearonchange={formik.handleChange}
+          condition={
+            (formik.touched.day && formik.errors.day) ||
+            (formik.touched.month && formik.errors.month) ||
+            (formik.touched.year && formik.errors.year)
+          }
+          errormessage={formik.errors.day || formik.errors.month || formik.errors.year}
+        />
+        <div className="mt-5 flex items-center justify-center" data-aos="fade-up" data-aos-duration="1500">
+          <Button
+            onClick={formik.handleSubmit}
+            children="Sign up"
+            className="!bg-primary-400 text-md !w-[65%] !p-3 md:!p-4 md:text-xl"
+          ></Button>
         </div>
-      </div>
+      </form>
+      <h1 className="mt-3 text-center text-sm">
+        Already have an account?
+        <span
+          className="text-primary-400 cursor-pointer font-bold"
+          onClick={() => switchPage(prev => !prev)}
+        >
+          {" "}
+          Login
+        </span>
+      </h1>
     </div>
   );
 }
