@@ -1,10 +1,10 @@
 import { Carousel, Container, Divider, Title } from "@modules/_shared/App";
-import { getShuffledArtists } from "../utils/mockUserData";
+import { getShuffledArtworks } from "../utils/mockUserData";
 import { MoreButton } from "@modules/community/App";
 import { Link } from "react-router";
 
 
-const artists = getShuffledArtists();
+const artists = getShuffledArtworks();
 
 const mobileView = [];
 for (let i = 0; i < artists.length; i += 3) {

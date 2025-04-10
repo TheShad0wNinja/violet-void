@@ -1,5 +1,6 @@
 const artists = [
   {
+		id: 1,
     name: "Chun Lo",
     handle: "belgeist",
     profilePic:
@@ -8,6 +9,7 @@ const artists = [
     game: "Marvel Rivals"
   },
   {
+		id: 2,
     name: "Chun Lo",
     handle: "belgeist",
     profilePic:
@@ -16,6 +18,7 @@ const artists = [
     game: "Marvel Rivals"
   },
   {
+		id: 3,
     name: "Chick L",
     handle: "CHICK_LLL",
     profilePic: "https://pbs.twimg.com/profile_images/1877047310053781504/ISfypusy_400x400.jpg",
@@ -23,6 +26,7 @@ const artists = [
     game: "Dead Cells"
   },
   {
+		id: 4,
     name: "Whitewoodawake",
     handle: "teachmedraw",
     profilePic: "https://pbs.twimg.com/profile_images/1835260458963484672/c5Bfc9RS_400x400.jpg",
@@ -30,6 +34,7 @@ const artists = [
     game: "Risk of Rain"
   },
   {
+		id: 5,
     name: "噪",
     handle: "Hajizomenoise",
     profilePic: "https://pbs.twimg.com/profile_images/1551067658577068032/2c8HsnA8_400x400.png",
@@ -37,6 +42,7 @@ const artists = [
     game: "Sekiro"
   },
   {
+		id: 6,
     name: "hungry clicker",
     handle: "click_burgundy",
     profilePic: "https://pbs.twimg.com/profile_images/1056400363580907520/463u_b7G_400x400.jpg",
@@ -44,6 +50,7 @@ const artists = [
     game: "Guilty Gear"
   },
   {
+		id: 7,
     name: "Creamy Ghost",
     handle: "CreamyGhost",
     profilePic: "https://pbs.twimg.com/profile_images/1532671534816718848/lN86TPHC_400x400.jpg",
@@ -51,6 +58,7 @@ const artists = [
     game: "Devil May Cry"
   },
   {
+		id: 8,
     name: "kiki",
     handle: "sky_kiki77",
     profilePic: "https://pbs.twimg.com/profile_images/1030839877674455040/kYqq7kme_400x400.jpg",
@@ -58,6 +66,7 @@ const artists = [
     game: "Destiny"
   },
   {
+		id: 9,
     name: "Jordan Fraser",
     handle: "EldergodFraserA",
     profilePic: "https://pbs.twimg.com/profile_images/1824510836884332544/Lt1GZafY_400x400.jpg",
@@ -65,6 +74,7 @@ const artists = [
     game: "Guilty Gear"
   },
   {
+		id: 10,
     name: "Toni Infante",
     handle: "toni_infante",
     profilePic: "https://pbs.twimg.com/profile_images/1091484462951608321/jQxZGM-r_400x400.jpg",
@@ -72,6 +82,7 @@ const artists = [
     game: "Devil May Cry"
   },
   {
+		id: 11,
     name: "荡",
     handle: "Blue_Saden",
     profilePic: "https://pbs.twimg.com/profile_images/1343223218589421568/URi1i3zf_400x400.jpg",
@@ -79,6 +90,7 @@ const artists = [
     game: "Devil May Cry"
   },
   {
+		id: 12,
     name: "hungry clicker",
     handle: "click_burgundy",
     profilePic: "https://pbs.twimg.com/profile_images/1056400363580907520/463u_b7G_400x400.jpg",
@@ -86,6 +98,7 @@ const artists = [
     game: "Guilty Gear"
   },
   {
+		id: 13,
     name: "SGKG",
     handle: "sgkg108",
     profilePic: "https://pbs.twimg.com/profile_images/1471035495002132480/xU-Azr96_400x400.jpg",
@@ -93,6 +106,7 @@ const artists = [
     game: "Cyberpunk 2077"
   },
   {
+		id: 14,
     name: "Mememellow",
     handle: "MememellowA",
     profilePic: "https://pbs.twimg.com/profile_images/1891080341923803136/gWxAYLz5_400x400.jpg",
@@ -100,6 +114,7 @@ const artists = [
     game: "Hollow Knight"
   },
   {
+		id: 15,
     name: "hungry clicker",
     handle: "click_burgundy",
     profilePic: "https://pbs.twimg.com/profile_images/1056400363580907520/463u_b7G_400x400.jpg",
@@ -107,6 +122,7 @@ const artists = [
     game: "Guilty Gear"
   },
   {
+		id: 16,
     name: "mao",
     handle: "maddestmao",
     profilePic: "https://pbs.twimg.com/profile_images/1742266630196076547/WSVyxlX6_400x400.jpg",
@@ -114,6 +130,7 @@ const artists = [
     game: "Guilty Gear"
   },
   {
+		id: 17,
     name: "K-SUWABE",
     handle: "KSUWABE",
     profilePic: "https://pbs.twimg.com/profile_images/1509717492746268684/UbR0X5Xy_400x400.jpg",
@@ -121,6 +138,7 @@ const artists = [
     game: "Overwatch"
   },
   {
+		id: 18,
     name: "ヌートリ",
     handle: "nutori_manga",
     profilePic: "https://pbs.twimg.com/profile_images/1191212318304002054/PwqKsZNR_400x400.png",
@@ -128,6 +146,7 @@ const artists = [
     game: "NieR Automata"
   },
   {
+		id: 19,
     name: "K",
     handle: "K34dsds",
     profilePic: "https://pbs.twimg.com/profile_images/1692838482455171072/Ff4_gxv__400x400.jpg",
@@ -135,6 +154,7 @@ const artists = [
     game: "Dark Souls"
   },
   {
+		id: 20,
     name: "Morretlin",
     handle: "morretlin",
     profilePic: "https://pbs.twimg.com/profile_images/1900610086080311296/5SJMDa3o_400x400.jpg",
@@ -142,6 +162,7 @@ const artists = [
     game: "Hollow Knight"
   },
   {
+		id: 21,
     name: "Oran",
     handle: "OranCxy",
     profilePic: "https://pbs.twimg.com/profile_images/1729220825021308928/J3nzeErW_400x400.jpg",
@@ -149,6 +170,7 @@ const artists = [
     game: "Valorant"
   },
   {
+		id: 22,
     name: "MenasLG",
     handle: "MenasLG",
     profilePic: "https://pbs.twimg.com/profile_images/1883341337841356800/BH9_lnmp_400x400.jpg",
@@ -156,6 +178,7 @@ const artists = [
     game: "Dark Souls"
   },
   {
+		id: 23,
     name: "Void",
     handle: "clockwise8842",
     profilePic: "https://pbs.twimg.com/profile_images/1795840523535613952/UN7ukc46_400x400.jpg",
@@ -163,6 +186,7 @@ const artists = [
     game: "Hollow Knight"
   },
   {
+		id: 24,
     name: "宴",
     handle: "huanyan420112",
     profilePic: "https://pbs.twimg.com/profile_images/1691184892095401984/4lg7u2Oh_400x400.jpg",
@@ -170,6 +194,7 @@ const artists = [
     game: "Dark Souls"
   },
   {
+		id: 25,
     name: "Zoan Luen",
     handle: "ZoanLuen",
     profilePic: "https://pbs.twimg.com/profile_images/1837289750387998720/oNBBFQ2G_400x400.png",
@@ -177,6 +202,7 @@ const artists = [
     game: "Hyper Light Drifter"
   },
   {
+		id: 26,
     name: "Lolipop",
     handle: "Shantysixix",
     profilePic: "https://pbs.twimg.com/profile_images/1755638801274146816/-kF1rwqj_400x400.jpg",
@@ -184,6 +210,7 @@ const artists = [
     game: "Ultrakill"
   },
   {
+		id: 27,
     name: "Bojler",
     handle: "Bojlero1",
     profilePic: "https://pbs.twimg.com/profile_images/1724908002640076801/k9_61QQT_400x400.jpg",
@@ -191,6 +218,7 @@ const artists = [
     game: "Deadlock"
   },
   {
+		id: 28,
     name: "Caznalt",
     handle: "Caznalt",
     profilePic: "https://pbs.twimg.com/profile_images/1528580158830964736/KXbHOmEa_400x400.jpg",
@@ -198,6 +226,7 @@ const artists = [
     game: "Overwatch"
   },
   {
+		id: 29,
     name: "laeriesann",
     handle: "itsurame",
     profilePic: "https://pbs.twimg.com/profile_images/1807782212848472064/tHVtGgiV_400x400.jpg",
@@ -205,6 +234,7 @@ const artists = [
     game: "Valorant"
   },
   {
+		id: 30,
     name: "Morretlin",
     handle: "morretlin",
     profilePic: "https://pbs.twimg.com/profile_images/1900610086080311296/5SJMDa3o_400x400.jpg",
@@ -212,6 +242,7 @@ const artists = [
     game: "Hollow Knight"
   },
   {
+		id: 31,
     name: "Zoan Luen",
     handle: "ZoanLuen",
     profilePic: "https://pbs.twimg.com/profile_images/1837289750387998720/oNBBFQ2G_400x400.png",
@@ -219,6 +250,7 @@ const artists = [
     game: "Hyper Light Drifter"
   },
   {
+		id: 32,
     name: "∆LICE",
     handle: "AliceZaKat",
     profilePic: "https://pbs.twimg.com/profile_images/1902630144055103488/J67IQdh6_400x400.jpg",
@@ -226,6 +258,7 @@ const artists = [
     game: "Hollow Knight"
   },
   {
+		id: 33,
     name: "$",
     handle: "chisi74444",
     profilePic: "https://pbs.twimg.com/profile_images/1909317924914884608/KilJHHCk_400x400.jpg",
@@ -233,6 +266,7 @@ const artists = [
     game: "Valorant"
   },
   {
+		id: 34,
     name: "TzzzR",
     handle: "tzzz_r",
     profilePic: "https://pbs.twimg.com/profile_images/1798027175561453568/VU11o6SG_400x400.jpg",
@@ -240,6 +274,7 @@ const artists = [
     game: "Valorant"
   },
   {
+		id: 35,
     name: "Aiiicy",
     handle: "4957316",
     profilePic: "https://pbs.twimg.com/profile_images/1889004861905317889/nzwaYw7G_400x400.jpg",
@@ -247,6 +282,7 @@ const artists = [
     game: "Valorant"
   },
   {
+		id: 36,
     name: "$",
     handle: "chisi74444",
     profilePic: "https://pbs.twimg.com/profile_images/1909317924914884608/KilJHHCk_400x400.jpg",
@@ -254,6 +290,7 @@ const artists = [
     game: "Valorant"
   },
   {
+		id: 37,
     name: "Oakleaf",
     handle: "stupidgingerman",
     profilePic: "https://pbs.twimg.com/profile_images/1742743726504792064/iiN17ajD_400x400.jpg",
@@ -261,6 +298,7 @@ const artists = [
     game: "Marvel Rivals"
   },
   {
+		id: 38,
     name: "MenasLG",
     handle: "MenasLG",
     profilePic: "https://pbs.twimg.com/profile_images/1883341337841356800/BH9_lnmp_400x400.jpg",
@@ -268,6 +306,7 @@ const artists = [
     game: "Dark Souls"
   },
   {
+		id: 39,
     name: "Mememellow",
     handle: "MememellowA",
     profilePic: "https://pbs.twimg.com/profile_images/1891080341923803136/gWxAYLz5_400x400.jpg",
@@ -275,6 +314,7 @@ const artists = [
     game: "Hollow Knight"
   },
   {
+		id: 40,
     name: "ARTekin",
     handle: "CakmakTekin",
     profilePic: "https://pbs.twimg.com/profile_images/1839836920710320128/eGgEWFeF_400x400.jpg",
@@ -282,6 +322,7 @@ const artists = [
     game: "Marvel Rivals"
   },
   {
+		id: 41,
     name: "LimeHazard",
     handle: "TheLimeHazard",
     profilePic: "https://pbs.twimg.com/profile_images/1904625831508328448/-6h_lwtV_400x400.jpg",
@@ -303,6 +344,6 @@ export function getArtists() {
   return artists;
 }
 
-export function getShuffledArtists() {
+export function getShuffledArtworks() {
   return shuffleArray(artists);
 }
