@@ -12,4 +12,4 @@ export { default as ScreenshotComponent } from "./components/ScreenshotComponent
 export { default as ReviewsComponent } from "./components/ReviewsComponent";
 export { default as MiniReviewsComponent } from "./components/MiniReviewsComponent";
 export { default as ArtworkItemModal } from "./components/ArtworkItemModal";
-
+export { default as ScreenshotAddingModal } from "./components/ScreenshotAddingModal";

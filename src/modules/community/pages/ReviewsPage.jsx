@@ -1,17 +1,20 @@
 import { Container, Divider, Pagination, Title } from "@modules/_shared/App";
 import { getReviews } from "../utils/reviewData";
 import { IconStar, IconStarFilled, IconStarHalfFilled } from "@tabler/icons-react";
+import useUrlFilters from "@modules/store/hooks/useUrlFilters";
 
 const reviews = getReviews();
 
 export default function ReviewsPage() {
+  const { filters, setFilter } = useUrlFilters({ page: 1 });
+  const items = reviews.slice(filters.page - 1, filters.page + 1);
   return (
     <>
       <Container>
         <Title>Reviews</Title>
         <Divider direction="center" className="mt-1 mb-4" />
         <div className="flex gap-5">
-          {reviews.map(gameReview => (
+          {items.map(gameReview => (
             <div className="bg-background-900 my-5 flex w-full flex-wrap justify-evenly gap-5 rounded-2xl sm:w-[calc(50%-10px)]">
               <h1 className="text-accent my-5 w-full text-center text-4xl font-bold">
                 {gameReview.game}
@@ -40,7 +43,13 @@ export default function ReviewsPage() {
             </div>
           ))}
         </div>
-        <Pagination />
+        <Pagination
+          totalItems={reviews.length}
+          itemsPerPage={2}
+          onPageChange={page => setFilter("page", page)}
+          currentPage={Number(filters.page)}
+          maxVisiblePages={3}
+        />
       </Container>
     </>
   );

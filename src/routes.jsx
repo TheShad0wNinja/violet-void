@@ -11,13 +11,14 @@ import {
   LibraryPage
 } from "@modules/store/App";
 import {
-    ArtworkItemModal,
+  ArtworkItemModal,
   ArtworkPage,
   DiscoverPage,
   DiscussionPage,
   GuidesPage,
   NewsPage,
   ReviewsPage,
+  ScreenshotAddingModal,
   ScreenshotsPage
 } from "@modules/community/App";
 
@@ -60,19 +61,19 @@ const routesLinks = [
       {
         path: "community",
         children: [
-					{
-						path: "",
-						element: <DiscoverPage />
-					},
           {
-						path: "artwork/:artist?",
+            path: "",
+            element: <DiscoverPage />
+          },
+          {
+            path: "artwork/:artist?",
             element: <ArtworkPage />,
-						children: [
-							{
-								path: ":id",
-								element: <ArtworkItemModal />
-							}
-						]
+            children: [
+              {
+                path: ":id",
+                element: <ArtworkItemModal />
+              }
+            ]
           },
           {
             path: "discussions",
@@ -92,7 +93,13 @@ const routesLinks = [
           },
           {
             path: "screenshots",
-            element: <ScreenshotsPage />
+            element: <ScreenshotsPage />,
+            children: [
+              {
+                path: "add",
+                element: <ScreenshotAddingModal />
+              }
+            ]
           }
         ]
       }

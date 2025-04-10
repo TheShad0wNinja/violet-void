@@ -1,13 +1,15 @@
-import { Container, Divider, Pagination, Title } from "@modules/_shared/App";
+import { AnimatedOutlet, Container, Divider, Pagination, Title } from "@modules/_shared/App";
 import { getScreenshotData } from "../utils/mockScreenshotsData";
 import useUrlFilters from "@modules/store/hooks/useUrlFilters";
+import { Link } from "react-router";
+import { IconPlus } from "@tabler/icons-react";
 
 const ScreenshotData = getScreenshotData();
 export default function ScreenshotsPage() {
   const { filters, setFilter } = useUrlFilters({ page: 1 });
   const itemsPerPage = 6;
 
-  const lastItem = Number(filters.page)  * itemsPerPage;
+  const lastItem = Number(filters.page) * itemsPerPage;
   const firstItem = lastItem - itemsPerPage;
   const items = ScreenshotData.slice(firstItem, lastItem);
 
@@ -39,14 +41,21 @@ export default function ScreenshotsPage() {
             </div>
           ))}
         </div>
+        <Link
+          to="add"
+          className="bg-accent hover:bg-accent-200 fixed right-10 bottom-10 rounded-2xl duration-100 ease-in"
+        >
+          <IconPlus size={50} />
+        </Link>
         <Pagination
           totalItems={ScreenshotData.length}
           itemsPerPage={itemsPerPage}
           onPageChange={page => setFilter("page", page)}
-					currentPage={Number(filters.page)}
+          currentPage={Number(filters.page)}
           maxVisiblePages={5}
         />
       </Container>
+      <AnimatedOutlet />
     </>
   );
 }

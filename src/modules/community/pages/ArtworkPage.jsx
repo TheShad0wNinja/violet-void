@@ -2,13 +2,12 @@ import { AnimatedOutlet, Container, Divider, Title } from "@modules/_shared/App"
 import { getShuffledArtworks } from "../utils/mockUserData";
 import { useMemo, useState } from "react";
 import { motion } from "motion/react";
-import { Link, useParams } from "react-router";
+import { Link, Navigate, useParams } from "react-router";
 
 const rawArtworks = getShuffledArtworks();
 
 export default function ArtworkPage() {
   const params = useParams();
-  console.log(params.artist);
 
   const artworks = useMemo(() => {
     if (params.artist && params.artist === "all") return rawArtworks;
@@ -21,7 +20,14 @@ export default function ArtworkPage() {
       <Container>
         <div className="flex justify-between">
           <Title>Artwork</Title>
-          {params.artist && <Link to="/community/artwork">Clear</Link>}
+          {params.artist && (
+            <Link
+              to="/community/artwork"
+              className="bg-secondary hover:bg-accent-400 block h-min w-fit cursor-pointer rounded-md p-2 text-nowrap duration-200 active:scale-95"
+            >
+              Clear Filter
+            </Link>
+          )}
         </div>
         <Divider direction="center" className="mt-1 mb-4" />
         <div className="grid grid-flow-dense auto-rows-auto gap-4 sm:grid-cols-3 md:grid-cols-5 2xl:grid-cols-7">
@@ -40,7 +46,7 @@ export default function ArtworkPage() {
   );
 }
 
-function ArtworkItem({ artwork, index, setArtist, isFiltered }) {
+function ArtworkItem({ artwork, index, isFiltered }) {
   const [loading, setLoading] = useState(true);
   const [span, setSpan] = useState({ row: 1, col: 1 });
 
@@ -84,10 +90,10 @@ function ArtworkItem({ artwork, index, setArtist, isFiltered }) {
           to={`${artwork.handle}`}
           className={`bg-secondary-500 absolute inset-x-0 bottom-0 z-10 flex items-center gap-3 p-3 transition-transform duration-200 ease-in sm:translate-y-0 md:translate-y-full group-hover:md:translate-y-0`}
         >
-          <img className="h-12 w-12 rounded-full" src={artwork.profilePic} />
+          <img className="h-10 w-10 rounded-full sm:h-12 sm:w-12" src={artwork.profilePic} />
           <div className="flex flex-col">
             <span className="font-medium">{artwork.name}</span>
-            <span className="bg-accent-400 text-m w-min rounded-2xl px-2 py-0.5">
+            <span className="bg-accent-400 w-min rounded-2xl px-2 py-0.5 text-sm xl:text-base">
               {"@" + artwork.handle}
             </span>
           </div>
@@ -115,13 +121,10 @@ const SkeletonItem = ({ idx }) => {
 
   return (
     <motion.div
-      className={`h-[${height}px] w-full col-span-${colSpan} row-span-${rowSpan} rounded-2xl`}
+      className={`h-[${height}px] w-full col-span-${colSpan} row-span-${rowSpan} bg-secondary-800 rounded-2xl`}
       initial={{ opacity: 0.5 }}
       animate={{ opacity: 0.8 }}
       transition={{ repeat: Infinity, duration: 1, repeatType: "reverse" }}
-      style={{
-        backgroundColor: "#e0e0e0"
-      }}
     />
   );
 };

@@ -4,8 +4,9 @@ export default function MoreButton({ to, className }) {
   return (
     <Link
       to={"/community/" + to}
+      onClick={() => window.scrollTo(0, 0)}
       className={
-        "bg-secondary hover:bg-accent-400 block h-min w-fit cursor-pointer text-nowrap rounded-md p-2 active:scale-95 " +
+        "bg-secondary hover:bg-accent-400 block h-min w-fit cursor-pointer rounded-md p-2 text-nowrap duration-200 active:scale-95 " +
         (className ? className : "")
       }
     >
