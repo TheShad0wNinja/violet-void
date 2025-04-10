@@ -21,16 +21,15 @@ import {
   ScreenshotAddingModal,
   ScreenshotsPage,
   DiscussionAddition,
-  GuideAddition
+  GuideAddition,
+  NewsPostPopUp,
+  DiscussionPostPopUp,
+  GuidePostPopUp
 } from "@modules/community/App";
 
 const routesLinks = [
   {
-    element: (
-      <CartProvider>
-        <RootLayout />
-      </CartProvider>
-    ),
+    element: <RootLayout />,
     children: [
       {
         path: "/",
@@ -84,7 +83,11 @@ const routesLinks = [
               {
                 path: "add",
                 element: <DiscussionAddition />
-              }
+              },
+							{
+								path: ":id",
+								element: <DiscussionPostPopUp />
+							}
             ]
           },
           {
@@ -94,12 +97,22 @@ const routesLinks = [
               {
                 path: "add",
                 element: <GuideAddition />
-              }
+              },
+							{
+								path: ":id",
+								element: <GuidePostPopUp />
+							}
             ]
           },
           {
             path: "news",
-            element: <NewsPage />
+            element: <NewsPage />,
+            children: [
+              {
+                path: ":id",
+                element: <NewsPostPopUp />
+              }
+            ]
           },
           {
             path: "reviews",

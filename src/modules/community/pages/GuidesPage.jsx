@@ -56,9 +56,8 @@ export default function GuidesPage() {
             className={`bg-secondary-900 hover:bg-secondary-800 rounded-2xl p-6 transition-colors duration-200 ${
               index % 4 === 0 ? "sm:col-span-3" : ""
             }`}
-            onClick={() => setSelectedGuide(guide)}
           >
-            <div className="cursor-pointer">
+            <Link to={`/community/guides/${guide.id}`}>
               <div className="mb-2 flex items-start justify-between">
                 <h2 className="line-clamp-1 text-xl font-bold">{guide.title}</h2>
                 <span className="text-xs text-gray-400">{guide.date}</span>
@@ -94,14 +93,7 @@ export default function GuidesPage() {
                   </span>
                 </div>
               </div>
-            </div>
-            {selectedGuide && (
-              <GuidesPostPopUp
-                isOpen={!!selectedGuide}
-                guide={selectedGuide}
-                onClose={() => setSelectedGuide(null)}
-              />
-            )}
+            </Link>
           </div>
         ))}
         {!isCommunitiesPage ? (

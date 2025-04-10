@@ -17,7 +17,7 @@ export default function ArtworkItemModal() {
       <button onClick={() => navigate(-1)} className="absolute inset-0"></button>
       <img
         src={game.art}
-        className="max-w-screen max-h-screen rounded-2xl sm:relative sm:max-h-[calc(100vh-50px)]"
+        className="max-w-screen max-h-screen mx-auto rounded-2xl sm:relative sm:max-h-[calc(100vh-50px)]"
       />
     </PageModal>
   );

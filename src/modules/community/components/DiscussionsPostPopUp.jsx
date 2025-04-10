@@ -1,48 +1,81 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { IconX, IconHeartFilled, IconMessageCircleFilled, IconShare } from "@tabler/icons-react";
+import { useNavigate, useParams } from "react-router";
+import { getDiscussions } from "../utils/disscusionData";
+import { PageModal, SkeletonBox } from "@modules/_shared/App";
 
-export default function PostPopUp({ isOpen, onClose, post }) {
+export default function DiscussionPostPopUp() {
+  const { id } = useParams();
+  const [post, setPost] = useState(null);
+  const navigate = useNavigate();
+
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [isOpen]);
+    setPost(getDiscussions().find(i => i.id === Number(id)));
+  }, [id]);
 
   return (
-    <AnimatePresence>
-      {isOpen && post && (
-        <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={onClose}
-        >
-          <motion.div
-            className="bg-secondary-800 relative mx-4 flex max-h-[90vh] w-full max-w-3xl flex-col rounded-xl shadow-xl"
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            onClick={e => e.stopPropagation()}
-            style={{
-              height: "auto",
-              maxHeight: "90vh"
-            }}
-          >
+    <PageModal>
+      <div className="bg-secondary-800 relative flex mx-auto max-h-[90vh] w-full max-w-4xl flex-col rounded-xl p-2 shadow-2xl">
+        {!post ? (
+          <>
             <button
-              onClick={onClose}
+              onClick={() => navigate(-1)}
               className="absolute top-4 right-4 cursor-pointer text-2xl font-bold text-gray-500"
             >
               <IconX size={20} className="hover:text-white" />
             </button>
+            <div className="w-full overflow-y-auto p-6">
+              <div className="mb-4">
+                <div className="flex items-center gap-2 text-sm text-gray-400">
+                  <SkeletonBox className="h-4 w-24" />
+                  <span>•</span>
+                  <SkeletonBox className="h-4 w-16" />
+                </div>
+                <SkeletonBox className="mt-1 h-8 w-full" />
+              </div>
 
+              <div className="mb-6">
+                <SkeletonBox className="h-24 w-full" />
+                <div className="mt-4">
+                  <SkeletonBox className="h-64 w-full" />
+                </div>
+              </div>
+
+              <div className="flex gap-4 border-t border-b py-3 text-sm text-gray-400">
+                <span className="hover:text-accent flex cursor-pointer items-center gap-1">
+                  <IconHeartFilled size={18} />
+                  <SkeletonBox className="h-4 w-6" />
+                </span>
+                <span className="flex items-center gap-1">
+                  <IconMessageCircleFilled size={18} />
+                  <SkeletonBox className="h-4 w-6" />
+                </span>
+                <span className="hover:text-accent flex cursor-pointer items-center gap-1">
+                  <IconShare size={18} /> Share
+                </span>
+              </div>
+
+              <div className="mt-6">
+                <h3 className="mb-4 text-lg font-semibold">
+                  Comments (<SkeletonBox className="inline-block h-4 w-6" />)
+                </h3>
+
+                <div className="mt-4">
+                  <SkeletonBox className="h-20 w-full" />
+                  <SkeletonBox className="mt-2 h-8 w-24" />
+                </div>
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={() => navigate(-1)}
+              className="absolute top-4 right-4 cursor-pointer text-2xl font-bold text-gray-500"
+            >
+              <IconX size={20} className="hover:text-white" />
+            </button>
             <div className="overflow-y-auto p-6">
               <div className="mb-4">
                 <div className="flex items-center gap-2 text-sm text-gray-400">
@@ -96,9 +129,9 @@ export default function PostPopUp({ isOpen, onClose, post }) {
                 </div>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          </>
+        )}
+      </div>
+    </PageModal>
   );
 }

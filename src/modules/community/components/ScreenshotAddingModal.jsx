@@ -33,7 +33,7 @@ export default function ScreenshotAddingModal() {
         <h2 className="mt-10">Title</h2>
         <TextInput
           name="title"
-          value={formik.value.title}
+          value={formik.values.title}
           onChange={formik.handleChange}
           errormessage={formik.errors.title}
           condition={formik.touched.title && formik.errors.title}
@@ -44,7 +44,7 @@ export default function ScreenshotAddingModal() {
         <h2 className="mt-10">Image Source</h2>
         <TextInput
           name="image"
-          value={formik.value.image}
+          value={formik.values.image}
           onChange={formik.handleChange}
           errormessage={formik.errors.image}
           condition={formik.touched.image && formik.errors.image}
@@ -55,7 +55,7 @@ export default function ScreenshotAddingModal() {
         <h2 className="mt-10">Description</h2>
         <TextInput
           name="description"
-          value={formik.value.description}
+          value={formik.values.description}
           onChange={formik.handleChange}
           errormessage={formik.errors.description}
           condition={formik.touched.description && formik.errors.description}
@@ -66,7 +66,7 @@ export default function ScreenshotAddingModal() {
         <h2 className="mt-10">Author</h2>
         <TextInput
           name="username"
-          value={formik.value.username}
+          value={formik.values.username}
           onChange={formik.handleChange}
           errormessage={formik.errors.username}
           condition={formik.touched.username && formik.errors.username}

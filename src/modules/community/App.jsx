@@ -15,3 +15,7 @@ export { default as ArtworkItemModal } from "./components/ArtworkItemModal";
 export { default as ScreenshotAddingModal } from "./components/ScreenshotAddingModal";
 export { default as DiscussionAddition } from "./components/DiscussionAddition";
 export { default as GuideAddition } from "./components/GuideAddition";
+export { default as NewsPostPopUp } from "./components/NewsPostPopUp";
+export { default as DiscussionPostPopUp } from "./components/DiscussionsPostPopUp";
+export { default as GuidePostPopUp } from "./components/GuidesPostPopUp";
+
