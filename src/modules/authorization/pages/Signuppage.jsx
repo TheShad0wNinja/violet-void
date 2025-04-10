@@ -4,12 +4,9 @@ import WhiteTextInputBox from "../components/WhiteTextInputBox";
 import WhiteDobBox from "../components/WhiteDobBox";
 import { Button } from "@modules/_shared/App";
 import * as Yup from "yup";
-import AOS from "aos";
+import { motion } from "framer-motion";
 
 function Signuppage({ switchPage }) {
-  useEffect(() => {
-    AOS.init({ once: false });
-  }, []);
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -49,10 +46,25 @@ function Signuppage({ switchPage }) {
   });
 
   return (
-    <div>
-      <h1 className="mb-10 text-center text-3xl font-bold md:text-4xl" data-aos="fade-up">
-        Create an account
-      </h1>
+    <motion.div
+      initial={{ y: -150, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{
+        duration: 1.8,
+        ease: [0.16, 1, 0.3, 1] 
+      }}
+    >
+      <motion.h1
+        initial={{ scale:0.5 , opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{
+          duration: 1.8,
+          ease: [0.16, 1, 0.3, 1] 
+        }}
+        className="mb-10 text-center text-3xl font-bold md:text-4xl"
+      >
+        Sign up
+      </motion.h1>
       <form onSubmit={formik.handleSubmit}>
         <WhiteTextInputBox
           name="username"
@@ -92,7 +104,7 @@ function Signuppage({ switchPage }) {
           }
           errormessage={formik.errors.day || formik.errors.month || formik.errors.year}
         />
-        <div className="mt-5 flex items-center justify-center" data-aos="fade-up" >
+        <div className="mt-5 flex items-center justify-center">
           <Button
             onClick={formik.handleSubmit}
             children="Sign up"
@@ -102,15 +114,12 @@ function Signuppage({ switchPage }) {
       </form>
       <h1 className="mt-3 text-center text-sm">
         Already have an account?
-        <span
-          className="text-primary-400 cursor-pointer font-bold"
-          onClick={() => switchPage()}
-        >
+        <span className="text-primary-400 cursor-pointer font-bold" onClick={() => switchPage()}>
           {" "}
           Login
         </span>
       </h1>
-    </div>
+    </motion.div>
   );
 }
 
