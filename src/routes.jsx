@@ -10,6 +10,7 @@ import {
   WishlistPage,
   LibraryPage
 } from "@modules/store/App";
+import { AdminHomePage, AdminProductsPage, AdminLayout } from "@modules/admin/App";
 
 const routesLinks = [
   {
@@ -56,15 +57,16 @@ const routesLinks = [
   },
   {
     element: <AdminLayout />,
+		path: "admin",
     children: [
-      {
-        path: "/store/wishlist",
-        element: <WishlistPage />
-      },
-      {
-        path: "/store/library",
-        element: <LibraryPage />
-      }
+			{
+				path: "products",
+				element: <AdminProductsPage />
+			},
+			{
+				path: "",
+				element: <AdminHomePage />
+			}
     ]
   },
   {
