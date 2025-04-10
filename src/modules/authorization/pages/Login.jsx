@@ -4,7 +4,8 @@ import WhiteTextInputBox from "../components/WhiteTextInputBox";
 import WhiteDobBox from "../components/WhiteDobBox";
 import { Button } from "@modules/_shared/App";
 import * as Yup from "yup";
-import AOS from "aos";
+import { motion } from "framer-motion";
+
 
 function Login({switchPage}) {
   const formik = useFormik({
@@ -21,13 +22,31 @@ function Login({switchPage}) {
     }
   });
   return (
-    <div>
-      <h1 className="mb-4 text-center text-3xl font-bold md:text-5xl" data-aos="fade-up">
+    <motion.div
+    initial={{  y: -150, opacity: 0 }}
+    animate={{  y: 0, opacity: 1 }}
+    transition={{
+      duration: 1.8,
+      ease: [0.16, 1, 0.3, 1] 
+    }}
+  >    
+        <motion.h1
+          initial={{ scale:0.5 , opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{
+            duration: 1.8,
+            ease: [0.16, 1, 0.3, 1] 
+          }} className="mb-4 text-center text-3xl font-bold md:text-5xl">
         Login
-      </h1>
-      <h1 className="text-1xl md:text-1xl mb-10 text-center " data-aos="fade-up">
+      </motion.h1>
+      <motion.h1   initial={{ scale:0.5 , opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{
+            duration: 1.8,
+            ease: [0.16, 1, 0.3, 1] 
+          }} className="text-1xl md:text-1xl mb-10 text-center ">
         Please login to your account
-      </h1>
+      </motion.h1>
 
       <form onSubmit={formik.handleSubmit}>
         <WhiteTextInputBox
@@ -47,7 +66,7 @@ function Login({switchPage}) {
           condition={formik.touched.password && formik.errors.password}
         />
 
-        <div className="mt-5 flex items-center justify-center" data-aos="fade-up" data-aos-duration="1500">
+        <div className="mt-5 flex items-center justify-center"  >
           <Button
             onClick={formik.handleSubmit}
             children="Sign up"
@@ -55,12 +74,12 @@ function Login({switchPage}) {
           ></Button>
         </div>
       </form>
-      <h1 className="mt-3 text-center text-sm" data-aos="fade-up" data-aos-duration="1500">
+      <h1 className="mt-3 text-center text-sm"  >
         Don’t have an account?
         <span className="text-primary-400 cursor-pointer font-bold"   onClick={() => switchPage()}
         > {" "} Sign up</span>
       </h1>
-    </div>
+    </motion.div>
   );
 }
 export default Login;

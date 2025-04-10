@@ -52,13 +52,14 @@ const routesLinks = [
     ]
   },
   {
-    element: <NotFoundPage />,
-    path: "*"
-  },
-  {
     path: "/auth/:page",
     element: <AuthPage />
+  },
+  {
+    element: <NotFoundPage />,
+    path: "*"
   }
+ 
 ];
 
 function getLinks(links, keyPrefix = "") {
