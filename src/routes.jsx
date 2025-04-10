@@ -11,6 +11,7 @@ import {
   LibraryPage
 } from "@modules/store/App";
 import { AuthPage } from "@modules/authorization/App";
+import AccountPage from "@modules/store/pages/AccountPage";
 
 const routesLinks = [
   {
@@ -47,6 +48,10 @@ const routesLinks = [
       {
         path: "/store/library",
         element: <LibraryPage />
+      },
+      {
+        path: "/account/username",
+        element: <AccountPage />
       },
     
     ]
