@@ -1,7 +1,16 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import { NotFoundPage, RootLayout } from "@modules/_shared/App";
-import { ProductPage, BrowsePage, HomePage, CartPage, CartProvider, CheckoutPage,WishlistPage,LibraryPage } from "@modules/store/App";
-import AuthPage from "@modules/authorization/pages/AuthPage";
+import {
+  ProductPage,
+  BrowsePage,
+  HomePage,
+  CartPage,
+  CartProvider,
+  CheckoutPage,
+  WishlistPage,
+  LibraryPage
+} from "@modules/store/App";
+
 const routesLinks = [
   {
     element: (
@@ -32,7 +41,7 @@ const routesLinks = [
       },
       {
         path: "/store/wishlist",
-        element: <WishlistPage/>
+        element: <WishlistPage />
       },
       {
         path: "/store/library",

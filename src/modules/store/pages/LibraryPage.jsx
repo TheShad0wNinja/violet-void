@@ -4,6 +4,7 @@ import GameCard from "../components/GameCard";
 import { useEffect, useRef, useState } from "react";
 import useUrlFilters from "../hooks/useUrlFilters";
 import LibraryBanner from "../components/LibraryBanner";
+import { IconSearch } from "@tabler/icons-react";
 
 function mockPagination(page, limit = 8) {
   const games = getGamesList();
@@ -22,7 +23,9 @@ export default function LibraryPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [gamesTotalCount, setGamesTotalCount] = useState(0);
 
-  const { filters, setFilter } = useUrlFilters({ search: "", sortBy: "", tag: "", page: 0 });
+  const { filters, setFilter } = useUrlFilters({ page: 1 });
+
+  console.log(filters);
 
   const [games, setGames] = useState([]);
 
@@ -49,7 +52,6 @@ export default function LibraryPage() {
       />
 
       <Container className="mt-8">
-
         {/* Filters */}
         <div className="mb-4 flex flex-col justify-between gap-4 sm:flex-row">
           <div className="flex gap-2">
@@ -64,24 +66,7 @@ export default function LibraryPage() {
             </Button>
           </div>
           <TextInput
-            rightSection={
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width={24}
-                height={24}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="icon icon-tabler icons-tabler-outline icon-tabler-search"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-                <path d="M21 21l-6 -6" />
-              </svg>
-            }
+            rightSection={<IconSearch size={20} />}
             value={searchQuery}
             setValue={val => setSearchQuery(val)}
             placeholder="Search..."
@@ -110,6 +95,7 @@ export default function LibraryPage() {
           itemsPerPage={8}
           onPageChange={page => setFilter("page", page)}
           maxVisiblePages={7}
+          currentPage={Number(filters["page"])}
         />
       </Container>
     </>
