@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router";
 import Branding from "./Branding";
+import { IconMenu2, IconX } from "@tabler/icons-react";
 
 function Header() {
   const links = [
@@ -25,7 +26,7 @@ function Header() {
       <Branding className="col-span-2 sm:col-span-1 md:text-4xl" />
       <nav
         className={
-          "bg-background fixed top-20 left-0 z-10 h-full w-full px-6 py-8 transition-all duration-100 sm:relative sm:top-0 sm:col-span-2 sm:p-0 sm:transition-none " +
+          "bg-background fixed top-20 left-0 z-50 h-full w-full px-6 py-8 transition-all duration-100 sm:relative sm:top-0 sm:col-span-2 sm:p-0 sm:transition-none " +
           (borgorOpen ? "translate-x-0" : "translate-x-full sm:translate-0")
         }
       >
@@ -51,24 +52,9 @@ function Header() {
       <div className="col-span-2 ml-auto block sm:hidden">
         <button
           onClick={() => setBorgorOpen(!borgorOpen)}
-          className="grid h-full grid-cols-1 grid-rows-1 items-center justify-center"
+          className="grid h-full cursor-pointer p-1 hover:scale-110"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M4 6l16 0" />
-            <path d="M4 12l16 0" />
-            <path d="M4 18l16 0" />
-          </svg>
+          {borgorOpen ? <IconX size={26} /> : <IconMenu2 size={26} />}
         </button>
       </div>
     </header>
