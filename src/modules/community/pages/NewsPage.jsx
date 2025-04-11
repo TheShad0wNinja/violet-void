@@ -7,14 +7,14 @@ import { IconHeartFilled, IconSearch, IconEyeFilled, IconShare } from "@tabler/i
 export default function NewsPage({ isDiscoverPage }) {
   if (isDiscoverPage)
     return (
-      <>
+      <Container>
         <MoreButton to="news" className="my-6 ml-auto" />
         <div className="grid grid-cols-1 gap-6">
           {getNews().map(news => (
             <NewsCard key={news.id} news={news} />
           ))}
         </div>
-      </>
+      </Container>
     );
 
   return (

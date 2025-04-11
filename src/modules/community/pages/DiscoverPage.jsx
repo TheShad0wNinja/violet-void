@@ -21,11 +21,11 @@ const tabs = {
   },
   discussions: {
     label: "Discussions",
-    element: <DiscussionPage />
+    element: <DiscussionPage isDiscoverPage />
   },
   guides: {
     label: "Guides",
-    element: <GuidesPage />
+    element: <GuidesPage isDiscoverPage />
   },
   screenshots: {
     label: "Screenshots",
@@ -48,15 +48,15 @@ export default function DiscoverPage() {
       <Container>
         <Title withDivider>Discover</Title>
         <Tabs selectedTab={section} tabs={tabs} onSelect={item => setFilter("section", item)} />
-        {tabs[section].element}
       </Container>
+      {tabs[section].element}
     </>
   );
 }
 
-function Tabs({ selectedTab = "news", onSelect, tabs = {} }) {
+function Tabs({ selectedTab, onSelect, tabs }) {
   return (
-    <nav className="border-b-secondary flex w-full border-b-3">
+    <nav className="border-b-secondary flex w-full border-b-3 flex-col sm:flex-row">
       {Object.entries(tabs).map(([k, v]) => (
         <button
           key={k}
@@ -82,8 +82,4 @@ function Tabs({ selectedTab = "news", onSelect, tabs = {} }) {
       ))}
     </nav>
   );
-}
-
-function Wrapper({ children }) {
-  return <div className="bg-secondary-800 rounded-lg p-2">{children}</div>;
 }
