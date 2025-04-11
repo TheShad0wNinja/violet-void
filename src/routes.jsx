@@ -10,6 +10,7 @@ import {
   WishlistPage,
   LibraryPage
 } from "@modules/store/App";
+
 import {
   ArtworkItemModal,
   ArtworkPage,
@@ -26,6 +27,8 @@ import {
   DiscussionPostPopUp,
   GuidePostPopUp
 } from "@modules/community/App";
+
+import { AuthPage } from "@modules/authorization/App";
 
 const storeRoutes = [
   {
@@ -147,9 +150,14 @@ const routesLinks = [
     ]
   },
   {
+    path: "/auth/:page",
+    element: <AuthPage />
+  },
+  {
     element: <NotFoundPage />,
     path: "*"
   }
+ 
 ];
 
 function getLinks(links, keyPrefix = "") {
