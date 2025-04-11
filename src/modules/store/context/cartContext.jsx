@@ -8,8 +8,7 @@ function CartProvider({ children }) {
 
   useEffect(() => {
     // console.log("Fetching local storage data");
-    // setCartItems(JSON.parse(localStorage.getItem("cart") || "[]"));
-    setCartItems(getGamesList().slice(0, 3))
+    setCartItems(JSON.parse(localStorage.getItem("cart") || getGamesList().slice(0, 3)));
   }, []);
 
   function setCartItems(newCartItems) {
