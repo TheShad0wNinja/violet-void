@@ -1,70 +1,64 @@
-import { Carousel, Container, Divider, Title } from "@modules/_shared/App";
+import { Carousel, Container, Divider, SkeletonBox, Title } from "@modules/_shared/App";
 import { getShuffledArtworks } from "../utils/mockUserData";
 import { MoreButton } from "@modules/community/App";
 import { Link } from "react-router";
+import { useState } from "react";
 
-
-const artists = getShuffledArtworks();
-
-const mobileView = [];
-for (let i = 0; i < artists.length; i += 3) {
-  mobileView.push(artists.slice(i, i + 3));
-}
-
-const desktopView = [];
-for (let i = 0; i < artists.length; i += 5) {
-  desktopView.push(artists.slice(i, i + 5));
-}
+const artworks = getShuffledArtworks();
 
 export default function ArtworkComponent() {
   return (
     <>
       <Container>
-        <div className="flex flex-nowrap items-center justify-between">
-        <Link to="artwork">
-              <Title>Artwork</Title>
-            </Link>
-          <MoreButton to="artwork" />
-        </div>
-        <Divider direction="center" className="mt-1 mb-4" />
+        <MoreButton to="artwork" className="my-6 ml-auto" />
         <Carousel
-          items={mobileView}
-          renderItem={panel => (
-            <div className="flex justify-center gap-4">
-              {panel.map(artist => (
-                <img
-                  key={artist.art}
-                  src={artist.art}
-                  className="bg-secondary-800 max-h-150 w-1/3 rounded-lg object-cover"
-                />
-              ))}
-            </div>
-          )}
+          items={artworks}
+          renderItem={panel => <CarouselItem panel={panel} />}
+          itemsPerPage={2}
           autoSlideInterval={10000}
           showIndicators={false}
           itemClass="bg-secondary-800 flex justify-center"
-          containerClass="mx-auto w-full rounded-4xl block sm:hidden"
+          containerClass="mx-auto w-full rounded-2xl block sm:hidden"
+					infiniteLoop={true}
         />
         <Carousel
-          items={desktopView}
-          renderItem={panel => (
-            <div className="flex justify-center gap-4">
-              {panel.map(artist => (
-                <img
-                  key={artist.art}
-                  src={artist.art}
-                  className="bg-secondary-800 max-h-150 w-1/5 rounded-lg object-cover"
-                />
-              ))}
-            </div>
-          )}
+          items={artworks}
+          renderItem={panel => <CarouselItem panel={panel} />}
+          itemsPerPage={3}
           autoSlideInterval={10000}
           showIndicators={false}
           itemClass="bg-secondary-800 flex justify-center"
-          containerClass="mx-auto w-full rounded-4xl hidden sm:block"
+          containerClass="mx-auto w-full rounded-2xl hidden sm:block md:hidden"
+					infiniteLoop={true}
+        />
+        <Carousel
+          items={artworks.slice(0, 12)}
+          renderItem={panel => <CarouselItem panel={panel} />}
+          itemsPerPage={5}
+          autoSlideInterval={10000}
+          showIndicators={true}
+          itemClass="bg-secondary-800 flex justify-center"
+          containerClass="mx-auto w-full rounded-2xl hidden md:block"
+					infiniteLoop={true}
         />
       </Container>
-      <div className="bg-secondary-800 flex justify-center" />
+      {/* <div className="bg-secondary-800 flex justify-center" /> */}
     </>
+  );
+}
+
+function CarouselItem({ panel }) {
+  const [loading, setLoading] = useState(true);
+
+  return (
+    <div className="max-h[400px] grid w-full grid-cols-1 justify-center px-2 py-2">
+      {loading && <SkeletonBox className="min-h-44 h-full w-full" />}
+      <img
+        key={panel.art}
+        src={panel.art}
+        onLoad={() => setLoading(false)}
+        className={`${loading ? "hidden" : ""} bg-secondary-800 h-full w-full rounded-2xl object-cover`}
+      />
+    </div>
   );
 }
