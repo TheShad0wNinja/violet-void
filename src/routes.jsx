@@ -29,6 +29,7 @@ import {
 } from "@modules/community/App";
 
 import { AuthPage } from "@modules/authorization/App";
+import AccountPage from "@modules/store/pages/AccountPage";
 
 const storeRoutes = [
   {

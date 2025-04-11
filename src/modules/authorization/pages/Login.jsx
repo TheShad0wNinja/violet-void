@@ -51,6 +51,7 @@ function Login({switchPage}) {
       <form onSubmit={formik.handleSubmit}>
         <WhiteTextInputBox
           name="username"
+          Itemscenter
           placeholder="UserName"
           value={formik.values.username}
           onChange={formik.handleChange}
@@ -59,6 +60,7 @@ function Login({switchPage}) {
         />
         <WhiteTextInputBox
           name="password"
+          Itemscenter
           placeholder="Password"
           value={formik.values.password}
           onChange={formik.handleChange}
