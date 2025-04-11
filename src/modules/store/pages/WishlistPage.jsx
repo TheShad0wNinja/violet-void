@@ -4,6 +4,7 @@ import { Pagination, TextInput, Title, Container } from "@modules/_shared/App";
 import { GameCard, GameCardRanking } from "../App";
 import useUrlFilters from "../hooks/useUrlFilters";
 import { IconSearch } from "@tabler/icons-react";
+import { motion } from "framer-motion";
 
 function mockPagination(page, limit = 8) {
   const games = getGamesList();
@@ -47,27 +48,51 @@ function WishlistPage() {
             onEnter={() => setFilter("search", searchQuery)}
           />
         </div>
-        <div className="bg-secondary-900 mt-8 flex h-fit w-full justify-center rounded-2xl p-10">
-          <div className="flex h-fit w-full flex-wrap justify-center gap-8">
+         <motion.div
+                initial={{ scale: 0.8, y: 30, opacity: 0 }}
+                whileInView={{ scale: 1, y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+
+                transition={{
+                  duration: 1.2,
+                  ease: [0.16, 1, 0.3, 1]
+                }} className="bg-secondary-900 mt-8 flex h-fit w-full justify-center rounded-2xl p-10">
+          <motion.div
+                      initial={{ y: 150, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      viewport={{ once: true }}
+
+                      transition={{
+                        duration: 1.8,
+                        ease: [0.16, 1, 0.3, 1]
+                      }} className="flex h-fit w-full flex-wrap justify-center gap-8">
             {Rankedgames.map((game, index) => (
               <div
                 key={game.title}
                 className="relative"
                 style={{
-                  marginTop: game.Ranking > 3 ? "80px" : `${(index % 3) * 40}px` // Cascading effect for Rank > 3
+                  marginTop: game.ranking > 3 ? "80px" : `${(index % 3) * 40}px` // Cascading effect for Rank > 3
                 }}
               >
                 <GameCardRanking game={game} />
               </div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
         <div className="mt-4">
           <Title>Games</Title>
 
-          <div className="mt-5 grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+          <motion.div
+                initial={{ scale: 0.8, y: 30, opacity: 0 }}
+                whileInView={{ scale: 1, y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+
+                transition={{
+                  duration: 1.2,
+                  ease: [0.16, 1, 0.3, 1]
+                }} className="mt-5  grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
             {games.length > 0 && games.map(game => <GameCard game={game} key={game.title} />)}
-          </div>
+          </motion.div>
           <Pagination
             totalItems={gamesTotalCount}
             itemsPerPage={8}
@@ -77,9 +102,17 @@ function WishlistPage() {
           />
 
           <Title>Add ons</Title>
-          <div className="grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+          <motion.div
+                initial={{ scale: 0.8, y: 30, opacity: 0 }}
+                whileInView={{ scale: 1, y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+
+                transition={{
+                  duration: 1.2,
+                  ease: [0.16, 1, 0.3, 1]
+                }} className="grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
             {dlcs.length > 0 && dlcs.map(game => <GameCard game={game} key={game.title} />)}
-          </div>
+          </motion.div>
           <Pagination
             totalItems={dlcsTotalCount}
             itemsPerPage={8}

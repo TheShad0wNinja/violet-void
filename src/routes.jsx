@@ -8,7 +8,8 @@ import {
   CartProvider,
   CheckoutPage,
   WishlistPage,
-  LibraryPage
+  LibraryPage,
+  StoreLayout
 } from "@modules/store/App";
 import { AdminHomePage, AdminProductsPage, AdminLayout } from "@modules/admin/App";
 
@@ -23,46 +24,162 @@ const adminRoutes = [
   }
 ];
 
+import {
+  ArtworkItemModal,
+  ArtworkPage,
+  DiscoverPage,
+  DiscussionPage,
+  GuidesPage,
+  NewsPage,
+  ReviewsPage,
+  ScreenshotAddingModal,
+  ScreenshotsPage,
+  DiscussionAddition,
+  GuideAddition,
+  NewsPostPopUp,
+  DiscussionPostPopUp,
+  GuidePostPopUp
+} from "@modules/community/App";
+
+import { AuthPage, AuthProvider } from "@modules/authorization/App";
+import AccountPage from "@modules/store/pages/AccountPage";
+
+const storeRoutes = [
+  {
+    path: "product/:id",
+    element: <ProductPage />
+  },
+  {
+    path: "",
+    element: <BrowsePage />
+  },
+  {
+    path: "cart",
+    children: [
+      {
+        path: "",
+        element: <CartPage />
+      },
+      {
+        path: "checkout",
+        element: <CheckoutPage />
+      }
+    ]
+  }
+];
+
+const communityRoutes = [
+  {
+    path: "",
+    element: <DiscoverPage />
+  },
+  {
+    path: "artwork/:artist?",
+    element: <ArtworkPage />,
+    children: [
+      {
+        path: ":id",
+        element: <ArtworkItemModal />
+      }
+    ]
+  },
+  {
+    path: "discussions",
+    element: <DiscussionPage />,
+    children: [
+      {
+        path: "add",
+        element: <DiscussionAddition />
+      },
+      {
+        path: ":id",
+        element: <DiscussionPostPopUp />
+      }
+    ]
+  },
+  {
+    path: "guides",
+    element: <GuidesPage />,
+    children: [
+      {
+        path: "add",
+        element: <GuideAddition />
+      },
+      {
+        path: ":id",
+        element: <GuidePostPopUp />
+      }
+    ]
+  },
+  {
+    path: "news",
+    element: <NewsPage />,
+    children: [
+      {
+        path: ":id",
+        element: <NewsPostPopUp />
+      }
+    ]
+  },
+  {
+    path: "reviews",
+    element: <ReviewsPage />
+  },
+  {
+    path: "screenshots",
+    element: <ScreenshotsPage />,
+    children: [
+      {
+        path: "add",
+        element: <ScreenshotAddingModal />
+      }
+    ]
+  }
+];
+
+const accountRoutes = [
+  {
+    path: ":account",
+    element: <AccountPage />
+  },
+  {
+    path: "wishlist",
+    element: <WishlistPage />
+  },
+  {
+    path: "library",
+    element: <LibraryPage />
+  }
+];
+
 const routesLinks = [
   {
     element: (
-      <CartProvider>
+      <AuthProvider>
         <RootLayout />
-      </CartProvider>
+      </AuthProvider>
     ),
     children: [
       {
-        path: "/",
+        path: "",
         element: <HomePage />
       },
       {
         path: "store",
-        children: [
-          {
-            path: "product/:id",
-            element: <ProductPage />
-          },
-          {
-            path: "browse",
-            element: <BrowsePage />
-          },
-          {
-            path: "wishlist",
-            element: <WishlistPage />
-          },
-          {
-            path: "library",
-            element: <LibraryPage />
-          }
-        ]
+        element: (
+          <CartProvider>
+            <StoreLayout />
+          </CartProvider>
+        ),
+        children: storeRoutes
       },
       {
-        path: "/cart",
-        element: <CartPage />
+        path: "community/:game?",
+        children: communityRoutes
       },
       {
-        path: "/cart/checkout",
-        element: <CheckoutPage />
+        path: "account",
+        children: accountRoutes
       }
     ]
   },
@@ -70,6 +187,12 @@ const routesLinks = [
     element: <AdminLayout />,
     path: "admin",
     children: adminRoutes
+    path: "auth/:page",
+    element: (
+      <AuthProvider>
+        <AuthPage />
+      </AuthProvider>
+    )
   },
   {
     element: <NotFoundPage />,

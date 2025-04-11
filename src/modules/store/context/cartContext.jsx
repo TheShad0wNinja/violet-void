@@ -8,24 +8,25 @@ function CartProvider({ children }) {
 
   useEffect(() => {
     // console.log("Fetching local storage data");
-    // setCartItems(JSON.parse(localStorage.getItem("cart") || "[]"));
-    setCartItems(getGamesList().slice(0, 3))
+    setCartItems(JSON.parse(localStorage.getItem("cart") || "[]"));
   }, []);
 
   function setCartItems(newCartItems) {
     // console.log("Cart items changed: ", newCartItems);
     localStorage.setItem("cart", JSON.stringify(newCartItems));
-    setCartItemsState(newCartItems)
+    setCartItemsState(newCartItems);
   }
 
   function addCartItem(newItem) {
     const newCartitems = [...cartItems, newItem];
-    localStorage.setItem("cart", JSON.stringify(newCartitems))
-    setCartItemsState(newCartitems)
+    localStorage.setItem("cart", JSON.stringify(newCartitems));
+    setCartItemsState(newCartitems);
   }
 
   return (
-    <CartContext.Provider value={{ cartItems, setCartItems, addCartItem }}>{children}</CartContext.Provider>
+    <CartContext.Provider value={{ cartItems, setCartItems, addCartItem }}>
+      {children}
+    </CartContext.Provider>
   );
 }
 

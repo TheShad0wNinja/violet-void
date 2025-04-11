@@ -19,4 +19,6 @@ export { default as Pagination } from "./components/Pagination.jsx";
 export { default as Table } from "./components/Table.jsx"
 export { default as Carousel } from "./components/Carousel.jsx";
 export { default as PageModal } from "./components/PageModal.jsx";
-export { default as AnimatedOutlet } from './components/AnimatedOutlet.jsx'
+export { default as AnimatedOutlet } from "./components/AnimatedOutlet.jsx";
+export { default as SkeletonBox } from "./components/SkeletonBox.jsx";
+

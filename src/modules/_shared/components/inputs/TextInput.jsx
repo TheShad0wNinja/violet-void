@@ -63,7 +63,7 @@ export default function TextInput({
         value={value}
         onChange={e => setValue(e.target.value)}
         onKeyDown={e => e.key === "Enter" && onEnter()}
-        className={"bg-secondary-700 w-full rounded-md px-5 py-3" + iconClasses}
+        className={"bg-secondary-700 w-full rounded-md px-5 py-2" + iconClasses}
         required={required}
       />
 

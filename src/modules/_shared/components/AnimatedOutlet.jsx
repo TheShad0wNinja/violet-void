@@ -7,7 +7,7 @@ export default function AnimatedOutlet() {
   const element = useOutlet();
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
+    <AnimatePresence mode="wait" initial={true}>
       {element !== null && cloneElement(element, { key: location.pathname })}
     </AnimatePresence>
   );
