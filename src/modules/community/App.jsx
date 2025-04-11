@@ -18,4 +18,4 @@ export { default as GuideAddition } from "./components/GuideAddition";
 export { default as NewsPostPopUp } from "./components/NewsPostPopUp";
 export { default as DiscussionPostPopUp } from "./components/DiscussionsPostPopUp";
 export { default as GuidePostPopUp } from "./components/GuidesPostPopUp";
-
+export { default as SearchComponent } from "./components/SearchComponent";
