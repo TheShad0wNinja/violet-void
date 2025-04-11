@@ -11,6 +11,22 @@ import {
   LibraryPage,
   StoreLayout
 } from "@modules/store/App";
+import { AdminHomePage, AdminProductsPage, AdminLayout, CreateProductPage } from "@modules/admin/App";
+
+const adminRoutes = [
+  {
+    path: "products",
+    element: <AdminProductsPage />
+  },
+	{
+		path: "products/create",
+		element: <CreateProductPage />
+	},
+  {
+    path: "",
+    element: <AdminHomePage />
+  }
+];
 
 import {
   ArtworkItemModal,
@@ -170,6 +186,15 @@ const routesLinks = [
         children: accountRoutes
       }
     ]
+  },
+  {
+    element: (
+      <AuthProvider>
+        <AdminLayout />
+      </AuthProvider>
+    ),
+    path: "admin",
+    children: adminRoutes
   },
   {
     path: "auth/:page",

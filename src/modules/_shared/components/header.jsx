@@ -6,10 +6,18 @@ import { useAuth } from "@modules/authorization/App";
 import { Button, Divider } from "../App";
 
 function Header() {
+  const { user } = useAuth();
+  const [borgorOpen, setBorgorOpen] = useState(false);
+
   const links = [
     {
       label: "Home",
       href: "/"
+    },
+    {
+      label: "Admin",
+      href: "/admin",
+      disabled: !user || user?.name !== "NeonNinja"
     },
     {
       label: "Store",
@@ -21,8 +29,6 @@ function Header() {
     }
   ];
 
-  const [borgorOpen, setBorgorOpen] = useState(false);
-  const { user } = useAuth();
   console.log(user);
 
   return (
@@ -35,18 +41,20 @@ function Header() {
         }
       >
         <ol className="flex flex-col items-center justify-center gap-6 sm:h-full sm:flex-row">
-          {links.map(link => (
-            <NavLink
-              to={link.href}
-              key={link.label}
-              className={({ isActive }) =>
-                "cursor-pointer text-lg transition-transform duration-75 ease-out hover:scale-125" +
-                (isActive ? " text-accent font-bold" : "")
-              }
-            >
-              {link.label}
-            </NavLink>
-          ))}
+          {links
+            .filter(i => !i.disabled)
+            .map(link => (
+              <NavLink
+                to={link.href}
+                key={link.label}
+                className={({ isActive }) =>
+                  "cursor-pointer text-lg transition-transform duration-75 ease-out hover:scale-125" +
+                  (isActive ? " text-accent font-bold" : "")
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
           <Divider className="block sm:hidden" direction="center" />
           {user !== null ? (
             <div className="flex w-full flex-col items-center justify-center gap-6 sm:hidden">
@@ -116,13 +124,17 @@ function Header() {
 
 function UserIcon({ user }) {
   return (
-    <div className="hidden flex-row flex-nowrap items-center justify-end gap-2 sm:flex">
-			<Link to={`/account/${user.name}`}>
-				<p className="hover:underline cursor-pointer">{user.name}</p>
-			</Link>
-			<Link to={`/account/${user.name}`}>
-				<img src={user.avatar} alt="user_profile" className="h-10 w-10 rounded-md cursor-pointer hover:brightness-75" />
-			</Link>
+    <div className="flex flex-row flex-nowrap items-center justify-end gap-2">
+      <Link to={`/account/${user.name}`}>
+        <p className="cursor-pointer hover:underline">{user.name}</p>
+      </Link>
+      <Link to={`/account/${user.name}`}>
+        <img
+          src={user.avatar}
+          alt="user_profile"
+          className="h-10 w-10 cursor-pointer rounded-md hover:brightness-75"
+        />
+      </Link>
     </div>
   );
 }
