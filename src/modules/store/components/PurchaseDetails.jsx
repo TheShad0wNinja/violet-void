@@ -2,9 +2,11 @@ import React from "react";
 import pfp1 from "@modules/_shared/Assets/pfp1.jpg";
 import pfp2 from "@modules/_shared/Assets/pfp2.jpg";
 import pfp3 from "@modules/_shared/Assets/pfp3.jpg";
-import { WishlistButton, CartButton } from "../App";
+import { WishlistButton, CartButton, useCart } from "../App";
 
 function PurchaseDetails({ game }) {
+  const { addCartItem, cartItems } = useCart();
+
   return (
     <div className="sticky top-20 mt-5 h-fit md:flex-1/4">
       <div className="bg-secondary-900 rounded-2xl">
@@ -45,7 +47,7 @@ function PurchaseDetails({ game }) {
             <h1 className="text-text-dark w-auto text-2xl">Cost</h1>
             <h1 className="text-text-dark w-auto text-2xl font-semibold">${game.price}</h1>
           </div>
-          <CartButton />
+          <CartButton disabled={cartItems.find(g => g.name === game.name)} onClick={() => addCartItem(game)} />
           <WishlistButton />
         </div>
       </div>

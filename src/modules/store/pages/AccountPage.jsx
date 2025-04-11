@@ -164,7 +164,7 @@ function AccountPage() {
           >
             <div className="flex w-full items-center justify-between">
               <h1 className="text-2xl font-bold">Recently Played</h1>
-              <Link to="/store/library">
+              <Link to="/account/library">
                 <button className="hover:bg-secondary-600 bg-secondary h-fit w-fit cursor-pointer rounded-md p-2 text-center">
                   View more
                 </button>
@@ -194,7 +194,7 @@ function AccountPage() {
           >
             <div className="mt-5 flex w-full items-center justify-between">
               <h1 className="text-2xl font-bold">Wish list</h1>
-              <Link to="/store/wishlist">
+              <Link to="/account/wishlist">
                 <button className="hover:bg-secondary-600 bg-secondary h-fit w-fit cursor-pointer rounded-md p-2 text-center">
                   View more
                 </button>

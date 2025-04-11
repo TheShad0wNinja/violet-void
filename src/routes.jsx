@@ -9,8 +9,24 @@ import {
   CheckoutPage,
   WishlistPage,
   LibraryPage,
-  AccountPage
+  StoreLayout
 } from "@modules/store/App";
+import { AdminHomePage, AdminProductsPage, AdminLayout, CreateProductPage } from "@modules/admin/App";
+
+const adminRoutes = [
+  {
+    path: "products",
+    element: <AdminProductsPage />
+  },
+	{
+		path: "products/create",
+		element: <CreateProductPage />
+	},
+  {
+    path: "",
+    element: <AdminHomePage />
+  }
+];
 
 import {
   ArtworkItemModal,
@@ -29,7 +45,8 @@ import {
   GuidePostPopUp
 } from "@modules/community/App";
 
-import { AuthPage } from "@modules/authorization/App";
+import { AuthPage, AuthProvider } from "@modules/authorization/App";
+import AccountPage from "@modules/store/pages/AccountPage";
 
 const storeRoutes = [
   {
@@ -37,16 +54,21 @@ const storeRoutes = [
     element: <ProductPage />
   },
   {
-    path: "browse",
+    path: "",
     element: <BrowsePage />
   },
   {
-    path: "wishlist",
-    element: <WishlistPage />
-  },
-  {
-    path: "library",
-    element: <LibraryPage />
+    path: "cart",
+    children: [
+      {
+        path: "",
+        element: <CartPage />
+      },
+      {
+        path: "checkout",
+        element: <CheckoutPage />
+      }
+    ]
   }
 ];
 
@@ -119,9 +141,28 @@ const communityRoutes = [
   }
 ];
 
+const accountRoutes = [
+  {
+    path: ":account",
+    element: <AccountPage />
+  },
+  {
+    path: "wishlist",
+    element: <WishlistPage />
+  },
+  {
+    path: "library",
+    element: <LibraryPage />
+  }
+];
+
 const routesLinks = [
   {
-    element: <RootLayout />,
+    element: (
+      <AuthProvider>
+        <RootLayout />
+      </AuthProvider>
+    ),
     children: [
       {
         path: "",
@@ -129,44 +170,44 @@ const routesLinks = [
       },
       {
         path: "store",
+        element: (
+          <CartProvider>
+            <StoreLayout />
+          </CartProvider>
+        ),
         children: storeRoutes
-      },
-      {
-        path: "cart",
-        children: [
-          {
-            path: "",
-            element: <CartPage />
-          },
-          {
-            path: "checkout",
-            element: <CheckoutPage />
-          }
-        ]
-      },
-      {
-        path: "/account/:account",
-        element: <AccountPage />
       },
       {
         path: "community/:game?",
         children: communityRoutes
       },
       {
-        path: "account/:account",
-        element: <AccountPage />
+        path: "account",
+        children: accountRoutes
       }
     ]
   },
   {
-    path: "/auth/:page",
-    element: <AuthPage />
+    element: (
+      <AuthProvider>
+        <AdminLayout />
+      </AuthProvider>
+    ),
+    path: "admin",
+    children: adminRoutes
+  },
+  {
+    path: "auth/:page",
+    element: (
+      <AuthProvider>
+        <AuthPage />
+      </AuthProvider>
+    )
   },
   {
     element: <NotFoundPage />,
     path: "*"
   }
- 
 ];
 
 function getLinks(links, keyPrefix = "") {

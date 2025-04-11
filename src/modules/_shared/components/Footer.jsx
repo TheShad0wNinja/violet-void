@@ -9,12 +9,8 @@ const links = [
   },
   {
     label: "Store",
-    href: "/store/browse"
+    href: "/store"
   },
-  {
-    label: "About Us",
-    href: ""
-  }
 ];
 
 export default function Footer() {
@@ -26,7 +22,7 @@ export default function Footer() {
           <NavLink
             to={link.href}
             key={link.label}
-            className={({ isActive }) => "text-xl " + (isActive ? " text-primary" : "")}
+            className={({ isActive }) => "text-xl " + (isActive ? " text-accent" : "")}
           >
             {link.label}
           </NavLink>

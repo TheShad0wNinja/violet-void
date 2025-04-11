@@ -11,7 +11,7 @@ export default function NewsPage({ isDiscoverPage }) {
         <MoreButton to="news" className="my-6 ml-auto" />
         <div className="grid grid-cols-1 gap-6">
           {getNews().map(news => (
-            <NewsCard key={news.id} news={news} />
+            <NewsCard isDiscoverPage={isDiscoverPage} key={news.id} news={news} />
           ))}
         </div>
       </Container>
@@ -29,7 +29,7 @@ export default function NewsPage({ isDiscoverPage }) {
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {getNews().map(news => (
-            <NewsCard news={news} />
+            <NewsCard isDiscoverPage={isDiscoverPage} news={news} />
           ))}
         </div>
       </Container>
@@ -38,10 +38,10 @@ export default function NewsPage({ isDiscoverPage }) {
   );
 }
 
-function NewsCard({ news }) {
+function NewsCard({ news, isDiscoverPage }) {
   return (
     <Link
-      to={`/community/news/${news.id}`}
+      to={`${isDiscoverPage ? "news/" : ""}${news.id}`}
       className={`bg-secondary-900 hover:bg-secondary-800 rounded-2xl p-6 transition-colors duration-200`}
     >
       <div className="cursor-pointer">

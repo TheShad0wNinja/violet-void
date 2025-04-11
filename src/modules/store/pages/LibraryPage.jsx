@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import useUrlFilters from "../hooks/useUrlFilters";
 import LibraryBanner from "../components/LibraryBanner";
 import { IconSearch } from "@tabler/icons-react";
+import { Link } from "react-router";
 
 function mockPagination(page, limit = 8) {
   const games = getGamesList();
@@ -79,14 +80,16 @@ export default function LibraryPage() {
         {/* Game Grid */}
         <div className="grid grid-cols-2 items-start justify-center gap-4 rounded-md sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
           {games.length > 0 &&
-            games.map(game => (
-              <GameCard
-                onMouseOver={() => handleHover(game)}
-                withoutPrice
-                withoutType
-                game={game}
-                key={game.title}
-              />
+            games.map((game, idx) => (
+              <Link to={`/store/product/${idx % 3 + 101}`}>
+                <GameCard
+                  onMouseOver={() => handleHover(game)}
+                  withoutPrice
+                  withoutType
+                  game={game}
+                  key={game.title}
+                />
+              </Link>
             ))}
         </div>
 

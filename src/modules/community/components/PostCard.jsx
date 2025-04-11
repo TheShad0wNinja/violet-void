@@ -1,9 +1,9 @@
 import { IconMessageCircleFilled, IconHeartFilled, IconShare } from "@tabler/icons-react";
 import { Link } from "react-router";
 
-export default function PostCard({ post }) {
+export default function PostCard({ post, isDiscoverPage }) {
   return (
-    <Link to={`/community/discussions/${post.id}`}>
+    <Link to={`${isDiscoverPage ? "discussions/" : ""}${post.id}`}>
       <div className="bg-secondary-900 border-accent hover:border-accent-600 mx-auto mb-6 w-full max-w-6xl cursor-pointer rounded-2xl border p-4 text-white shadow-md">
         <div className="mb-2 flex justify-between text-lg text-gray-400">
           <span className="hover:text-accent">{post.subreddit}</span>
