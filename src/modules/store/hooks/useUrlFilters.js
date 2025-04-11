@@ -36,14 +36,10 @@ export default function useUrlFilters(initialFilters = {}) {
     ...currentFilters
   };
 
-	console.log("Before: ", filters)
-
 	Object.keys(filters).forEach(key => {
 		if (typeof filters[key] === 'string' && Array.isArray(initialFilters[key])) 
 			filters[key] = filters[key].split(",") || []
 	})
-
-	console.log("After: ", filters)
 
   const updateFilters = newFilters => {
     const cleanedFilters = Object.fromEntries(
