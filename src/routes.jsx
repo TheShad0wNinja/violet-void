@@ -28,7 +28,7 @@ import {
   GuidePostPopUp
 } from "@modules/community/App";
 
-import { AuthPage } from "@modules/authorization/App";
+import { AuthPage, AuthProvider } from "@modules/authorization/App";
 import AccountPage from "@modules/store/pages/AccountPage";
 
 const storeRoutes = [
@@ -121,7 +121,11 @@ const communityRoutes = [
 
 const routesLinks = [
   {
-    element: <RootLayout />,
+    element: (
+      <AuthProvider>
+        <RootLayout />
+      </AuthProvider>
+    ),
     children: [
       {
         path: "",
@@ -151,14 +155,17 @@ const routesLinks = [
     ]
   },
   {
-    path: "/auth/:page",
-    element: <AuthPage />
+    path: "auth/:page",
+    element: (
+      <AuthProvider>
+        <AuthPage />
+      </AuthProvider>
+    )
   },
   {
     element: <NotFoundPage />,
     path: "*"
   }
- 
 ];
 
 function getLinks(links, keyPrefix = "") {
