@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { GameHolderBox } from "../App";
 import rightArrow from "@modules/_shared/Assets/right-arrow.png";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { motion } from "framer-motion";
+
 
 function GamesHolder({ Sectionname, games }) {
   const [index, setIndex] = useState(0);
@@ -23,7 +23,15 @@ function GamesHolder({ Sectionname, games }) {
   }
 
   return (
-    <div>
+     <motion.div
+    initial={{ scale: 0.8, y: 30, opacity: 0 }}
+    whileInView={{ scale: 1, y: 0, opacity: 1 }}
+    viewport={{ once: true }}
+
+    transition={{
+      duration: 1.5,
+      ease: [0.16, 1, 0.3, 1]
+    }}>
       <div className="mt-5 mb-3 flex items-center gap-2">
         <h1 className="text-2xl font-bold">{Sectionname}</h1>
         <button className="w-5 cursor-pointer" onClick={handleNext}>
@@ -46,7 +54,7 @@ function GamesHolder({ Sectionname, games }) {
           />
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

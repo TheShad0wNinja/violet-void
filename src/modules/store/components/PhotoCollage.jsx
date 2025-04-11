@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import RRD21 from "../../_shared/Assets/GamePhotos/RRD21.jpg";
 import RRD22 from "../../_shared/Assets/GamePhotos/RRD22.jpg";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { motion } from "framer-motion";
+
 
 function PhotoCollage({images}) {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -17,7 +17,13 @@ function PhotoCollage({images}) {
   };
 
   return (
-    <div data-aos="fade-up" className="relative w-full max-w-5xl  mt-6">
+    <motion.div
+            initial={{ scale: 0.8, y: 30, opacity: 0 }}
+            whileInView={{ scale: 1, y: 0, opacity: 1 }}
+            transition={{
+              duration: 1.5,
+              ease: [0.16, 1, 0.3, 1]
+            }} className="relative w-full max-w-5xl  mt-6">
       {/* Background Image */}
       <div
         style={{ backgroundImage: `url(${images[selectedIndex]})` }}
@@ -44,7 +50,7 @@ function PhotoCollage({images}) {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

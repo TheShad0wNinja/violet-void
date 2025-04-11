@@ -1,12 +1,19 @@
 import React from "react";
 import { Stars } from "../App";
-import AOS from "aos";
-import "aos/dist/aos.css"; // Import AOS styles
+
+import { motion } from "framer-motion";
 
 function GameRating({rating}) {
   return (
-    <div
-      data-aos="fade-up"
+  <motion.div
+         initial={{ scale: 0.8, y: 30, opacity: 0 }}
+         whileInView={{ scale: 1, y: 0, opacity: 1 }}
+         transition={{
+           duration: 1.5,
+           ease: [0.16, 1, 0.3, 1]
+         }}
+         viewport={{ once: true }}
+
       className="w-full h-fit flex flex-col md:flex-row items-center md:justify-between sm:justify-center mt-8 bg-secondary-900 rounded-2xl p-4"
     >
       {/* Hidden on sm, visible from md+ */}
@@ -14,7 +21,7 @@ function GameRating({rating}) {
         Rate GameName
       </h1>
       <Stars rating={rating} />
-    </div>
+    </motion.div>
   );
 }
 
