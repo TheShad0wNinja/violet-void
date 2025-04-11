@@ -85,7 +85,7 @@ function Header() {
         </ol>
       </nav>
       {user !== null ? (
-        <div className="hidden w-full justify-end gap-2 sm:flex">
+        <div className="hidden w-full justify-end items-center gap-2 sm:flex">
           <UserIcon user={user} />
           <Link
             to="/auth/logout"

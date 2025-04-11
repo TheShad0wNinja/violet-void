@@ -57,7 +57,7 @@ function GamesHolder({
               gameName={game.name}
               gamePrice={game.price}
               gameDetails={detailsOn ? game.details : game.rating}
-              gameImage={game.images[1]}
+              gameImage={Array.isArray(game.images) ? game.images[0] : game.image}
               smallerHeight
             />
           ))}

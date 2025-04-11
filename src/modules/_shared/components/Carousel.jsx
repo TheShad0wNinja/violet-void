@@ -64,8 +64,6 @@ export default function Carousel({
     setCurrentPage(page);
   };
 
-	console.log(items)
-
   useEffect(() => {
     if (!autoSlideInterval) return;
     const timer = setInterval(goToNext, autoSlideInterval);

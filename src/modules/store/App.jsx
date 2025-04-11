@@ -7,8 +7,8 @@ export { default as CheckoutPage } from "./pages/CheckoutPage";
 export { default as BrowsePage } from "./pages/BrowsePage";
 export { default as CartPage } from "./pages/CartPage";
 
-export { default as Friendsbox } from "./components/EditProfile";
-export { default as EditProfile } from "./components/GameCard";
+export { default as EditProfile  } from "./components/EditProfile";
+export { default as Friendsbox } from "./components/Friendsbox";
 
 export { default as GameCard } from "./components/GameCard";
 export { default as GameCardRanking } from "./components/GameCardRanking";

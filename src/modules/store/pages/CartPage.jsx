@@ -13,7 +13,7 @@ export default function CartPage() {
 
   // Remove item from cart
   const handleRemove = item => {
-    setCartItems(cartItems.filter(i => i.title !== item.title));
+    setCartItems(cartItems.filter(i => i.name !== item.name));
   };
 
 	console.log(cartItems)
