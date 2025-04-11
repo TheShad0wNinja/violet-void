@@ -90,7 +90,7 @@ const GameRanking = [
     coverImageUrl: "https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg",
     bannerImageUrl: "https://cdn2.steamgriddb.com/hero/33e25ce2b801662e46a7b801301d5b94.jpg",
     type: "Base Game",
-    Ranking: "1",
+    ranking: "1",
     title: "The Witcher 3: Wild Hunt",
     price: 59.9
   },
@@ -98,7 +98,7 @@ const GameRanking = [
     coverImageUrl: "https://i.redd.it/w44jvkcns8461.png",
     bannerImageUrl: "https://cdn2.steamgriddb.com/hero_thumb/5988319f8fdeb1b2d254a9a38518f52e.jpg",
     type: "Base Game",
-    Ranking: "2",
+    ranking: "2",
     title: "Cyberpunk 2077",
     price: 59.9
   },
@@ -106,7 +106,7 @@ const GameRanking = [
     coverImageUrl: "https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg",
     bannerImageUrl: "https://cdn2.steamgriddb.com/hero_thumb/33e70269806c88720e2d89ed1d3f1be3.jpg",
     type: "Base Game",
-    Ranking: "3",
+    ranking: "3",
     title: "God of War",
     price: 49.99
   },
@@ -114,7 +114,7 @@ const GameRanking = [
     coverImageUrl: "https://upload.wikimedia.org/wikipedia/en/2/22/Death_Stranding.jpg",
     bannerImageUrl: "https://cdn2.steamgriddb.com/hero_thumb/c81e728d9d4c2f636f067f89cc14862c.jpg",
     type: "Base Game",
-    Ranking: "4",
+    ranking: "4",
 
     title: "Death Stranding",
     price: 34.99
@@ -137,10 +137,16 @@ const gamesPageData = [
     similarGames: ["Cyberpunk 2077", "Deus Ex: Mankind Divided"],
     tags: ["RPG", "Open World", "Cyberpunk", "Action", "Singleplayer"],
     gameFeatures: [
-      "Multiplayer", "CrOss-play", "Crafting", "Stealth Mechanics", "Dynamic Weather", "Player Choices Matter"
+      "Multiplayer",
+      "CrOss-play",
+      "Crafting",
+      "Stealth Mechanics",
+      "Dynamic Weather",
+      "Player Choices Matter"
     ],
     description: "An open-world action RPG set in a dystopian cyberpunk future.",
-    detailedDescription: "Explore a vast cyberpunk city filled with intrigue and danger in this deep narrative RPG with branching storylines and revolutionary gameplay mechanics.",
+    detailedDescription:
+      "Explore a vast cyberpunk city filled with intrigue and danger in this deep narrative RPG with branching storylines and revolutionary gameplay mechanics.",
     images: [
       "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
       "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
@@ -165,13 +171,15 @@ const gamesPageData = [
         id: 1011,
         name: "Neon Underground",
         price: 14.99,
-        image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+        image:
+          "https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
       },
       {
         id: 1012,
         name: "Cyber Samurai Pack",
         price: 4.99,
-        image: "https://images.unsplash.com/photo-1518655048521-f130df041f66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+        image:
+          "https://images.unsplash.com/photo-1518655048521-f130df041f66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
       }
     ],
     ageRating: "Mature 17+",
@@ -193,7 +201,8 @@ const gamesPageData = [
     tags: ["RPG", "Souls-like", "Fantasy", "Difficult", "Multiplayer"],
     gameFeatures: ["Multiplayer", "Co-op", "Stealth Mechanics", "Player Choices Matter"],
     description: "A challenging open-world fantasy RPG with deep combat mechanics.",
-    detailedDescription: "Journey through the Lands Between, a world of vast landscapes and ominous dungeons. Encounter adversaries with profound backgrounds and meet characters with their own motivations.",
+    detailedDescription:
+      "Journey through the Lands Between, a world of vast landscapes and ominous dungeons. Encounter adversaries with profound backgrounds and meet characters with their own motivations.",
     images: [
       "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
       "https://images.unsplash.com/photo-1509198397868-475647b2a044?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1193&q=80",
@@ -218,7 +227,8 @@ const gamesPageData = [
         id: 1021,
         name: "Shadow of the Erdtree",
         price: 19.99,
-        image: "https://images.unsplash.com/photo-1560253023-3ec5d502959f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+        image:
+          "https://images.unsplash.com/photo-1560253023-3ec5d502959f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
       }
     ],
     ageRating: "Mature 17+",
@@ -240,7 +250,8 @@ const gamesPageData = [
     tags: ["Strategy", "Space", "Simulation", "Multiplayer", "Sci-fi"],
     gameFeatures: ["Multiplayer", "Co-op", "PvP", "Space Exploration", "Fleet Management"],
     description: "Command your own starship in this epic space strategy game.",
-    detailedDescription: "Take control of a massive starship and its crew as you explore unknown sectors of space, engage in tactical combat, and make decisions that affect the fate of your crew and the galaxy.",
+    detailedDescription:
+      "Take control of a massive starship and its crew as you explore unknown sectors of space, engage in tactical combat, and make decisions that affect the fate of your crew and the galaxy.",
     images: [
       "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1211&q=80",
       "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1073&q=80",
@@ -265,13 +276,15 @@ const gamesPageData = [
         id: 1031,
         name: "Klingon Armada",
         price: 12.99,
-        image: "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
+        image:
+          "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
       },
       {
         id: 1032,
         name: "Borg Invasion",
         price: 14.99,
-        image: "https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+        image:
+          "https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
       }
     ],
     ageRating: "Teen",
@@ -286,34 +299,279 @@ const similarGamesData = [
     name: "Cyberpunk 2077",
     price: 49.99,
     rating: 7.9,
-    image: "https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+    image:
+      "https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
   },
   {
     id: 202,
     name: "Deus Ex: Mankind Divided",
     price: 19.99,
     rating: 8.1,
-    image: "https://images.unsplash.com/photo-1562976540-1502c2145186?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+    image:
+      "https://images.unsplash.com/photo-1562976540-1502c2145186?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
   },
   {
     id: 203,
     name: "The Ascent",
     price: 29.99,
     rating: 7.5,
-    image: "https://images.unsplash.com/photo-1638549811659-19eab16a1e9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+    image:
+      "https://images.unsplash.com/photo-1638549811659-19eab16a1e9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
   }
 ];
 
+const gamingProfiles = [
+  {
+    id: 1,
+    profile: {
+      name: "AetherGamer99",
+      email: "aethergamer99@example.com",
+      password: "hashed_secure_password_1",
+      avatar: "https://i.imgur.com/J6LX7XK.png",
+      coverImage: "https://i.imgur.com/5m4h5zW.jpg",
+      gamesPlayed: 147,
+      badges: 23,
+      level: 47,
+      lastOnline: "3 hours ago",
+      totalHours: 1284,
+      stats: {
+        achievements: 327,
+        favoriteGenre: "RPG",
+        currentStreak: 7,
+        longestSession: {
+          game: "Cyber Odyssey 2077",
+          hours: 14.5
+        }
+      }
+    },
+    friends: [
+      {
+        id: 101,
+        username: "ShadowHunter42",
+        status: "Online now",
+        avatar: "https://i.imgur.com/3ZqX9Xp.png"
+      },
+      {
+        id: 102,
+        username: "PixelPirate",
+        status: "Online 15m ago",
+        avatar: "https://i.imgur.com/4QZ9X9p.png"
+      }
+    ],
+    recentlyPlayed: [
+      {
+        id: 1001,
+        title: "Cyber Odyssey 2077",
+        hours: 58,
+        lastPlayed: "Today",
+        price: 59.99,
+        coverImageUrl: "https://i.imgur.com/K3mPv14.png"
+      },
+      {
+        id: 1002,
+        title: "Cyber Odyssey5 2077",
+        hours: 585,
+        lastPlayed: "To5day",
+        price: 59.599,
+        coverImageUrl: "https://i.imgur.com/K3mPv14.png"
+      }
+    ],
+    wishlist: [
+      {
+        id: 1003,
+        title: "Elden Ring",
+        price: 59.99,
+        coverImageUrl: "https://i.imgur.com/P6mPv64.png",
+        releaseDate: "2022-02-25",
+        isOnSale: false,
+        ranking: 1
+      },
+      {
+        id: 1004,
+        title: "Starfield",
+        price: 69.99,
+        coverImageUrl: "https://i.imgur.com/Q7mPv74.png",
+        releaseDate: "2023-09-06",
+        isOnSale: true,
+        discount: 15,
+        ranking: 2
+      },
+      {
+        id: 1005,
+        title: "Starfield",
+        price: 69.99,
+        coverImageUrl: "https://i.imgur.com/Q7mPv74.png",
+        releaseDate: "2023-09-06",
+        isOnSale: true,
+        discount: 15,
+        ranking: 3
+      }
+    ]
+  },
+  {
+    id: 2,
+    profile: {
+      name: "NeonNinja",
+      email: "neonninja@example.com",
+      password: "hashed_secure_password_2",
+      avatar: "https://i.imgur.com/6n7X9Xp.png",
+      coverImage: "https://i.imgur.com/X2mPv14.jpg",
+      gamesPlayed: 89,
+      badges: 15,
+      level: 32,
+      lastOnline: "1 hour ago",
+      totalHours: 756,
+      stats: {
+        achievements: 215,
+        favoriteGenre: "FPS",
+        currentStreak: 12,
+        longestSession: {
+          game: "Stellar Conquest",
+          hours: 10.2
+        }
+      }
+    },
+    friends: [
+      {
+        id: 201,
+        username: "QuantumQueen",
+        status: "Online",
+        avatar: "https://i.imgur.com/5m4h5zW.png"
+      },
+      {
+        id: 202,
+        username: "AetherGamer99",
+        status: "3 hours ago",
+        avatar: "https://i.imgur.com/J6LX7XK.png"
+      }
+    ],
+    recentlyPlayed: [
+      {
+        id: 2001,
+        title: "Stellar Conquest",
+        hours: 112,
+        lastPlayed: "Today",
+        price: 49.99,
+        coverImageUrl: "https://i.imgur.com/Y3mPv24.png"
+      }
+    ],
+    wishlist: [
+      {
+        id: 2002,
+        title: "Cyberpunk 2077: Phantom Liberty",
+        price: 29.99,
+        coverImageUrl: "https://i.imgur.com/R8mPv84.png",
+        releaseDate: "2023-09-26",
+        isOnSale: false,
+        ranking: 1
+      },
+      {
+        id: 2003,
+        title: "Hogwarts Legacy",
+        price: 59.99,
+        coverImageUrl: "https://i.imgur.com/S9mPv94.png",
+        releaseDate: "2023-02-10",
+        isOnSale: false,
+        ranking: 2,
+        discount: 20
+      }
+    ]
+  },
+  {
+    id: 3,
+    profile: {
+      name: "PixelPirate",
+      email: "pixelpirate@example.com",
+      password: "hashed_secure_password_3",
+      avatar: "https://i.imgur.com/4QZ9X9p.png",
+      coverImage: "https://i.imgur.com/Z4mPv34.jpg",
+      gamesPlayed: 203,
+      badges: 37,
+      level: 58,
+      lastOnline: "Online now",
+      totalHours: 1842,
+      stats: {
+        achievements: 512,
+        favoriteGenre: "Adventure",
+        currentStreak: 21,
+        longestSession: {
+          game: "Ancient Empires",
+          hours: 18.7
+        }
+      }
+    },
+    friends: [
+      {
+        id: 301,
+        username: "FrostByte",
+        status: "2 hours ago",
+        avatar: "https://i.imgur.com/7m8X9Xp.png"
+      },
+      {
+        id: 302,
+        username: "AetherGamer99",
+        status: "3 hours ago",
+        avatar: "https://i.imgur.com/J6LX7XK.png"
+      }
+    ],
+    recentlyPlayed: [
+      {
+        id: 3001,
+        title: "Pixel Dungeon",
+        hours: 247,
+        lastPlayed: "Today",
+        price: 19.99,
+        coverImageUrl: "https://i.imgur.com/O5mPv54.png"
+      }
+    ],
+    wishlist: [
+      {
+        id: 3002,
+        title: "The Legend of Zelda: Tears of the Kingdom",
+        price: 69.99,
+        ranking: 1,
+        coverImageUrl: "https://i.imgur.com/T0mPv04.png",
+        releaseDate: "2023-05-12",
+        isOnSale: false
+      },
+      {
+        id: 3003,
+        title: "Final Fantasy XVI",
+        price: 69.99,
+        coverImageUrl: "https://i.imgur.com/U1mPv14.png",
+        releaseDate: "2023-06-22",
+        isOnSale: true,
+        ranking: 2,
+        discount: 10
+      },
+      {
+        id: 3004,
+        title: "Final Fantasy XVI",
+        price: 69.99,
+        coverImageUrl: "https://i.imgur.com/U1mPv14.png",
+        releaseDate: "2023-06-22",
+        isOnSale: true,
+        ranking: 3,
+        discount: 10
+      }
+    ]
+  }
+];
 
+export default gamingProfiles;
 export function getGamesList() {
   return games;
+}
+
+export function getGamesPageData() {
+  return gamesPageData;
 }
 export function getRankingGamesList() {
   return GameRanking;
 }
-export function getGamesPageData() {
-  return gamesPageData;
-}
 export function getSimilarGamesData() {
   return similarGamesData;
+}
+export function getGamingProfiles() {
+  return gamingProfiles;
 }

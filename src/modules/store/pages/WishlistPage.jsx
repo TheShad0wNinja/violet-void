@@ -54,7 +54,7 @@ function WishlistPage() {
                 key={game.title}
                 className="relative"
                 style={{
-                  marginTop: game.Ranking > 3 ? "80px" : `${(index % 3) * 40}px` // Cascading effect for Rank > 3
+                  marginTop: game.ranking > 3 ? "80px" : `${(index % 3) * 40}px` // Cascading effect for Rank > 3
                 }}
               >
                 <GameCardRanking game={game} />
@@ -65,7 +65,7 @@ function WishlistPage() {
         <div className="mt-4">
           <Title>Games</Title>
 
-          <div className="mt-5 grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+          <div className="mt-5  grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
             {games.length > 0 && games.map(game => <GameCard game={game} key={game.title} />)}
           </div>
           <Pagination

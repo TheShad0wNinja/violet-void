@@ -51,15 +51,15 @@ function Signuppage({ switchPage }) {
       animate={{ y: 0, opacity: 1 }}
       transition={{
         duration: 1.8,
-        ease: [0.16, 1, 0.3, 1] 
+        ease: [0.16, 1, 0.3, 1]
       }}
     >
       <motion.h1
-        initial={{ scale:0.5 , opacity: 0 }}
+        initial={{ scale: 0.5, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{
           duration: 1.8,
-          ease: [0.16, 1, 0.3, 1] 
+          ease: [0.16, 1, 0.3, 1]
         }}
         className="mb-10 text-center text-3xl font-bold md:text-4xl"
       >
@@ -67,6 +67,7 @@ function Signuppage({ switchPage }) {
       </motion.h1>
       <form onSubmit={formik.handleSubmit}>
         <WhiteTextInputBox
+          Itemscenter
           name="username"
           placeholder="UserName"
           value={formik.values.username}
@@ -76,6 +77,7 @@ function Signuppage({ switchPage }) {
         />
         <WhiteTextInputBox
           name="email"
+          Itemscenter
           placeholder="Email"
           value={formik.values.email}
           onChange={formik.handleChange}
@@ -84,6 +86,7 @@ function Signuppage({ switchPage }) {
         />
         <WhiteTextInputBox
           name="password"
+          Itemscenter
           placeholder="Password"
           value={formik.values.password}
           onChange={formik.handleChange}

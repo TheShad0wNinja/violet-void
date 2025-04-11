@@ -50,7 +50,7 @@ const routesLinks = [
         element: <LibraryPage />
       },
       {
-        path: "/account/username",
+        path: "/account/:account",
         element: <AccountPage />
       },
     

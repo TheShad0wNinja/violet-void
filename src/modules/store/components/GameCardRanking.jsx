@@ -1,16 +1,15 @@
 import React from "react";
-
 function GameCardRanking({ game }) {
-  const { coverImageUrl, title, price, type, Ranking } = game;
+  const { coverImageUrl, title, price, type, ranking } = game;
 
   return (
-    <div className="flex w-full cursor-pointer flex-col items-center justify-center transition-transform hover:scale-105 hover:saturate-[120%]">
-      <div className="relative h-[300px] w-full overflow-hidden rounded-xl sm:h-[280px] xl:h-[400px]">
-      <div className="bg-secondary w-fit z-10 absolute rounded-br-3xl pl-3 pr-3 p-2 font-bold md:text-2xl">
-      {Ranking + "."}
-      </div>
+    <div className="flex h-full w-full cursor-pointer flex-col items-center justify-center transition-transform hover:scale-105 hover:saturate-[120%]">
+      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl">
+        <div className="bg-secondary absolute z-10 w-fit rounded-br-3xl p-2 pl-3 pr-3 font-bold md:text-2xl">
+          {ranking + "."}
+        </div>
         <img
-          className=" h-full w-full object-cover object-center"
+          className="h-full w-full object-cover object-center"
           src={coverImageUrl}
           alt={title + " cover"}
         />
