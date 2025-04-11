@@ -57,7 +57,7 @@ function GamesHolder({
               gameName={game.name}
               gamePrice={game.price}
               gameDetails={detailsOn ? game.details : game.rating}
-              gameImage={game.image}
+              gameImage={game.images[1]}
               smallerHeight
             />
           ))}
