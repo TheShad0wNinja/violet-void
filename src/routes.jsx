@@ -8,7 +8,8 @@ import {
   CartProvider,
   CheckoutPage,
   WishlistPage,
-  LibraryPage
+  LibraryPage,
+  StoreLayout
 } from "@modules/store/App";
 
 import {
@@ -37,16 +38,21 @@ const storeRoutes = [
     element: <ProductPage />
   },
   {
-    path: "browse",
+    path: "",
     element: <BrowsePage />
   },
   {
-    path: "wishlist",
-    element: <WishlistPage />
-  },
-  {
-    path: "library",
-    element: <LibraryPage />
+    path: "cart",
+    children: [
+      {
+        path: "",
+        element: <CartPage />
+      },
+      {
+        path: "checkout",
+        element: <CheckoutPage />
+      }
+    ]
   }
 ];
 
@@ -119,6 +125,21 @@ const communityRoutes = [
   }
 ];
 
+const accountRoutes = [
+  {
+    path: ":account",
+    element: <AccountPage />
+  },
+  {
+    path: "wishlist",
+    element: <WishlistPage />
+  },
+  {
+    path: "library",
+    element: <LibraryPage />
+  }
+];
+
 const routesLinks = [
   {
     element: (
@@ -133,28 +154,20 @@ const routesLinks = [
       },
       {
         path: "store",
+        element: (
+          <CartProvider>
+            <StoreLayout />
+          </CartProvider>
+        ),
         children: storeRoutes
-      },
-      {
-        path: "cart",
-        children: [
-          {
-            path: "",
-            element: <CartPage />
-          },
-          {
-            path: "checkout",
-            element: <CheckoutPage />
-          }
-        ]
       },
       {
         path: "community/:game?",
         children: communityRoutes
       },
       {
-        path: "account/:account",
-        element: <AccountPage />
+        path: "account",
+        children: accountRoutes
       }
     ]
   },

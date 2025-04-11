@@ -15,12 +15,12 @@ export { default as GameCardRanking } from "./components/GameCardRanking";
 export { default as CartButton } from "./components/CartButton";
 export { default as GameRating } from "./components/GameRating";
 export { default as GameRequirements } from "./components/GameRequirements";
-export { default as LibraryBanner } from "./components/LibraryBanner";
 export { default as GenreHolder } from "./components/GenreHolder";
+export { default as LibraryBanner } from "./components/LibraryBanner";
 export { default as PhotoCollage } from "./components/PhotoCollage";
 export { default as PurchaseDetails } from "./components/PurchaseDetails";
 export { default as Stars } from "./components/Stars";
 export { default as WishlistButton } from "./components/WishlistButton";
 
-export { CartProvider } from "./context/cartContext";
-
+export { CartProvider, useCart } from "./context/cartContext";
+export { default as StoreLayout } from "./components/StoreLayout";

@@ -13,7 +13,7 @@ function Header() {
     },
     {
       label: "Store",
-      href: "/store/browse"
+      href: "/store"
     },
     {
       label: "Community",
@@ -50,10 +50,7 @@ function Header() {
           <Divider className="block sm:hidden" direction="center" />
           {user !== null ? (
             <div className="flex w-full flex-col items-center justify-center gap-6 sm:hidden">
-              <div className="flex flex-row flex-nowrap items-center gap-2">
-                <p>{user.name}</p>
-                <img src={user.avatar} alt="user_profile" className="h-10 w-10 rounded-md" />
-              </div>
+              <UserIcon user={user} />
               <Link
                 to="/auth/logout"
                 className="bg-secondary hover:bg-primary-500 block h-min w-full cursor-pointer rounded-md px-4 py-2 text-center font-semibold tracking-wide text-nowrap uppercase duration-200 active:scale-95"
@@ -81,10 +78,7 @@ function Header() {
       </nav>
       {user !== null ? (
         <div className="hidden w-full justify-end gap-2 sm:flex">
-          <div className="hidden flex-row flex-nowrap items-center justify-end gap-2 sm:flex">
-            <p>{user.name}</p>
-            <img src={user.avatar} alt="user_profile" className="h-10 w-10 rounded-md" />
-          </div>
+          <UserIcon user={user} />
           <Link
             to="/auth/logout"
             className="bg-secondary hover:bg-primary-500 block h-min w-fit cursor-pointer rounded-md px-4 py-2 text-nowrap duration-200 active:scale-95"
@@ -117,6 +111,19 @@ function Header() {
         </button>
       </div>
     </header>
+  );
+}
+
+function UserIcon({ user }) {
+  return (
+    <div className="hidden flex-row flex-nowrap items-center justify-end gap-2 sm:flex">
+			<Link to={`/account/${user.name}`}>
+				<p className="hover:underline cursor-pointer">{user.name}</p>
+			</Link>
+			<Link to={`/account/${user.name}`}>
+				<img src={user.avatar} alt="user_profile" className="h-10 w-10 rounded-md cursor-pointer hover:brightness-75" />
+			</Link>
+    </div>
   );
 }
 
