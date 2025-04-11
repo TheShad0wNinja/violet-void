@@ -1,7 +1,17 @@
-import { Container, Divider, PageModal, Pagination, Table, Title } from "@modules/_shared/App";
+import {
+  Button,
+  Container,
+  Divider,
+  PageModal,
+  Pagination,
+  Table,
+  Title
+} from "@modules/_shared/App";
 import { getGamesList } from "@modules/store/utils/mockData";
+import { IconCirclePlus } from "@tabler/icons-react";
 import { AnimatePresence } from "motion/react";
 import { useState } from "react";
+import { Link } from "react-router";
 
 const headers = [
   {
@@ -30,9 +40,12 @@ export default function AdminProductsPage() {
   ];
   return (
     <Container>
-			<div className="flex">
-				<Title>Products</Title>
-			</div>
+      <div className="flex items-center">
+        <Title>Products</Title>
+        <Link to="create" className="ml-auto">
+          <Button leftSection={<IconCirclePlus size={22} />}>Add Product</Button>
+        </Link>
+      </div>
       <Table tableClassName="mt-6" headers={headers} data={gameList} actions={actions} />
       <Pagination totalItems={gameList.length} itemsPerPage={4} currentPage={1} />
       <ConfirmationDialogue

@@ -1,6 +1,6 @@
 /**
  * A component that's used for text input
- * 
+ *
  * @param {Object} props
  * @param {JSX.Element} [props.leftSection] An element ( icon ) that'll be added to the left side of the input
  * @param {JSX.Element} [props.rightSection] An element ( icon ) that'll be added to the right side of the input
@@ -11,8 +11,9 @@
  * @param {string} [props.className] Additional classes to be added to the component
  * @param {boolean} [props.required = false] Whether the input is required or not
  * @param {string} [ props.label ] Add a label to the input
+ * @param {string} [ props.name ] Text input name value
  * @returns {JSX.Element}
- * 
+ *
  * @example
  * <TextInput
  *  leftSection={<IconSearch size={18} />}
@@ -33,7 +34,9 @@ export default function TextInput({
   onEnter,
   className,
   required = false,
-  label: labelText
+  label: labelText,
+  onChange,
+  name
 }) {
   let iconClasses = "";
   if (rightSection) iconClasses += " pr-12 ";
@@ -61,7 +64,8 @@ export default function TextInput({
         type="text"
         placeholder={placeholder}
         value={value}
-        onChange={e => setValue(e.target.value)}
+        name={name}
+        onChange={!onChange ? e => setValue(e.target.value) : onChange}
         onKeyDown={e => e.key === "Enter" && onEnter()}
         className={"bg-secondary-700 w-full rounded-md px-5 py-2" + iconClasses}
         required={required}

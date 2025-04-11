@@ -11,13 +11,17 @@ import {
   LibraryPage,
   StoreLayout
 } from "@modules/store/App";
-import { AdminHomePage, AdminProductsPage, AdminLayout } from "@modules/admin/App";
+import { AdminHomePage, AdminProductsPage, AdminLayout, CreateProductPage } from "@modules/admin/App";
 
 const adminRoutes = [
   {
     path: "products",
     element: <AdminProductsPage />
   },
+	{
+		path: "products/create",
+		element: <CreateProductPage />
+	},
   {
     path: "",
     element: <AdminHomePage />
@@ -184,9 +188,15 @@ const routesLinks = [
     ]
   },
   {
-    element: <AdminLayout />,
+    element: (
+      <AuthProvider>
+        <AdminLayout />
+      </AuthProvider>
+    ),
     path: "admin",
     children: adminRoutes
+  },
+  {
     path: "auth/:page",
     element: (
       <AuthProvider>
