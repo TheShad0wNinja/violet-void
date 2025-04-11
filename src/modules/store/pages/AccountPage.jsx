@@ -130,6 +130,8 @@ function AccountPage() {
           <motion.div
             initial={{ scale: 0.8, y: 30, opacity: 0 }}
             whileInView={{ scale: 1, y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+
             transition={{
               duration: 1.5,
               ease: [0.16, 1, 0.3, 1]
@@ -157,6 +159,8 @@ function AccountPage() {
           <motion.div
             initial={{ scale: 0.8, y: 30, opacity: 0 }}
             whileInView={{ scale: 1, y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+
             transition={{
               duration: 1.5,
               ease: [0.16, 1, 0.3, 1]
@@ -185,6 +189,8 @@ function AccountPage() {
           <motion.div
             initial={{ scale: 0.8, y: 30, opacity: 0 }}
             whileInView={{ scale: 1, y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+
             transition={{
               duration: 1.5,
               ease: [0.16, 1, 0.3, 1]
