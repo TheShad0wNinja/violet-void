@@ -1,43 +1,37 @@
 import { Branding } from "@modules/_shared/App";
+import { IconDeviceGamepad } from "@tabler/icons-react";
 import { NavLink } from "react-router";
 
 const sections = [
   {
-    heading: "Products",
-    links: [
-      {
-        label: "List Products",
-        href: "/admin/products"
-      },
-      {
-        label: "Add Product",
-        href: "/admin/products/create"
-      }
-    ]
+    label: "Products",
+    href: "/admin/products",
+    icon: <IconDeviceGamepad />
   }
 ];
 
 export default function AdminNavbar({ isOpen = false }) {
   return (
     <aside
-      className={`${isOpen ? "translate-x-0" : "-translate-x-full"} border-accent border-t border-r fixed left-0 h-screen w-full p-4 transition-transform duration-75 sm:w-72`}
+      className={`${isOpen ? "translate-x-0" : "-translate-x-full"} border-accent fixed left-0 h-screen w-full border-t border-r p-4 transition-transform duration-75 sm:w-60`}
     >
-      <ul>
-        {sections.map(section => (
-          <li key={section.heading}>
-            <h3>{section.heading}</h3>
-            <ol className="mt-2 ml-2 grid gap-2">
-              {section.links.map(link => (
-                <li key={link.href}>
-                  <NavLink to={link.href} className={"hover:text-gray-400"}>
-                    {link.label}
-                  </NavLink>
-                </li>
-              ))}
-            </ol>
-          </li>
-        ))}
-      </ul>
+      <nav>
+        <ul>
+          {sections.map(link => (
+            <li key={link.href}>
+              <NavLink
+                to={link.href}
+                className={ ({isActive}) => 
+                  `flex flex-nowrap items-center justify-center gap-2 text-xl hover:bg-accent p-2 rounded-md ${isActive ? "bg-accent" : ""}`
+                }
+              >
+                {link.icon}
+                {link.label}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </aside>
   );
 }
