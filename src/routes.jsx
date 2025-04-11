@@ -12,6 +12,17 @@ import {
 } from "@modules/store/App";
 import { AdminHomePage, AdminProductsPage, AdminLayout } from "@modules/admin/App";
 
+const adminRoutes = [
+  {
+    path: "products",
+    element: <AdminProductsPage />
+  },
+  {
+    path: "",
+    element: <AdminHomePage />
+  }
+];
+
 const routesLinks = [
   {
     element: (
@@ -57,17 +68,8 @@ const routesLinks = [
   },
   {
     element: <AdminLayout />,
-		path: "admin",
-    children: [
-			{
-				path: "products",
-				element: <AdminProductsPage />
-			},
-			{
-				path: "",
-				element: <AdminHomePage />
-			}
-    ]
+    path: "admin",
+    children: adminRoutes
   },
   {
     element: <NotFoundPage />,
