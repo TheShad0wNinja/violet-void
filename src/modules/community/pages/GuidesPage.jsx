@@ -1,9 +1,7 @@
 import { AnimatedOutlet, Container, Divider, TextInput, Title } from "@modules/_shared/App";
-import { useState } from "react";
 import { getGuides } from "../utils/guidesData";
-import { Link, useLocation } from "react-router";
+import { Link } from "react-router";
 import MoreButton from "../components/MoreButton";
-import GuidesPostPopUp from "../components/GuidesPostPopUp";
 import {
   IconHeartFilled,
   IconSearch,
@@ -41,7 +39,7 @@ export default function GuidesPage({ isDiscoverPage }) {
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
         {getGuides().map((guide, index) => (
-          <GuideCard key={guide.id} guide={guide} index={index} />
+          <GuideCard key={guide.id} guide={guide} index={index} isDiscoverPage={isDiscoverPage} />
         ))}
       </div>
       <Link
@@ -55,14 +53,14 @@ export default function GuidesPage({ isDiscoverPage }) {
   );
 }
 
-function GuideCard({ guide, index }) {
+function GuideCard({ guide, index, isDiscoverPage }) {
   return (
     <div
       className={`bg-secondary-900 hover:bg-secondary-800 rounded-2xl p-6 transition-colors duration-200 ${
         index % 4 === 0 ? "sm:col-span-3" : ""
       }`}
     >
-      <Link to={`/community/guides/${guide.id}`}>
+      <Link to={`${isDiscoverPage ? "guides/" : ""}${guide.id}`}>
         <div className="mb-2 flex items-start justify-between">
           <h2 className="line-clamp-1 text-xl font-bold">{guide.title}</h2>
           <span className="text-xs text-gray-400">{guide.date}</span>

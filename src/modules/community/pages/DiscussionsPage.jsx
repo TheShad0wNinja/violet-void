@@ -11,7 +11,7 @@ export default function DiscussionPage({ isDiscoverPage }) {
         <MoreButton to="discussions" className="my-6 ml-auto" />
 
         {getDiscussions().map(post => (
-          <PostCard key={post.id} post={post} />
+          <PostCard key={post.id} post={post} isDiscoverPage={isDiscoverPage} />
         ))}
       </Container>
     );
