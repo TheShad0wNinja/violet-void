@@ -14,6 +14,10 @@ function mockPagination(page, limit = 8) {
   return { totalGameCount: games.length, gameList: pagedGameList };
 }
 function WishlistPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [games, setGames] = useState([]);
   const [dlcs, setDlcs] = useState([]);
 
@@ -48,24 +52,26 @@ function WishlistPage() {
             onEnter={() => setFilter("search", searchQuery)}
           />
         </div>
-         <motion.div
-                initial={{ scale: 0.8, y: 30, opacity: 0 }}
-                whileInView={{ scale: 1, y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-
-                transition={{
-                  duration: 1.2,
-                  ease: [0.16, 1, 0.3, 1]
-                }} className="bg-secondary-900 mt-8 flex h-fit w-full justify-center rounded-2xl p-10">
+        <motion.div
+          initial={{ scale: 0.8, y: 30, opacity: 0 }}
+          whileInView={{ scale: 1, y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 1.2,
+            ease: [0.16, 1, 0.3, 1]
+          }}
+          className="bg-secondary-900 mt-8 flex h-fit w-full justify-center rounded-2xl p-10"
+        >
           <motion.div
-                      initial={{ y: 150, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      viewport={{ once: true }}
-
-                      transition={{
-                        duration: 1.8,
-                        ease: [0.16, 1, 0.3, 1]
-                      }} className="flex h-fit w-full flex-wrap justify-center gap-8">
+            initial={{ y: 150, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 1.8,
+              ease: [0.16, 1, 0.3, 1]
+            }}
+            className="flex h-fit w-full flex-wrap justify-center gap-8"
+          >
             {Rankedgames.map((game, index) => (
               <div
                 key={game.title}
@@ -83,14 +89,15 @@ function WishlistPage() {
           <Title>Games</Title>
 
           <motion.div
-                initial={{ scale: 0.8, y: 30, opacity: 0 }}
-                whileInView={{ scale: 1, y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-
-                transition={{
-                  duration: 1.2,
-                  ease: [0.16, 1, 0.3, 1]
-                }} className="mt-5  grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+            initial={{ scale: 0.8, y: 30, opacity: 0 }}
+            whileInView={{ scale: 1, y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 1.2,
+              ease: [0.16, 1, 0.3, 1]
+            }}
+            className="mt-5 grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
+          >
             {games.length > 0 && games.map(game => <GameCard game={game} key={game.title} />)}
           </motion.div>
           <Pagination
@@ -103,14 +110,15 @@ function WishlistPage() {
 
           <Title>Add ons</Title>
           <motion.div
-                initial={{ scale: 0.8, y: 30, opacity: 0 }}
-                whileInView={{ scale: 1, y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-
-                transition={{
-                  duration: 1.2,
-                  ease: [0.16, 1, 0.3, 1]
-                }} className="grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+            initial={{ scale: 0.8, y: 30, opacity: 0 }}
+            whileInView={{ scale: 1, y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 1.2,
+              ease: [0.16, 1, 0.3, 1]
+            }}
+            className="grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
+          >
             {dlcs.length > 0 && dlcs.map(game => <GameCard game={game} key={game.title} />)}
           </motion.div>
           <Pagination
