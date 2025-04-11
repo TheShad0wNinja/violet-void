@@ -27,108 +27,122 @@ import {
   GuidePostPopUp
 } from "@modules/community/App";
 
+const storeRoutes = [
+  {
+    path: "product/:id",
+    element: <ProductPage />
+  },
+  {
+    path: "browse",
+    element: <BrowsePage />
+  },
+  {
+    path: "wishlist",
+    element: <WishlistPage />
+  },
+  {
+    path: "library",
+    element: <LibraryPage />
+  }
+];
+
+const communityRoutes = [
+  {
+    path: "",
+    element: <DiscoverPage />
+  },
+  {
+    path: "artwork/:artist?",
+    element: <ArtworkPage />,
+    children: [
+      {
+        path: ":id",
+        element: <ArtworkItemModal />
+      }
+    ]
+  },
+  {
+    path: "discussions",
+    element: <DiscussionPage />,
+    children: [
+      {
+        path: "add",
+        element: <DiscussionAddition />
+      },
+      {
+        path: ":id",
+        element: <DiscussionPostPopUp />
+      }
+    ]
+  },
+  {
+    path: "guides",
+    element: <GuidesPage />,
+    children: [
+      {
+        path: "add",
+        element: <GuideAddition />
+      },
+      {
+        path: ":id",
+        element: <GuidePostPopUp />
+      }
+    ]
+  },
+  {
+    path: "news",
+    element: <NewsPage />,
+    children: [
+      {
+        path: ":id",
+        element: <NewsPostPopUp />
+      }
+    ]
+  },
+  {
+    path: "reviews",
+    element: <ReviewsPage />
+  },
+  {
+    path: "screenshots",
+    element: <ScreenshotsPage />,
+    children: [
+      {
+        path: "add",
+        element: <ScreenshotAddingModal />
+      }
+    ]
+  }
+];
+
 const routesLinks = [
   {
     element: <RootLayout />,
     children: [
       {
-        path: "/",
+        path: "",
         element: <HomePage />
       },
       {
-        path: "/store/product/:id",
-        element: <ProductPage />
+        path: "store",
+        children: storeRoutes
       },
       {
-        path: "/store/browse",
-        element: <BrowsePage />
-      },
-      {
-        path: "/cart",
-        element: <CartPage />
-      },
-      {
-        path: "/cart/checkout",
-        element: <CheckoutPage />
-      },
-      {
-        path: "/store/wishlist",
-        element: <WishlistPage />
-      },
-      {
-        path: "/store/library",
-        element: <LibraryPage />
-      },
-      {
-        path: "community",
+        path: "cart",
         children: [
           {
             path: "",
-            element: <DiscoverPage />
+            element: <CartPage />
           },
           {
-            path: "artwork/:artist?",
-            element: <ArtworkPage />,
-            children: [
-              {
-                path: ":id",
-                element: <ArtworkItemModal />
-              }
-            ]
-          },
-          {
-            path: "discussions",
-            element: <DiscussionPage />,
-            children: [
-              {
-                path: "add",
-                element: <DiscussionAddition />
-              },
-							{
-								path: ":id",
-								element: <DiscussionPostPopUp />
-							}
-            ]
-          },
-          {
-            path: "guides",
-            element: <GuidesPage />,
-            children: [
-              {
-                path: "add",
-                element: <GuideAddition />
-              },
-							{
-								path: ":id",
-								element: <GuidePostPopUp />
-							}
-            ]
-          },
-          {
-            path: "news",
-            element: <NewsPage />,
-            children: [
-              {
-                path: ":id",
-                element: <NewsPostPopUp />
-              }
-            ]
-          },
-          {
-            path: "reviews",
-            element: <ReviewsPage />
-          },
-          {
-            path: "screenshots",
-            element: <ScreenshotsPage />,
-            children: [
-              {
-                path: "add",
-                element: <ScreenshotAddingModal />
-              }
-            ]
+            path: "checkout",
+            element: <CheckoutPage />
           }
         ]
+      },
+      {
+        path: "community/:game?",
+        children: communityRoutes
       }
     ]
   },
