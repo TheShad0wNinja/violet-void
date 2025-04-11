@@ -2,6 +2,7 @@ import WhiteTextInputBox from "@modules/authorization/components/WhiteTextInputB
 import React, { useEffect, useRef, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { motion } from "framer-motion";
 
 function EditProfile({ account, editProfileState }) {
   const fileInputRef = useRef(null);
@@ -63,7 +64,15 @@ function EditProfile({ account, editProfileState }) {
         onClick={() => editProfileState(prev => !prev)}
       ></div>
 
-      <div className="fixed inset-0 z-50 flex items-center justify-center">
+      <motion.div
+        initial={{  y: 150, opacity: 0 }}
+        animate={{  y: 0, opacity: 1 }}
+        transition={{
+          duration: 1.8,
+          ease: [0.16, 1, 0.3, 1] 
+        }}
+        className="fixed inset-0 z-50 flex items-center justify-center"
+      >
         <div
           className="bg-secondary-900 flex w-1/2 flex-row items-center justify-between gap-5 rounded-2xl p-5 pt-10 pb-14 shadow-md shadow-gray-950"
           onClick={e => e.stopPropagation()}
@@ -176,7 +185,7 @@ function EditProfile({ account, editProfileState }) {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }
