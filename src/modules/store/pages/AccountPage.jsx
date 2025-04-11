@@ -164,9 +164,11 @@ function AccountPage() {
           >
             <div className="flex w-full items-center justify-between">
               <h1 className="text-2xl font-bold">Recently Played</h1>
-              <button className="hover:bg-secondary-600 bg-secondary h-fit w-fit cursor-pointer rounded-md p-2 text-center">
-                View more
-              </button>
+              <Link to="/store/library">
+                <button className="hover:bg-secondary-600 bg-secondary h-fit w-fit cursor-pointer rounded-md p-2 text-center">
+                  View more
+                </button>
+              </Link>
             </div>
             <div className="mt-5 grid grid-cols-2 items-start justify-center gap-4 rounded-md sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
               {account.recentlyPlayed?.length > 0 &&
@@ -188,19 +190,19 @@ function AccountPage() {
               ease: [0.16, 1, 0.3, 1]
             }}
           >
-          <div className="mt-5 flex w-full items-center justify-between">
-            <h1 className="text-2xl font-bold">Wish list</h1>
-            <Link to="/store/wishlist">
-              <button className="hover:bg-secondary-600 bg-secondary h-fit w-fit cursor-pointer rounded-md p-2 text-center">
-                View more
-              </button>
-            </Link>
-          </div>
-          <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-            {account.wishlist?.map(game => (
-              <GameCardRanking game={game} key={game.id} />
-            ))}
-          </div>
+            <div className="mt-5 flex w-full items-center justify-between">
+              <h1 className="text-2xl font-bold">Wish list</h1>
+              <Link to="/store/wishlist">
+                <button className="hover:bg-secondary-600 bg-secondary h-fit w-fit cursor-pointer rounded-md p-2 text-center">
+                  View more
+                </button>
+              </Link>
+            </div>
+            <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+              {account.wishlist?.map(game => (
+                <GameCardRanking game={game} key={game.id} />
+              ))}
+            </div>
           </motion.div>
         </div>
       </Container>

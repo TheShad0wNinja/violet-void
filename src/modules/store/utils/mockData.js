@@ -124,17 +124,17 @@ const GameRanking = [
 const gamesPageData = [
   {
     id: 101,
-    name: "Cyber Nexus Odyssey",
+    name: "Assassin Creed Odyssey",
     rating: 8.4,
     price: 59.99,
     discount: 20,
     platforms: ["PC", "PlayStation 5", "Xbox Series X"],
     releaseDate: "2023-11-15",
     releaseYear: 2023,
-    developer: "Neon Giant StudiOs",
+    developer: "Ubisoft",
     publisher: "Digital Horizon Interactive",
     metacriticScore: 78,
-    similarGames: ["Cyberpunk 2077", "Deus Ex: Mankind Divided"],
+    similarGames: ["Cyberpunk 2077", "Fallout 4"],
     tags: ["RPG", "Open World", "Cyberpunk", "Action", "Singleplayer"],
     gameFeatures: [
       "Multiplayer",
@@ -144,13 +144,14 @@ const gamesPageData = [
       "Dynamic Weather",
       "Player Choices Matter"
     ],
-    description: "An open-world action RPG set in a dystopian cyberpunk future.",
+    description:
+      "Assassin's Creed Odyssey is an action-adventure game where you choose the hero you want to become. Embark on an epic journey from outcast to living legend to uncover the secrets of your past and change the fate of Ancient Greece. Fight in visceral battles on both land and sea to become a true hero",
     detailedDescription:
-      "Explore a vast cyberpunk city filled with intrigue and danger in this deep narrative RPG with branching storylines and revolutionary gameplay mechanics.",
+      "Choose your fate in Assassin's Creed Odyssey. Embark on an epic journey from outcast to living legend to uncover the secrets of your past and change the fate of Ancient Greece",
     images: [
-      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-      "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-      "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+      "https://wallpapercave.com/wp/wp12500830.jpg",
+      "https://tv-it.com/storage/home-appliances/ghada-1-1-2025/edit-photos/assassins-creed-odyssey-4.webp",
+      "https://images4.alphacoders.com/102/1022130.jpg"
     ],
     requirements: {
       minimum: {
@@ -172,7 +173,7 @@ const gamesPageData = [
         name: "Neon Underground",
         price: 14.99,
         image:
-          "https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+          "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg?t=1734434803"
       },
       {
         id: 1012,
@@ -187,7 +188,7 @@ const gamesPageData = [
   },
   {
     id: 102,
-    name: "Elden Realms",
+    name: "Elden Rings",
     rating: 9.2,
     price: 49.99,
     discount: 10,
@@ -200,13 +201,13 @@ const gamesPageData = [
     similarGames: ["Cyberpunk 2077", "Deus Ex: Mankind Divided"],
     tags: ["RPG", "Souls-like", "Fantasy", "Difficult", "Multiplayer"],
     gameFeatures: ["Multiplayer", "Co-op", "Stealth Mechanics", "Player Choices Matter"],
-    description: "A challenging open-world fantasy RPG with deep combat mechanics.",
+    description: "THE CRITICALLY ACCLAIMED FANTASY ACTION RPG. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.",
     detailedDescription:
-      "Journey through the Lands Between, a world of vast landscapes and ominous dungeons. Encounter adversaries with profound backgrounds and meet characters with their own motivations.",
+      "The Lands Between are part of a vast continent where magnificent open fields and huge dungeons with complex and three-dimensional designs are seamlessly connected. As you explore, the joy of discovering unknown and overwhelming threats awaits you. Mastery of the terrain and knowledge of its secrets can help you overcome enemies and defeat formidable bosses or lead invading players into traps.",
     images: [
-      "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-      "https://images.unsplash.com/photo-1509198397868-475647b2a044?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1193&q=80",
-      "https://images.unsplash.com/photo-1513828583688-c52646db42da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+      "https://images8.alphacoders.com/118/1186452.jpg",
+      "https://www.dreadxp.com/wp-content/uploads/2022/03/Elden-Header.jpg",
+      "https://www.pcgamesn.com/wp-content/sites/pcgamesn/2022/01/Elden-Ring-bosses-all-boss-list.jpg"
     ],
     requirements: {
       minimum: {
@@ -234,62 +235,7 @@ const gamesPageData = [
     ageRating: "Mature 17+",
     playersAmount: "1-2"
   },
-  {
-    id: 103,
-    name: "Starfleet Command",
-    rating: 7.8,
-    price: 39.99,
-    discount: 30,
-    platforms: ["PC", "PlayStation 5", "Xbox Series X"],
-    releaseDate: "2023-05-18",
-    releaseYear: 2023,
-    developer: "Quantum Games",
-    publisher: "Universal Interactive",
-    metacriticScore: 82,
-    similarGames: ["Cyberpunk 2077", "Deus Ex: Mankind Divided"],
-    tags: ["Strategy", "Space", "Simulation", "Multiplayer", "Sci-fi"],
-    gameFeatures: ["Multiplayer", "Co-op", "PvP", "Space Exploration", "Fleet Management"],
-    description: "Command your own starship in this epic space strategy game.",
-    detailedDescription:
-      "Take control of a massive starship and its crew as you explore unknown sectors of space, engage in tactical combat, and make decisions that affect the fate of your crew and the galaxy.",
-    images: [
-      "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1211&q=80",
-      "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1073&q=80",
-      "https://images.unsplash.com/photo-1501862700950-18382cd41497?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1179&q=80"
-    ],
-    requirements: {
-      minimum: {
-        Os: "Windows 10",
-        processor: "Intel Core i5-6500",
-        memory: "8 GB RAM",
-        graphics: "NVIDIA GTX 970"
-      },
-      recommended: {
-        Os: "Windows 10/11",
-        processor: "Intel Core i7-9700K",
-        memory: "16 GB RAM",
-        graphics: "NVIDIA RTX 2060"
-      }
-    },
-    dlcs: [
-      {
-        id: 1031,
-        name: "Klingon Armada",
-        price: 12.99,
-        image:
-          "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
-      },
-      {
-        id: 1032,
-        name: "Borg Invasion",
-        price: 14.99,
-        image:
-          "https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-      }
-    ],
-    ageRating: "Teen",
-    playersAmount: "1-4"
-  }
+ 
 ];
 
 // Example similar games data with actual images
@@ -300,15 +246,15 @@ const similarGamesData = [
     price: 49.99,
     rating: 7.9,
     image:
-      "https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg?t=1734434803"
   },
   {
     id: 202,
-    name: "Deus Ex: Mankind Divided",
+    name: "Fallout 4",
     price: 19.99,
     rating: 8.1,
     image:
-      "https://images.unsplash.com/photo-1562976540-1502c2145186?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+      "https://www.whitneyupdate.com/wp-content/uploads/2016/12/fallout-4.png"
   },
   {
     id: 203,
@@ -327,8 +273,8 @@ const gamingProfiles = [
       name: "AetherGamer99",
       email: "aethergamer99@example.com",
       password: "hashed_secure_password_1",
-      avatar: "https://i.imgur.com/J6LX7XK.png",
-      coverImage: "https://i.imgur.com/5m4h5zW.jpg",
+      avatar: "https://i.pinimg.com/736x/a5/f8/a6/a5f8a6d6c02976d90365c20c3cfb8a9c.jpg",
+      coverImage: "https://i.pinimg.com/originals/1f/f0/a9/1ff0a97335c602f48ad7c08b8d3d0e88.gif",
       gamesPlayed: 147,
       badges: 23,
       level: 47,
@@ -349,48 +295,50 @@ const gamingProfiles = [
         id: 101,
         username: "ShadowHunter42",
         status: "Online now",
-        avatar: "https://i.imgur.com/3ZqX9Xp.png"
+        avatar: "https://i.pinimg.com/736x/b7/b7/e4/b7b7e4eefdb8c98562b753f54c9029f2.jpg"
       },
       {
         id: 102,
         username: "PixelPirate",
         status: "Online 15m ago",
-        avatar: "https://i.imgur.com/4QZ9X9p.png"
+        avatar: "https://i.pinimg.com/474x/f3/ba/1d/f3ba1d53a61ab27bcf2e935acf4bfed6.jpg"
       }
     ],
     recentlyPlayed: [
       {
         id: 1001,
-        title: "Cyber Odyssey 2077",
+        title: "Cyber Punk 2077",
         hours: 58,
         lastPlayed: "Today",
         price: 59.99,
-        coverImageUrl: "https://i.imgur.com/K3mPv14.png"
+        coverImageUrl: "https://i.redd.it/w44jvkcns8461.png"
       },
       {
         id: 1002,
-        title: "Cyber Odyssey5 2077",
+        title: "God of war",
         hours: 585,
         lastPlayed: "To5day",
         price: 59.599,
-        coverImageUrl: "https://i.imgur.com/K3mPv14.png"
+        coverImageUrl: "https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg"
       }
     ],
     wishlist: [
       {
         id: 1003,
-        title: "Elden Ring",
+        title: "Red Dead Redemption",
         price: 59.99,
-        coverImageUrl: "https://i.imgur.com/P6mPv64.png",
+        coverImageUrl:
+          "https://assets.vg247.com/current//2018/05/red_dead_redemption_2_cover_art_1.jpg",
         releaseDate: "2022-02-25",
         isOnSale: false,
         ranking: 1
       },
       {
         id: 1004,
-        title: "Starfield",
+        title: "The Legend of Zelda: Breath of the Wild",
         price: 69.99,
-        coverImageUrl: "https://i.imgur.com/Q7mPv74.png",
+        coverImageUrl:
+          "https://upload.wikimedia.org/wikipedia/en/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg",
         releaseDate: "2023-09-06",
         isOnSale: true,
         discount: 15,
@@ -398,9 +346,10 @@ const gamingProfiles = [
       },
       {
         id: 1005,
-        title: "Starfield",
+        title: "Elden Ring",
         price: 69.99,
-        coverImageUrl: "https://i.imgur.com/Q7mPv74.png",
+        coverImageUrl:
+          "https://cdn-images.dzcdn.net/images/cover/8b582bebc9f1fd2ac0a7ced8271fc68f/0x1900-000000-80-0-0.jpg",
         releaseDate: "2023-09-06",
         isOnSale: true,
         discount: 15,
@@ -414,8 +363,8 @@ const gamingProfiles = [
       name: "NeonNinja",
       email: "neonninja@example.com",
       password: "hashed_secure_password_2",
-      avatar: "https://i.imgur.com/6n7X9Xp.png",
-      coverImage: "https://i.imgur.com/X2mPv14.jpg",
+      avatar: "https://i.pinimg.com/736x/01/94/33/019433219705229c69326f5c85b91198.jpg",
+      coverImage: "https://i.pinimg.com/originals/c4/0d/b6/c40db678aa354ba91257f6258a1521e1.gif",
       gamesPlayed: 89,
       badges: 15,
       level: 32,
@@ -436,40 +385,43 @@ const gamingProfiles = [
         id: 201,
         username: "QuantumQueen",
         status: "Online",
-        avatar: "https://i.imgur.com/5m4h5zW.png"
+        avatar: "https://i.pinimg.com/736x/6e/dd/c4/6eddc477c7ab5513c5324055cd0e1c69.jpg"
       },
       {
         id: 202,
         username: "AetherGamer99",
         status: "3 hours ago",
-        avatar: "https://i.imgur.com/J6LX7XK.png"
+        avatar: "https://i.pinimg.com/474x/f3/ba/1d/f3ba1d53a61ab27bcf2e935acf4bfed6.jpg"
       }
     ],
     recentlyPlayed: [
       {
         id: 2001,
-        title: "Stellar Conquest",
+        title: "The Legend of Zelda: Breath of the Wild",
         hours: 112,
         lastPlayed: "Today",
         price: 49.99,
-        coverImageUrl: "https://i.imgur.com/Y3mPv24.png"
+        coverImageUrl:
+          "https://upload.wikimedia.org/wikipedia/en/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg"
       }
     ],
     wishlist: [
       {
         id: 2002,
-        title: "Cyberpunk 2077: Phantom Liberty",
+        title: "Persona 5 Royal",
         price: 29.99,
-        coverImageUrl: "https://i.imgur.com/R8mPv84.png",
+        coverImageUrl:
+          "https://cdn.mobygames.com/covers/11199918-persona-5-royal-windows-apps-front-cover.jpg",
+
         releaseDate: "2023-09-26",
         isOnSale: false,
         ranking: 1
       },
       {
         id: 2003,
-        title: "Hogwarts Legacy",
+        title: "Death Stranding",
         price: 59.99,
-        coverImageUrl: "https://i.imgur.com/S9mPv94.png",
+        coverImageUrl: "https://upload.wikimedia.org/wikipedia/en/2/22/Death_Stranding.jpg",
         releaseDate: "2023-02-10",
         isOnSale: false,
         ranking: 2,
@@ -483,8 +435,8 @@ const gamingProfiles = [
       name: "PixelPirate",
       email: "pixelpirate@example.com",
       password: "hashed_secure_password_3",
-      avatar: "https://i.imgur.com/4QZ9X9p.png",
-      coverImage: "https://i.imgur.com/Z4mPv34.jpg",
+      avatar: "https://i.pinimg.com/474x/f3/ba/1d/f3ba1d53a61ab27bcf2e935acf4bfed6.jpg",
+      coverImage: "https://i.pinimg.com/originals/b6/5c/68/b65c68b0712524e27ccbb41135fa43f0.gif",
       gamesPlayed: 203,
       badges: 37,
       level: 58,
@@ -505,40 +457,43 @@ const gamingProfiles = [
         id: 301,
         username: "FrostByte",
         status: "2 hours ago",
-        avatar: "https://i.imgur.com/7m8X9Xp.png"
+        avatar: "https://i.pinimg.com/736x/18/d6/89/18d689c6b3d4ef3427d0b60126ba293c.jpg"
       },
       {
         id: 302,
         username: "AetherGamer99",
         status: "3 hours ago",
-        avatar: "https://i.imgur.com/J6LX7XK.png"
+        avatar: "https://i.pinimg.com/736x/a5/f8/a6/a5f8a6d6c02976d90365c20c3cfb8a9c.jpg"
       }
     ],
     recentlyPlayed: [
       {
         id: 3001,
-        title: "Pixel Dungeon",
+        title: "Cyberpunk 2077: Phantom Liberty",
         hours: 247,
         lastPlayed: "Today",
         price: 19.99,
-        coverImageUrl: "https://i.imgur.com/O5mPv54.png"
+        coverImageUrl:
+          "https://upload.wikimedia.org/wikipedia/en/d/de/Cyberpunk_2077_Phantom_Liberty_cover_art.jpg"
       }
     ],
     wishlist: [
       {
         id: 3002,
-        title: "The Legend of Zelda: Tears of the Kingdom",
+        title: "The Witcher 3: Wild Hunt",
         price: 69.99,
         ranking: 1,
-        coverImageUrl: "https://i.imgur.com/T0mPv04.png",
+        coverImageUrl: "https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg",
         releaseDate: "2023-05-12",
         isOnSale: false
       },
       {
         id: 3003,
-        title: "Final Fantasy XVI",
+        title: "Red Dead Redemption 2",
         price: 69.99,
-        coverImageUrl: "https://i.imgur.com/U1mPv14.png",
+        coverImageUrl:
+          "https://assets.vg247.com/current//2018/05/red_dead_redemption_2_cover_art_1.jpg",
+
         releaseDate: "2023-06-22",
         isOnSale: true,
         ranking: 2,
@@ -546,9 +501,10 @@ const gamingProfiles = [
       },
       {
         id: 3004,
-        title: "Final Fantasy XVI",
+        title: "Elden Ring",
         price: 69.99,
-        coverImageUrl: "https://i.imgur.com/U1mPv14.png",
+        coverImageUrl:
+          "https://cdn-images.dzcdn.net/images/cover/8b582bebc9f1fd2ac0a7ced8271fc68f/0x1900-000000-80-0-0.jpg",
         releaseDate: "2023-06-22",
         isOnSale: true,
         ranking: 3,
