@@ -1,5 +1,5 @@
 import { getGamesList } from "../utils/mockData";
-import { Container, Divider, Title } from "@modules/_shared/App";
+import { Carousel, Container, Divider, Title } from "@modules/_shared/App";
 import GameCard from "../components/GameCard.jsx";
 import FilterBtn from "../components/filters/FilterBtn";
 import FilterDrawer from "../components/filters/FilterDrawer";
@@ -14,6 +14,14 @@ export default function BrowsePage() {
   return (
     <>
       <Container>
+				<Carousel 
+					items={games}
+					renderItem={ (game) =>
+						<img src={game.bannerImageUrl} className="w-full h-full object-cover" alt={game.title + "_banner"} />
+					}
+					itemsPerPage={1}
+					containerClass="mb-8 rounded-xl"
+				/>
         <div className="flex justify-between">
           <Title>Browse Games</Title>
           <FilterBtn onClick={() => setFilterDrawerOpen(!filterDrawerOpen)} />
