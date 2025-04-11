@@ -200,7 +200,7 @@ function AccountPage() {
             </div>
             <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
               {account.wishlist?.map(game => (
-                <GameCardRanking game={game} key={game.id} />
+                <GameCardRanking ImageHeight game={game} key={game.id} />
               ))}
             </div>
           </motion.div>
