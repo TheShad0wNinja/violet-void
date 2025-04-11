@@ -186,6 +186,7 @@ const gamesPageData = [
     ageRating: "Mature 17+",
     playersAmount: "1-4"
   },
+  
   {
     id: 102,
     name: "Elden Rings",
@@ -513,7 +514,63 @@ const gamingProfiles = [
     ]
   }
 ];
-
+const gameCategories = [
+  {
+    id: 1,
+    name: "Action",
+    image: "https://assets.vg247.com/current//2018/05/red_dead_redemption_2_cover_art_1.jpg",
+    count: 342
+  },
+  {
+    id: 2,
+    name: "Adventure",
+    image: "https://cdn-images.dzcdn.net/images/cover/8b582bebc9f1fd2ac0a7ced8271fc68f/0x1900-000000-80-0-0.jpg",
+    count: 215
+  },
+  {
+    id: 3,
+    name: "RPG",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRj8kaXKKYtJ7SgVzB9XQQ5znlIoTWOaioHfA&s",
+    count: 178
+  },
+  {
+    id: 4,
+    name: "Strategy",
+    image: "https://upload.wikimedia.org/wikipedia/en/d/de/Cyberpunk_2077_Phantom_Liberty_cover_art.jpg",
+    count: 156
+  },
+  {
+    id: 5,
+    name: "Sports",
+    image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1493&q=80",
+    count: 98
+  },
+  {
+    id: 6,
+    name: "Horror",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1VBHMflPBNKKVgSvUeIAhibTNgCxSPYLxiA&s",
+    count: 87
+  },
+  {
+    id: 7,
+    name: "Puzzle",
+    image: "https://external-preview.redd.it/2k2IWr1LNL9amWwqDBm0plXMLyUV9I2fLKf6HGl0crs.png?format=pjpg&auto=webp&s=6cfa15f3a34d30f55a63149218867db84b68201c",
+    count: 76
+  },
+  {
+    id: 8,
+    name: "Simulation",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGzh0EvDhe2XSy3PZ0mOSWlDP8a8EPBsZFWQ&s",
+    count: 65
+  },
+  {
+    id: 9,
+    name: "Fighting",
+    image: "https://www.whitneyupdate.com/wp-content/uploads/2016/12/fallout-4.png",
+    count: 54
+  },
+ 
+];
 export default gamingProfiles;
 export function getGamesList() {
   return games;
@@ -528,6 +585,10 @@ export function getRankingGamesList() {
 export function getSimilarGamesData() {
   return similarGamesData;
 }
+export function getGameCategories() {
+  return gameCategories;
+}
+
 export function getGamingProfiles() {
   return gamingProfiles;
 }

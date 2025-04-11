@@ -8,7 +8,8 @@ import {
   CartProvider,
   CheckoutPage,
   WishlistPage,
-  LibraryPage
+  LibraryPage,
+  AccountPage
 } from "@modules/store/App";
 
 import {
