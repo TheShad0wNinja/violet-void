@@ -6,6 +6,7 @@
  * @param {string} props.className Additional classes to be added to the component
  * @param {boolean} [props.fullWidth=false] If the button should take full width of the container
  * @param {boolean} [props.uppercased=false] If the text should be UPPERCASED or not
+ * @param {string} [props.type="submit"] Type of button when submitted
  *
  * @example
  * <Button onClick={handleClick} className="mt-4" fullWidth uppercased>
@@ -17,7 +18,8 @@ export default function Button({
   onClick,
   className,
   fullWidth = false,
-  uppercased = false
+  uppercased = false,
+	type = "submit"
 }) {
   return (
     <button
@@ -26,6 +28,7 @@ export default function Button({
         `bg-secondary ${uppercased ? "uppercase" : "capitalize"} hover:bg-accent-400 font-semibold ${fullWidth ? "w-full" : ""} cursor-pointer rounded-md px-3 py-2 active:scale-95 ` +
         (className ? className : "")
       }
+			type={type}
     >
       {children}
     </button>
