@@ -19,7 +19,7 @@ export default function AdminLayout() {
         <Branding />
         {user && <UserIcon user={user} />}
       </div>
-      <div className="mt-22 gap-4">
+      <div className="mt-24.5 gap-4">
         <AdminNavbar isOpen={navIsOpen} />
         <div className={"pt-4 transition-all duration-100" + (navIsOpen ? " sm:pl-60" : " pl-0")}>
           <Outlet />

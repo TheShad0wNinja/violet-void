@@ -33,14 +33,14 @@ function Header() {
 
   return (
     <header className="grid grid-cols-4 p-6">
-      <Branding className="col-span-2 sm:col-span-1 md:text-4xl" />
+      <Branding className="col-span-2 sm:col-span-1 md:text-4xl !justify-start" />
       <nav
         className={
           "bg-background fixed top-20 left-0 z-50 h-full w-full px-6 py-8 transition-all duration-100 sm:relative sm:top-0 sm:col-span-2 sm:p-0 sm:transition-none " +
           (borgorOpen ? "translate-x-0" : "translate-x-full sm:translate-0")
         }
       >
-        <ol className="flex flex-col items-center justify-center gap-6 sm:h-full sm:flex-row">
+        <ol className="flex flex-col items-center justify-center sm:gap-4 sm:h-full sm:flex-row">
           {links
             .filter(i => !i.disabled)
             .map(link => (
