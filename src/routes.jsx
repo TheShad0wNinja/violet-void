@@ -150,6 +150,10 @@ const routesLinks = [
       {
         path: "community/:game?",
         children: communityRoutes
+      },
+      {
+        path: "account/:account",
+        element: <AccountPage />
       }
     ]
   },
