@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 /**
  * A customizable carousel component for displaying a collection of items.
@@ -12,28 +12,28 @@ import { useEffect, useState } from "react";
  * @param {string} [props.indicatorClass=""] - Additional classes for indicators.
  * @param {string} [props.itemClass=""] - Additional classes for carousel items.
  * @param {string} [props.containerClass=""] - Additional classes for carousel container.
+ * @param {number} [props.itemsPerPage=1] - Number of items to show per slide/page.
+ * @param {boolean} [props.infiniteLoop=false] - Whether the carousel should fill all the spots or not
  * @returns {JSX.Element} The Carousel component.
  *
  * @example
+ * // Single item per page
+ * <Carousel
+ *   items={carouselItems}
+ *   renderItem={(item) => (<div>{item.name}</div>)}
+ * />
  *
- *	<Carousel
- *		items={carouselItems}
- *		renderItem={(item) => (
- *			<div className={`h-64 flex items-center justify-center ${item.color} text-white text-4xl font-bold`}>
- *					{item.text}
- *			</div>
- *		)}
- *		autoSlideInterval={5000}
- *		showControls={true}
- *		showIndicators={true}
- *		containerClass="rounded-xl shadow-lg"
- *		itemClass=""
- *		controlClass="bg-black/50 text-white"
- *		indicatorClass=""
- *	/>
+ * @example
+ * // Multiple items per page
+ * <Carousel
+ *   items={carouselItems}
+ *   itemsPerPage={3}
+ *   renderItem={(item) => (<div className="w-1/3">{item.name}</div>)}
+ *   itemClass="flex justify-center"
+ * />
  */
 export default function Carousel({
-  items,
+  items: originalItems,
   renderItem,
   autoSlideInterval = 3000,
   showControls = true,
@@ -41,37 +41,61 @@ export default function Carousel({
   controlClass = "",
   indicatorClass = "",
   itemClass = "",
-  containerClass = ""
+  containerClass = "",
+  itemsPerPage = 1,
+  infiniteLoop = false
 }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const items = useMemo(
+    () => (infiniteLoop ? duplicateItemsForInfiniteLoop(originalItems, itemsPerPage) : originalItems),
+    [infiniteLoop, originalItems]
+  );
+  const totalPages = Math.ceil(originalItems.length / itemsPerPage);
+  const [currentPage, setCurrentPage] = useState(0);
 
   const goToNext = () => {
-    setCurrentIndex(prevIndex => (prevIndex === items.length - 1 ? 0 : prevIndex + 1));
+    setCurrentPage(prevPage => (prevPage === totalPages - 1 ? 0 : prevPage + 1));
   };
 
   const goToPrev = () => {
-    setCurrentIndex(prevIndex => (prevIndex === 0 ? items.length - 1 : prevIndex - 1));
+    setCurrentPage(prevPage => (prevPage === 0 ? totalPages - 1 : prevPage - 1));
   };
 
-  const goToIndex = index => {
-    setCurrentIndex(index);
+  const goToPage = page => {
+    setCurrentPage(page);
   };
+
+	console.log(items)
 
   useEffect(() => {
     if (!autoSlideInterval) return;
     const timer = setInterval(goToNext, autoSlideInterval);
     return () => clearInterval(timer);
-  }, [currentIndex, autoSlideInterval]);
+  }, [currentPage, autoSlideInterval]);
+
+  // Get items for current page
+  const getPageItems = page => {
+    const startIndex = page * itemsPerPage;
+    return items.slice(startIndex, startIndex + itemsPerPage);
+  };
+
 
   return (
     <div className={`relative overflow-hidden ${containerClass}`}>
       <div
         className="flex transition-transform duration-300 ease-in-out"
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        style={{ transform: `translateX(-${currentPage * 100}%)` }}
       >
-        {items.map((item, index) => (
-          <div key={index} className={`w-full flex-shrink-0 ${itemClass}`}>
-            {renderItem(item, index)}
+        {Array.from({ length: totalPages }).map((_, pageIndex) => (
+          <div key={pageIndex} className="flex w-full flex-shrink-0">
+            {getPageItems(pageIndex).map((item, itemIndex) => (
+              <div
+                key={itemIndex}
+                className={`${itemClass}`}
+                style={{ width: `${100 / itemsPerPage}%` }}
+              >
+                {renderItem(item, pageIndex * itemsPerPage + itemIndex)}
+              </div>
+            ))}
           </div>
         ))}
       </div>
@@ -116,12 +140,12 @@ export default function Carousel({
 
       {showIndicators && (
         <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 space-x-2">
-          {items.map((_, index) => (
+          {Array.from({ length: totalPages }).map((_, index) => (
             <button
               key={index}
-              onClick={() => goToIndex(index)}
+              onClick={() => goToPage(index)}
               className={`h-2 w-2 rounded-full transition-all ${indicatorClass} ${
-                index === currentIndex ? "w-4 bg-white" : "bg-white/50"
+                index === currentPage ? "w-4 bg-white" : "bg-white/50"
               }`}
             />
           ))}
@@ -129,4 +153,12 @@ export default function Carousel({
       )}
     </div>
   );
+}
+
+function duplicateItemsForInfiniteLoop(items, itemsPerPage) {
+  if (items.length % itemsPerPage === 0) 
+		return items;
+
+	const itemsLeft = itemsPerPage - (items.length % itemsPerPage);
+  return [...items, ...items.slice(0, itemsLeft)];
 }
