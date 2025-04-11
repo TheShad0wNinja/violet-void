@@ -1,49 +1,33 @@
-import { AnimatedOutlet, Container, Divider, Title } from "@modules/_shared/App";
-import { useState } from "react";
+import { AnimatedOutlet, Container, Divider, TextInput, Title } from "@modules/_shared/App";
 import { getNews } from "../utils/newsData";
-import { Link, useLocation } from "react-router";
+import { Link } from "react-router";
 import MoreButton from "../components/MoreButton";
-import NewsPostPopUp from "../components/NewsPostPopUp";
 import { IconHeartFilled, IconSearch, IconEyeFilled, IconShare } from "@tabler/icons-react";
 
 export default function NewsPage({ isDiscoverPage }) {
-	if (isDiscoverPage)
+  if (isDiscoverPage)
     return (
-      <div className="grid grid-cols-1 gap-6 py-6">
-        {getNews().map(news => (
-          <NewsCard key={news.id} news={news} />
-        ))}
-      </div>
+      <>
+        <MoreButton to="news" className="my-6 ml-auto" />
+        <div className="grid grid-cols-1 gap-6">
+          {getNews().map(news => (
+            <NewsCard key={news.id} news={news} />
+          ))}
+        </div>
+      </>
     );
+
   return (
     <>
       <Container>
-        <div className={`bg-background ${isDiscoverPage ? "sticky" : ""} top-0 z-10`}>
-          <div className="">
-            <div className="mb-4 flex items-center justify-between">
-              {!isDiscoverPage && <Title>News</Title>}
+        <div className="mb-4 flex items-center justify-between">
+          <Title>News</Title>
 
-              {isDiscoverPage ? (
-                <MoreButton to="news" />
-              ) : (
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Search News..."
-                    className="bg-secondary-700 focus:ring-accent-400 w-full max-w-xs px-4 py-2 underline-offset-2 focus:ring-2 focus:outline-none"
-                  />
-                  <IconSearch
-                    size={22}
-                    className="absolute top-2.5 right-3 h-5 w-5 text-gray-400"
-                  />
-                </div>
-              )}
-            </div>
-            <Divider className="mb-4" />
-          </div>
+          <TextInput rightSection={<IconSearch size={22} />} placeholder="Search News...." />
         </div>
+        <Divider className="mb-4" />
 
-        <div className="grid grid-cols-1 gap-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {getNews().map(news => (
             <NewsCard news={news} />
           ))}
