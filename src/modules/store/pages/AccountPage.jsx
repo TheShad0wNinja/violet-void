@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import authobackground from "../../authorization/assets/authobackground.png";
 import { motion } from "framer-motion";
 import { Container } from "@modules/_shared/App";
-import Friendsbox from "../components/Friendsbox";
 import { getGamingProfiles } from "../utils/mockData";
-import { useParams } from "react-router";
-import { GameCard, GameCardRanking } from "../App";
-import { Link } from "react-router-dom";
-import EditProfile from "../components/EditProfile";
+import { useParams,Link } from "react-router";
+import { GameCard, GameCardRanking,Friendsbox ,EditProfile } from "../App";
 
 function AccountPage() {
   const [openEditProfile, setOpenEditProfile] = useState(false);
