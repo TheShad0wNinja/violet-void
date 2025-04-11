@@ -1,9 +1,8 @@
 import WhiteTextInputBox from "@modules/authorization/components/WhiteTextInputBox";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { motion } from "framer-motion";
-import { PageModal } from "@modules/_shared/App";
 
 function EditProfile({ account, editProfileState }) {
   const fileInputRef = useRef(null);
@@ -24,8 +23,8 @@ function EditProfile({ account, editProfileState }) {
 
   const formik = useFormik({
     initialValues: {
-      username: account?.profile?.name || "",
-      email: account?.profile?.email || "",
+      username: account.name || "",
+      email: account.email || "",
       password: "",
       confirmpassword: ""
     },
@@ -59,120 +58,135 @@ function EditProfile({ account, editProfileState }) {
   });
 
   return (
-    <PageModal>
+    <>
       <div
-        className="bg-secondary-900 max-w-xl flex flex-row items-center justify-between gap-5 rounded-2xl p-5 pt-10 pb-14 shadow-md hadow-gray-950"
-        onClick={e => e.stopPropagation()}
+        className="fixed inset-0 z-10 bg-black/50"
+        onClick={() => editProfileState(prev => !prev)}
+      ></div>
+
+      <motion.div
+        initial={{  y: 150, opacity: 0 }}
+        animate={{  y: 0, opacity: 1 }}
+        transition={{
+          duration: 1.8,
+          ease: [0.16, 1, 0.3, 1] 
+        }}
+        className="fixed inset-0 z-50 flex items-center justify-center"
       >
-        <div className="w-[40%] pl-10">
-          <form onSubmit={formik.handleSubmit}>
-            <h1 className="mb-6 text-4xl">Edit Profile</h1>
+        <div
+          className="bg-secondary-900 flex w-1/2 flex-row items-center justify-between gap-5 rounded-2xl p-5 pt-10 pb-14 shadow-md shadow-gray-950"
+          onClick={e => e.stopPropagation()}
+        >
+          <div className="w-[40%] pl-10">
+            <form onSubmit={formik.handleSubmit}>
+              <h1 className="mb-6 text-4xl">Edit Profile</h1>
 
-            <WhiteTextInputBox
-              name="username"
-              placeholder="Username"
-              value={formik.values.username}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              errormessage={formik.errors.username}
-              condition={formik.touched.username && formik.errors.username}
-            />
-
-            <WhiteTextInputBox
-              name="email"
-              placeholder="Email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              errormessage={formik.errors.email}
-              condition={formik.touched.email && formik.errors.email}
-            />
-
-            <WhiteTextInputBox
-              name="password"
-              placeholder="New Password "
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              errormessage={formik.errors.password}
-              condition={formik.touched.password && formik.errors.password}
-              type="password"
-            />
-
-            {formik.values.password && (
               <WhiteTextInputBox
-                name="confirmpassword"
-                placeholder="Confirm New Password"
-                value={formik.values.confirmpassword}
+                name="username"
+                placeholder="Username"
+                value={formik.values.username}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                errormessage={formik.errors.confirmpassword}
-                condition={formik.touched.confirmpassword && formik.errors.confirmpassword}
+                errormessage={formik.errors.username}
+                condition={formik.touched.username && formik.errors.username}
+              />
+
+              <WhiteTextInputBox
+                name="email"
+                placeholder="Email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                errormessage={formik.errors.email}
+                condition={formik.touched.email && formik.errors.email}
+              />
+
+              <WhiteTextInputBox
+                name="password"
+                placeholder="New Password "
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                errormessage={formik.errors.password}
+                condition={formik.touched.password && formik.errors.password}
                 type="password"
               />
-            )}
 
-            <div className="mt-8 flex gap-4">
-              <button
-                type="submit"
-                disabled={
-                  !formik.values.username &&
-                  !formik.values.email &&
-                  !formik.values.password &&
-                  preview == null
-                }
-                className={`hover:bg-secondary-600 bg-secondary h-fit w-fit rounded-md px-4 py-2 text-center ${
-                  !formik.values.username &&
-                  !formik.values.email &&
-                  !formik.values.password &&
-                  preview == null
-                    ? "cursor-not-allowed opacity-50"
-                    : "cursor-pointer"
-                }`}
-              >
-                Save
-              </button>
+              {formik.values.password && (
+                <WhiteTextInputBox
+                  name="confirmpassword"
+                  placeholder="Confirm New Password"
+                  value={formik.values.confirmpassword}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  errormessage={formik.errors.confirmpassword}
+                  condition={formik.touched.confirmpassword && formik.errors.confirmpassword}
+                  type="password"
+                />
+              )}
 
+              <div className="mt-8 flex gap-4">
+                <button
+                  type="submit"
+                  disabled={
+                    !formik.values.username &&
+                    !formik.values.email &&
+                    !formik.values.password &&
+                    preview == null
+                  }
+                  className={`hover:bg-secondary-600 bg-secondary h-fit w-fit rounded-md px-4 py-2 text-center ${
+                    !formik.values.username &&
+                    !formik.values.email &&
+                    !formik.values.password &&
+                    preview == null
+                      ? "cursor-not-allowed opacity-50"
+                      : "cursor-pointer"
+                  }`}
+                >
+                  Save
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => editProfileState(prev => !prev)}
+                  className="hover:bg-secondary-600 bg-secondary h-fit w-fit cursor-pointer rounded-md px-4 py-2 text-center"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div className="mr-14 h-fit w-[30%]">
+            <div className="mb-4 h-[250px] w-full">
+              <img
+                src={preview || account.avatar}
+                alt="Profile avatar"
+                className="h-full w-full rounded-2xl object-cover"
+              />
+            </div>
+
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              accept="image/*"
+              className="hidden"
+            />
+
+            <div className="flex justify-end">
               <button
+                onClick={handleButtonClick}
                 type="button"
-                onClick={() => editProfileState(prev => !prev)}
                 className="hover:bg-secondary-600 bg-secondary h-fit w-fit cursor-pointer rounded-md px-4 py-2 text-center"
               >
-                Cancel
+                Change Picture
               </button>
             </div>
-          </form>
-        </div>
-
-        <div className="mr-14 h-fit w-[30%]">
-          <div className="mb-4 h-[250px] w-full">
-            <img
-              src={preview || account?.profile?.avatar}
-              alt="Profile avatar"
-              className="h-full w-full rounded-2xl object-cover"
-            />
-          </div>
-
-          <input
-            type="file"
-            ref={fileInputRef}
-            onChange={handleFileChange}
-            accept="image/*"
-            className="hidden"
-          />
-
-          <div className="flex justify-end">
-            <button
-              onClick={handleButtonClick}
-              type="button"
-              className="hover:bg-secondary-600 bg-secondary h-fit w-fit cursor-pointer rounded-md px-4 py-2 text-center"
-            >
-              Change Picture
-            </button>
           </div>
         </div>
-      </div>
-    </PageModal>
+      </motion.div>
+    </>
   );
 }
 

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Container } from "@modules/_shared/App";
 import { getGamingProfiles } from "../utils/mockData";
-import { useParams, Link } from "react-router";
-import { GameCard, GameCardRanking, Friendsbox, EditProfile } from "../App";
+import { useParams,Link } from "react-router";
+import { GameCard, GameCardRanking,Friendsbox ,EditProfile } from "../App";
 
 function AccountPage() {
   const [openEditProfile, setOpenEditProfile] = useState(false);
@@ -20,7 +20,9 @@ function AccountPage() {
 
   return (
     <>
-      {openEditProfile && <EditProfile account={account} editProfileState={setOpenEditProfile} />}
+      {openEditProfile && (
+        <EditProfile account={account} editProfileState={setOpenEditProfile}></EditProfile>
+      )}
       <motion.div
         initial={{ scale: 0.8, y: 30, opacity: 0 }}
         whileInView={{ scale: 1, y: 0, opacity: 1 }}
@@ -28,14 +30,14 @@ function AccountPage() {
           duration: 1.5,
           ease: [0.16, 1, 0.3, 1]
         }}
-        className="z-0 w-full py-8"
+        className="z-0 h-[550px] w-full"
         style={{
           backgroundImage: `url(${account.profile.coverImage || authobackground})`,
           backgroundSize: "cover",
           backgroundPosition: "center"
         }}
       >
-        <div className="flex h-full w-full flex-col items-center justify-center gap-5 px-4 md:flex-row">
+        <div className="flex h-full w-full items-center justify-center">
           <motion.div
             initial={{ y: -150, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -43,9 +45,9 @@ function AccountPage() {
               duration: 1.8,
               ease: [0.16, 1, 0.3, 1]
             }}
-            className="flex h-full flex-1/4 items-center justify-center"
+            className="flex h-full w-1/4 items-center justify-center"
           >
-            <div className="bg-secondary-900 flex w-full flex-col items-center rounded-2xl shadow-md shadow-gray-950">
+            <div className="bg-secondary-900 flex h-[80%] w-full flex-col items-center rounded-2xl shadow-md shadow-gray-950">
               <h1 className="p-5 text-center text-4xl font-bold">{account.profile.name}</h1>
               <div className="h-[70%] w-[70%]">
                 <img
@@ -56,7 +58,7 @@ function AccountPage() {
               </div>
             </div>
           </motion.div>
-          <div className="flex h-full w-full flex-3/4 flex-col items-center justify-center gap-5 rounded-2xl">
+          <div className="flex h-full w-1/2 flex-col items-center justify-center gap-5 rounded-2xl">
             <motion.div
               initial={{ x: 150, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
@@ -64,7 +66,7 @@ function AccountPage() {
                 duration: 1.8,
                 ease: [0.16, 1, 0.3, 1]
               }}
-              className="flex w-full flex-col items-end gap-2"
+              className="flex h-1/3 w-[85%] flex-col items-end gap-2"
             >
               <button
                 onClick={() => {
@@ -75,16 +77,16 @@ function AccountPage() {
                 Edit profile
               </button>
 
-              <div className="bg-secondary-900 flex w-full flex-row items-center justify-around rounded-2xl py-4 shadow-md shadow-gray-950">
-                <div className="flex flex-1/3 flex-col gap-3">
+              <div className="bg-secondary-900 flex h-[75%] w-full flex-row items-center justify-around rounded-2xl shadow-md shadow-gray-950">
+                <div className="flex w-1/4 flex-col gap-3">
                   <h1 className="text-center text-xl">Games Played</h1>
                   <h1 className="text-center text-4xl font-bold">{account.profile.gamesPlayed}</h1>
                 </div>
-                <div className="flex flex-1/3 flex-col gap-3">
+                <div className="flex w-1/4 flex-col gap-3">
                   <h1 className="text-center text-xl">Badges</h1>
                   <h1 className="text-center text-3xl font-bold">{account.profile.badges}</h1>
                 </div>
-                <div className="flex flex-1/3 flex-col gap-3">
+                <div className="flex w-1/4 flex-col gap-3">
                   <h1 className="text-center text-xl">Level</h1>
                   <h1 className="text-center text-3xl font-bold">{account.profile.level}</h1>
                 </div>
@@ -97,7 +99,7 @@ function AccountPage() {
                 duration: 1.8,
                 ease: [0.16, 1, 0.3, 1]
               }}
-              className="bg-secondary-900 flex w-4/5 items-center justify-between rounded-2xl p-4 shadow-md shadow-gray-950"
+              className="bg-secondary-900 flex h-1/6 w-[85%] items-center justify-between rounded-2xl shadow-md shadow-gray-950"
             >
               <h1 className="pl-5 text-center text-xl">Last online</h1>
               <h1 className="pr-5 text-center text-xl">{account.profile.lastOnline}</h1>
@@ -109,7 +111,7 @@ function AccountPage() {
                 duration: 1.8,
                 ease: [0.16, 1, 0.3, 1]
               }}
-              className="bg-secondary-900 flex w-4/5 items-center justify-between rounded-2xl p-4 shadow-md shadow-gray-950"
+              className="bg-secondary-900 flex h-1/6 w-[85%] items-center justify-between rounded-2xl shadow-md shadow-gray-950"
             >
               <h1 className="pl-5 text-center text-xl">Total hours</h1>
               <h1 className="pr-5 text-center text-xl">{totalHoursInDays} days</h1>
@@ -125,6 +127,7 @@ function AccountPage() {
             initial={{ scale: 0.8, y: 30, opacity: 0 }}
             whileInView={{ scale: 1, y: 0, opacity: 1 }}
             viewport={{ once: true }}
+
             transition={{
               duration: 1.5,
               ease: [0.16, 1, 0.3, 1]
@@ -137,7 +140,7 @@ function AccountPage() {
                 View more
               </button>
             </div>
-            <div className="mt-5 flex flex-wrap justify-center gap-2">
+            <div className="mt-5 grid grid-cols-2 justify-start gap-2 md:grid-cols-4 lg:grid-cols-9">
               {account.friends.map(friend => (
                 <Friendsbox
                   key={friend.id}
@@ -153,6 +156,7 @@ function AccountPage() {
             initial={{ scale: 0.8, y: 30, opacity: 0 }}
             whileInView={{ scale: 1, y: 0, opacity: 1 }}
             viewport={{ once: true }}
+
             transition={{
               duration: 1.5,
               ease: [0.16, 1, 0.3, 1]
@@ -182,6 +186,7 @@ function AccountPage() {
             initial={{ scale: 0.8, y: 30, opacity: 0 }}
             whileInView={{ scale: 1, y: 0, opacity: 1 }}
             viewport={{ once: true }}
+
             transition={{
               duration: 1.5,
               ease: [0.16, 1, 0.3, 1]

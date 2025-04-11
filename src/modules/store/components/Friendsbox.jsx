@@ -1,3 +1,5 @@
+import React from "react";
+
 const Friendsbox = ({ friendName, friendImage }) => {
   return (
     <div className="h-[200px] w-[150px]">

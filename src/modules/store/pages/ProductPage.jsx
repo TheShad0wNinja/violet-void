@@ -106,8 +106,8 @@ function ProductPage() {
         >
           <h1 className="mt-5 text-2xl font-bold">System requirements</h1>
           <GameRequirements requirements={game.requirements} />
-          <GamesHolder Sectionname="Game DLCS" games={similarGameList} />
-          <GamesHolder Sectionname="Games similar to" games={similarGameList} />
+          <GamesHolder type2games Sectionname="Game DLCS" detailsOn games={similarGameList} />
+          <GamesHolder type2games Sectionname="Games similar to" detailsOn games={similarGameList} />
         </motion.div>
       </div>
     </Container>
