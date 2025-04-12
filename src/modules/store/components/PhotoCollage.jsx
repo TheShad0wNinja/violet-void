@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import RRD21 from "../../_shared/Assets/GamePhotos/RRD21.jpg";
-import RRD22 from "../../_shared/Assets/GamePhotos/RRD22.jpg";
+// import RRD21 from "../../_shared/Assets/GamePhotos/RRD21.jpg";
+// import RRD22 from "../../_shared/Assets/GamePhotos/RRD22.jpg";
 import { motion } from "framer-motion";
 
 

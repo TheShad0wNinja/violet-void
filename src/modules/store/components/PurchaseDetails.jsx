@@ -1,7 +1,7 @@
 import React from "react";
-import pfp1 from "@modules/_shared/Assets/pfp1.jpg";
-import pfp2 from "@modules/_shared/Assets/pfp2.jpg";
-import pfp3 from "@modules/_shared/Assets/pfp3.jpg";
+// import pfp1 from "@modules/_shared/Assets/pfp1.jpg";
+// import pfp2 from "@modules/_shared/Assets/pfp2.jpg";
+// import pfp3 from "@modules/_shared/Assets/pfp3.jpg";
 import { WishlistButton, CartButton, useCart } from "../App";
 
 function PurchaseDetails({ game }) {
