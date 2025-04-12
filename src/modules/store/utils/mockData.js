@@ -125,7 +125,7 @@ const gamesPageData = [
   {
     id: 101,
     name: "Assassin Creed Odyssey",
-    rating: 8.4,
+    rating: 4.6,
     price: 59.99,
     discount: 20,
     platforms: ["PC", "PlayStation 5", "Xbox Series X"],

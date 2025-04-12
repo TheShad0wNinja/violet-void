@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import StarChecked from "@modules/_shared/Assets/starLighter.png";
-import StarUnchecked from "@modules/_shared/Assets/starDarker.png";
-import HalfStar from "@modules/_shared/Assets/halfStar.png";
+import { IconStar, IconStarFilled, IconStarHalfFilled } from "@tabler/icons-react";
 
 const Stars = ({ rating , maxStars = 5 }) => {
   const totalStars = 5; // Displayed stars
@@ -48,11 +46,9 @@ const Stars = ({ rating , maxStars = 5 }) => {
                 setIsHovered(false);
               }}
             />
-            <img
-              className="object-cover cursor-pointer"
-              src={isHalfStar ? HalfStar : index < selectedRating || index <= hoverIndex ? StarChecked : StarUnchecked}
-              alt={`Star ${index + 1}`}
-            />
+            <div className="text-accent">
+              {isHalfStar ? <IconStarHalfFilled /> : index < selectedRating || index <= hoverIndex ? <IconStarFilled /> : <IconStar />  }
+            </div>
           </div>
         );
       })}

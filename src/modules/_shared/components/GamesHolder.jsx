@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { GameHolderBox } from "../App";
-import rightArrow from "@modules/_shared/Assets/right-arrow.png";
 import { motion } from "framer-motion";
 import GameCardFullData from "@modules/store/components/GameCardFullData";
+import { IconChevronRight } from "@tabler/icons-react";
 
 function GamesHolder({
   Sectionname,
@@ -38,10 +38,10 @@ function GamesHolder({
         ease: [0.16, 1, 0.3, 1]
       }}
     >
-      <div className="mt-5 mb-3 flex items-center gap-2">
+      <div className="mt-5 mb-3 flex items-end gap-2">
         <h1 className="text-2xl font-bold">{Sectionname}</h1>
-        <button className="w-5 cursor-pointer" onClick={handleNext}>
-          <img src={rightArrow} alt="Next" />
+        <button className="cursor-pointer" onClick={handleNext}>
+          <IconChevronRight size={30} />
         </button>
       </div>
 

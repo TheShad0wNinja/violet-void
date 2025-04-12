@@ -11,8 +11,8 @@ import {
   useCart
 } from "@modules/store/App";
 import { getGamesPageData, getSimilarGamesData } from "../utils/mockData";
-import StarChecked from "@modules/_shared/Assets/starLighter.png";
 import { motion } from "framer-motion";
+import { IconStarFilled } from "@tabler/icons-react";
 
 function ProductPage() {
   const { id } = useParams();
@@ -31,9 +31,7 @@ function ProductPage() {
           <h1 className="text-3xl font-bold">{game.name}</h1>
           <div className="bg-secondary flex items-center justify-center gap-1.5 rounded-md pr-1.5 pl-1.5">
             <h1 className="text-accent text-xl font-semibold">{game.rating}</h1>
-            <div className="h-5 w-5">
-              <img className="object-cover" src={StarChecked} />
-            </div>
+            <IconStarFilled className="text-accent" size={22} />
           </div>
         </div>
         <div className="from-accent via-accent to-background h-[1px] w-[90] bg-gradient-to-r"></div>
