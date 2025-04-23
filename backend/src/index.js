@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const app = express();
 app.use(express.json());
 
+// ADD THE ROUTES HERE
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
