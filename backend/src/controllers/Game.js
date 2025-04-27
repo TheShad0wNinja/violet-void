@@ -13,7 +13,7 @@ const GameSchema = new Schema(
     price: { type: Number, required: true },
     discount: { type: Number, default: 0 },
     finalPrice: { type: Number, default: 0 },
-    rating: { type: Double, default: 0, min: 1, max: 5 },
+    rating: { type: Number, default: 0, min: 1, max: 5 }, // Changed from Double to Number
     releaseDate: { type: Date },
     releaseYear: { type: Number },
     developer: { type: String },
@@ -53,23 +53,6 @@ const GameSchema = new Schema(
     toObject: { virtuals: true }
   }
 );
-
-// // Pre-save hook to calculate finalPrice
-// GameSchema.pre("save", function (next) {
-//   if (this.price && this.discount) {
-//     this.finalPrice = this.price * (1 - this.discount / 100);
-//   } else {
-//     this.finalPrice = this.price;
-//   }
-//   next();
-// });
-//
-// // Virtual for reviews
-// GameSchema.virtual("reviews", {
-//   ref: "Review",
-//   localField: "_id",
-//   foreignField: "gameId"
-// });
 
 // Indexes
 GameSchema.index({ title: 1 });

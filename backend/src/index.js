@@ -6,6 +6,8 @@ const app = express();
 app.use(express.json());
 
 // ADD THE ROUTES HERE
+const gameRoutes = require("../src/routes/productPageRoutes");
+app.use("/api", gameRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI)
