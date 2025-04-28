@@ -7,8 +7,12 @@ app.use(express.json());
 
 // ADD THE ROUTES HERE
 
+app.get("/", (req, res) => {
+  res.json({ message: "OMAK " });
+});
+
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI || "")
   .then(() => {
     console.log("Connected to MongoDB Succesfully");
     app.listen(process.env.PORT, () =>
