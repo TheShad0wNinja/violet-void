@@ -59,7 +59,7 @@ function ProductPage() {
             }}
             className="md:flex-3/4"
           >
-            <PhotoCollage images={gameData.images} />
+            <PhotoCollage images={gameData} />
             <div>
               <motion.h1
                 initial={{ scale: 0.8, y: 30, opacity: 0 }}
@@ -73,7 +73,7 @@ function ProductPage() {
               >
                 {gameData.description}
               </motion.h1>
-              <GenreHolder tags={gameData.tags} features={gameData.gameFeatures} />
+              <GenreHolder tags={gameData.type} features={gameData.features} />
               <motion.h1
                 initial={{ scale: 0.8, y: 30, opacity: 0 }}
                 whileInView={{ scale: 1, y: 0, opacity: 1 }}
