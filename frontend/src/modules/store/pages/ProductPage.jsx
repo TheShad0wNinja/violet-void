@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Container from "@modules/_shared/components/Container";
 import { GamesHolder } from "@modules/_shared/App";
@@ -10,27 +10,39 @@ import {
   GameRating,
   useCart
 } from "@modules/store/App";
-import { getGamesPageData, getSimilarGamesData } from "../utils/mockData";
+import axios from "axios";
 import { motion } from "framer-motion";
 import { IconStarFilled } from "@tabler/icons-react";
 
 function ProductPage() {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const { id } = useParams();
-  const game = getGamesPageData().find(g => g.id == id);
+  const [gameData, setGameData] = useState(null);
 
-  if (!game) {
+  useEffect(() => {
+    async function fetchGameData() {
+      try {
+        const res = await axios.get(`${backendUrl}/game/${id}`);
+        setGameData(res.data);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    fetchGameData()
+  },[id]);
+
+  if (!gameData) {
     return <h1>Game not found</h1>; // switch to 404 page later
   }
 
-  const similarGameList = getSimilarGamesData().filter(g => game.similarGames.includes(g.name));
 
   return (
     <Container>
       <div className="m-5">
         <div className="mb-3.5 flex gap-5">
-          <h1 className="text-3xl font-bold">{game.name}</h1>
+          <h1 className="text-3xl font-bold">{gameData.name}</h1>
           <div className="bg-secondary flex items-center justify-center gap-1.5 rounded-md pr-1.5 pl-1.5">
-            <h1 className="text-accent text-xl font-semibold">{game.rating}</h1>
+            <h1 className="text-accent text-xl font-semibold">{gameData.rating}</h1>
             <IconStarFilled className="text-accent" size={22} />
           </div>
         </div>
@@ -47,7 +59,7 @@ function ProductPage() {
             }}
             className="md:flex-3/4"
           >
-            <PhotoCollage images={game.images} />
+            <PhotoCollage images={gameData.images} />
             <div>
               <motion.h1
                 initial={{ scale: 0.8, y: 30, opacity: 0 }}
@@ -59,9 +71,9 @@ function ProductPage() {
                 }}
                 className="mt-4"
               >
-                {game.description}
+                {gameData.description}
               </motion.h1>
-              <GenreHolder tags={game.tags} features={game.gameFeatures} />
+              <GenreHolder tags={gameData.tags} features={gameData.gameFeatures} />
               <motion.h1
                 initial={{ scale: 0.8, y: 30, opacity: 0 }}
                 whileInView={{ scale: 1, y: 0, opacity: 1 }}
@@ -72,7 +84,7 @@ function ProductPage() {
                 }}
                 className="mt-5 w-fit text-2xl font-bold"
               >
-                More about {game.name}
+                More about {gameData.name}
               </motion.h1>
               <motion.h1
                 initial={{ scale: 0.8, y: 30, opacity: 0 }}
@@ -84,13 +96,13 @@ function ProductPage() {
                 }}
                 className="text-text-dark m-2 w-fit"
               >
-                {game.detailedDescription}
+                {gameData.detailedDescription}
               </motion.h1>
-              <GameRating rating={game.rating} />
+              <GameRating rating={gameData.rating} />
             </div>
           </motion.div>
 
-          <PurchaseDetails game={game} />
+          <PurchaseDetails game={gameData} />
         </div>
         <motion.div
           initial={{ scale: 0.8, y: 30, opacity: 0 }}
@@ -103,9 +115,14 @@ function ProductPage() {
           className="my-4"
         >
           <h1 className="mt-5 text-2xl font-bold">System requirements</h1>
-          <GameRequirements requirements={game.requirements} />
-          <GamesHolder type2games Sectionname="Game DLCS" detailsOn games={similarGameList} />
-          <GamesHolder type2games Sectionname="Games similar to" detailsOn games={similarGameList} />
+          <GameRequirements requirements={gameData.requirements} />
+          <GamesHolder type2games Sectionname="Game DLCS" detailsOn games={gameData.similarGames} />
+          <GamesHolder
+            type2games
+            Sectionname="Games similar to"
+            detailsOn
+            games={gameData.similarGames}
+          />
         </motion.div>
       </div>
     </Container>
