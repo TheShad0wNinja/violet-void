@@ -13,10 +13,9 @@ function GamesHolder({
 }) {
   const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(false);
+  const { cover } = games;  
 
-  if (!games) {
-    return <h1>no games</h1>;
-  }
+  
   const handleNext = () => {
     setFade(true); // Start animation
     setTimeout(() => {
@@ -56,8 +55,8 @@ function GamesHolder({
               key={i}
               gameName={game.name}
               gamePrice={game.price}
-              gameDetails={detailsOn ? game.details : game.rating}
-              gameImage={Array.isArray(game.images) ? game.images[0] : game.image}
+              gameDetails={detailsOn ? game.description : game.rating}
+              gameImage={games.images}
               smallerHeight
             />
           ))}

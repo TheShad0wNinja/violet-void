@@ -116,7 +116,7 @@ function ProductPage() {
         >
           <h1 className="mt-5 text-2xl font-bold">System requirements</h1>
           <GameRequirements requirements={gameData.requirements} />
-          <GamesHolder type2games Sectionname="Game DLCS" detailsOn games={gameData.similarGames} />
+          <GamesHolder type2games Sectionname="Game DLCS" detailsOn games={gameData.dlcs} />
           <GamesHolder
             type2games
             Sectionname="Games similar to"
