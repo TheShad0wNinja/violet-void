@@ -9,9 +9,19 @@
   "author": "",
   "license": "ISC",
   "description": "",
+  "_moduleAliases": {
+    "@root": ".",
+    "@model": "src/models",
+    "@controller": "src/controllers",
+    "@routes": "src/routes",
+    "@middleware": "src/middleware",
+    "@utils": "src/utils"
+  },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "module-alias": "^2.2.3",
     "mongoose": "^8.13.2",
     "nodemon": "^3.1.9"
   }
