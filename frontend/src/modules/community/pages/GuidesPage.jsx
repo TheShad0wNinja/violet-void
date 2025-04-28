@@ -70,7 +70,7 @@ function GuideCard({ guide, index, isDiscoverPage }) {
 
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <span className="flex items-center gap-1 text-yellow-400">
+            <span className="text-accent flex items-center gap-1">
               <IconStarFilled size={18} />
               <IconStarFilled size={18} />
               <IconStarFilled size={18} />
