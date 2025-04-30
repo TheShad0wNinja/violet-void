@@ -9,8 +9,7 @@ const UserSchema = new Schema(
     avatar: { type: String },
     displayName: { type: String },
     bio: { type: String },
-    location: { type: String },
-    gamesPlayed: { type: Number, default: 0 },
+    birthdate: { type: Schema.Types.Date },
     role: { type: String, enum: ["user", "admin", "studio", "reviewer"], default: "user" },
     library: [{ type: Schema.Types.ObjectId, ref: "Game" }],
     wishlist: [{ type: Schema.Types.ObjectId, ref: "Game" }],
@@ -29,9 +28,6 @@ UserSchema.methods.toJSON = function () {
   delete obj.password;
   return obj;
 };
-
-UserSchema.index({ email: 1 }, { unique: true });
-UserSchema.index({ username: 1 }, { unique: true });
 
 const User = mongoose.model("User", UserSchema);
 module.exports = User;

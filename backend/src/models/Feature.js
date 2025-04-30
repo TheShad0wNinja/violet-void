@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const CategorySchema = new Schema(
+const FeatureSchema = new Schema(
   {
     name: { type: String, required: true, unique: true },
     slug: { type: String, required: true, unique: true },
@@ -12,5 +12,5 @@ const CategorySchema = new Schema(
   }
 );
 
-const Category = mongoose.model("Category", CategorySchema);
-module.exports = Category;
+const Feature = mongoose.model("Feature", FeatureSchema);
+module.exports = Feature;
