@@ -1,14 +1,13 @@
 const express = require("express");
-const bcrypt = requrie("bcrypt");
-const jwt = require(jsonwebtoken);
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const User = require("../controllers/User");
 
 const router = express.Router();
 
-router.registerUser = async (req, res) => {
+router.post("/register", async (req, res) => {
   try {
     const { username, email, password } = req.body;
-
     //check if user already exists
     const existingEmail = await User.findOne({ email });
     if (existingEmail) return res.status(400).json({ message: "Email already exists" });
@@ -30,31 +29,39 @@ router.registerUser = async (req, res) => {
     const token = jwt.sign({ userId: newUser._id, name: newUser.name }, process.env.JWT_SECRET, {
       expiresIn: "1hr"
     });
+    console.log("working");
     res.status(201).json({ token });
   } catch (err) {
     res.status(500).status({ message: "Server Error" });
   }
-};
+});
 
-exports.loginUser = async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    //Match Username
     const user = await User.findOne({ username });
-    if (!user) return res.status(400).json({ message: "User doesn't exist" });
-
-    //Compare password
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ message: "Password doesn't match " });
-
-    if (user && isMatch) {
-      const token = jwt.sign({ userId: user._id, name: user.name }, process.env.JWT_SECRET, {
-        expiresIn: "1hr"
-      });
+    if (!user) {
+      return res.status(400).json({ message: "User doesn't exist" });
     }
-    res.json({  message: "Login successful", token  });
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Password doesn't match" });
+    }
+
+    const token = jwt.sign(
+      { userId: user._id, username: user.name },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    return res.json({ message: "Login successful", token });
+
   } catch (err) {
-    res.status(500).json({ message: "server error", error: err.message  });
+    console.error(err);
+    return res.status(500).json({ message: "Server error", error: err.message });
   }
-};
+});
+
+module.exports = router;

@@ -5,8 +5,12 @@ import { motion } from "framer-motion";
 function PhotoCollage({images}) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [fade, setFade] = useState(false);
-  const { previews } = images;  
+  // const { previews } = images;  
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
+ const previews = images.previews.map(p =>
+  backendUrl + p
+ )
   const handleChangeImage = (index) => {
     setFade(true);
     setTimeout(() => {
@@ -25,7 +29,7 @@ function PhotoCollage({images}) {
             }} className="relative w-full max-w-5xl  mt-6">
       {/* Background Image */}
       <div
-        style={{ backgroundImage: `url(${previews[selectedIndex]})` }}
+        style={{ backgroundImage: `url(${previews[selectedIndex]})` }} 
         className={`bg-cover bg-center w-full h-[25rem] md:h-[35rem] grayscale-50 flex justify-center items-center transition-opacity duration-300 ${fade ? "opacity-0" : "opacity-100"}`}
       ></div>
 

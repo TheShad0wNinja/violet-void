@@ -6,14 +6,14 @@ const mongoose = require("mongoose");
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"))
 
 // ADD THE ROUTES HERE
 const gameRoutes = require("../src/routes/productPageRoutes");
-const { registerUser, loginUser } = require("../model/AuthController");
+const authRoutes = require("../src/model/AuthController");
 
-app.use("/signup", registerUser);
-app.use("/login", loginUser);
-app.use("/api", gameRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/games", gameRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI)

@@ -22,7 +22,7 @@ function ProductPage() {
   useEffect(() => {
     async function fetchGameData() {
       try {
-        const res = await axios.get(`${backendUrl}/game/${id}`);
+        const res = await axios.get(`${backendUrl}/api/games/${id}`);
         setGameData(res.data);
       } catch (err) {
         console.error(err);
@@ -59,7 +59,7 @@ function ProductPage() {
             }}
             className="md:flex-3/4"
           >
-            <PhotoCollage images={gameData} />
+            <PhotoCollage images={gameData.images} />
             <div>
               <motion.h1
                 initial={{ scale: 0.8, y: 30, opacity: 0 }}
@@ -73,7 +73,7 @@ function ProductPage() {
               >
                 {gameData.description}
               </motion.h1>
-              <GenreHolder tags={gameData.type} features={gameData.features} />
+              <GenreHolder tags={gameData.categories} features={gameData.features} />
               <motion.h1
                 initial={{ scale: 0.8, y: 30, opacity: 0 }}
                 whileInView={{ scale: 1, y: 0, opacity: 1 }}
@@ -115,7 +115,7 @@ function ProductPage() {
           className="my-4"
         >
           <h1 className="mt-5 text-2xl font-bold">System requirements</h1>
-          <GameRequirements requirements={gameData.requirements} />
+          {/* <GameRequirements requirements={gameData.requirements} /> */}
           <GamesHolder type2games Sectionname="Game DLCS" detailsOn games={gameData.dlcs} />
           <GamesHolder
             type2games

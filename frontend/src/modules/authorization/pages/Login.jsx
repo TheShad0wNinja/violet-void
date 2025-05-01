@@ -1,15 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useFormik } from "formik";
 import WhiteTextInputBox from "../components/WhiteTextInputBox";
 import WhiteDobBox from "../components/WhiteDobBox";
 import { Button } from "@modules/_shared/App";
 import * as Yup from "yup";
 import { motion } from "framer-motion";
-import { getGamingProfiles } from "@modules/store/utils/mockData";
-import { useAuth } from "../App";
+import { AuthContext } from "../utils/AuthContext";
+import { useNavigate } from "react-router";
+import axios from "axios";
 
 function Login({ switchPage }) {
-  const { login } = useAuth();
+  const { login, user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -19,13 +23,24 @@ function Login({ switchPage }) {
       username: Yup.string().required("Username is required"),
       password: Yup.string().required("Password is required")
     }),
-    onSubmit: values => {
+    onSubmit: async values => {
       console.log("Form submitted:", values);
-      const user = getGamingProfiles().find(
-        a => a.profile.name.toLowerCase() === values.username.toLowerCase()
-      );
-      if (!user) formik.setErrors({ username: "No user with this name " });
-      else login(user.profile);
+      // const user = getGamingProfiles().find(
+      //   a => a.profile.name.toLowerCase() === values.username.toLowerCase()
+      // );
+      // if (!user) formik.setErrors({ username: "No user with this name " });
+      try {
+        const response = await axios.post(`${backendUrl}/api/auth/login`, {
+          username: values.username,
+          password: values.password
+        });
+        const data = await response.data;
+
+        login(data.token);
+        navigate("/");
+      } catch (error) {
+        console.error("Login Error:", error);
+      }
     }
   });
   return (
