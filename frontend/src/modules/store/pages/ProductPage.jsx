@@ -19,7 +19,28 @@ function ProductPage() {
   const { id } = useParams();
   const [gameData, setGameData] = useState(null);
 
+  const [relatedGames, setRelatedGames] = useState([]);
+
+useEffect(() => {
+  async function fetchRelatedGames() {
+    try {
+      const ids = gameData.relatedGames.game; // array of IDs
+      const response = await axios.post(`${backendUrl}/api/games/multiple`, {
+        ids, // Pass the array of game IDs to the backend
+      });
+      setRelatedGames(response.data); // Assuming response.data contains the full game objects
+    } catch (error) {
+      console.error("Failed to fetch related games", error);
+    }
+  }
+
+  if (gameData?.relatedGames?.game) {
+    fetchRelatedGames();
+  }
+}, [gameData]);
+
   useEffect(() => {
+    
     async function fetchGameData() {
       try {
         const res = await axios.get(`${backendUrl}/api/games/${id}`);
@@ -40,7 +61,7 @@ function ProductPage() {
     <Container>
       <div className="m-5">
         <div className="mb-3.5 flex gap-5">
-          <h1 className="text-3xl font-bold">{gameData.name}</h1>
+          <h1 className="text-3xl font-bold">{gameData.title}</h1>
           <div className="bg-secondary flex items-center justify-center gap-1.5 rounded-md pr-1.5 pl-1.5">
             <h1 className="text-accent text-xl font-semibold">{gameData.rating}</h1>
             <IconStarFilled className="text-accent" size={22} />
@@ -115,14 +136,14 @@ function ProductPage() {
           className="my-4"
         >
           <h1 className="mt-5 text-2xl font-bold">System requirements</h1>
-          {/* <GameRequirements requirements={gameData.requirements} /> */}
+          <GameRequirements requirements={gameData.requirements} />
           <GamesHolder type2games Sectionname="Game DLCS" detailsOn games={gameData.dlcs} />
           <GamesHolder
             type2games
             Sectionname="Games similar to"
             detailsOn
-            games={gameData.similarGames}
-          />
+            games={gameData.relatedGames.map((rel) => rel.game)}
+            />
         </motion.div>
       </div>
     </Container>
