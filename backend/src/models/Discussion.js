@@ -5,10 +5,11 @@ const DiscussionSchema = new Schema(
   {
     title: { type: String, required: true },
     body: { type: String, required: true },
-    author: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    author: { type: Schema.Types.ObjectId, ref: "User", required: false },
     upvotes: { type: Number, default: 0 },
     downvotes: { type: Number, default: 0 },
-    relatedGames: [{ type: Schema.Types.ObjectId, ref: "Game" }]
+    game: { type: Schema.Types.ObjectId, ref: "Game", required: false },
+    image: { type: String }
   },
   {
     timestamps: true
@@ -16,7 +17,7 @@ const DiscussionSchema = new Schema(
 );
 
 DiscussionSchema.index({ author: 1 });
-DiscussionSchema.index({ relatedGames: 1 });
+DiscussionSchema.index({ game: 1 });
 DiscussionSchema.index({ category: 1 });
 
 const Discussion = mongoose.model("Discussion", DiscussionSchema);

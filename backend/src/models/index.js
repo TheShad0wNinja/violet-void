@@ -1,8 +1,9 @@
 module.exports = {
   Game: require("./Game"),
   User: require("./User"),
-  UserGameActivity: require("./UserGameActivity"),
+  // UserGameActivity: require("./UserGameActivity"),
   Category: require("./Category"),
+  Feature: require("./Feature"),
   Review: require("./Review"),
   News: require("./News"),
   Guide: require("./Guide"),
@@ -11,5 +12,5 @@ module.exports = {
   Screenshot: require("./Screenshot"),
   Artwork: require("./Artwork"),
   Order: require("./Order"),
-  Cart: rqeuire("./Cart")
+  // Cart: rqeuire("./Cart")
 };

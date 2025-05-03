@@ -1,16 +1,49 @@
-import { AnimatedOutlet, Container, Divider, TextInput, Title } from "@modules/_shared/App";
+import {
+  AnimatedOutlet,
+  Container,
+  Divider,
+  Pagination,
+  TextInput,
+  Title
+} from "@modules/_shared/App";
 import { MoreButton, PostCard } from "../App";
 import { getDiscussions } from "../utils/disscusionData";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { IconSearch, IconPlus } from "@tabler/icons-react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import useUrlFilters from "@modules/store/hooks/useUrlFilters";
+
+const ITEM_LIMIT = 2;
+const DISCOVER_ITEM_LIMIT = 2;
 
 export default function DiscussionPage({ isDiscoverPage }) {
+  const [discussions, setDiscussion] = useState([]);
+  const [count, setCount] = useState();
+  const location = useLocation();
+  const { filters, setFilter } = useUrlFilters({ page: 1 });
+
+  useEffect(() => {
+    if (location.pathname.includes("/discussions/"))
+      return;
+
+    axios
+      .get(
+        `${import.meta.env.VITE_API_URL}/discussions${isDiscoverPage ? `?limit=${DISCOVER_ITEM_LIMIT}` : `?limit=${ITEM_LIMIT}&page=${filters.page}`}`
+      )
+      .then(res => {
+        setDiscussion(res.data.discussions);
+        setCount(res.data.totalCount);
+      })
+      .catch(e => console.log(e));
+  }, [filters.page, location.pathname]);
+
   if (isDiscoverPage)
     return (
       <Container>
         <MoreButton to="discussions" className="my-6 ml-auto" />
 
-        {getDiscussions().map(post => (
+        {discussions.map(post => (
           <PostCard key={post.id} post={post} isDiscoverPage={isDiscoverPage} />
         ))}
       </Container>
@@ -30,14 +63,17 @@ export default function DiscussionPage({ isDiscoverPage }) {
                 <Title>Discussions</Title>
               )}
 
-							<TextInput placeholder="Search discussions..." rightSection={<IconSearch size={22} />} />
+              <TextInput
+                placeholder="Search discussions..."
+                rightSection={<IconSearch size={22} />}
+              />
             </div>
 
             <Divider className="mb-4" />
           </div>
         </div>
 
-        {getDiscussions().map(post => (
+        {discussions.map(post => (
           <PostCard key={post.id} post={post} />
         ))}
 
@@ -47,6 +83,12 @@ export default function DiscussionPage({ isDiscoverPage }) {
         >
           <IconPlus size={50} />
         </Link>
+        <Pagination
+          totalItems={count}
+          itemsPerPage={ITEM_LIMIT}
+          onPageChange={page => setFilter("page", page)}
+          currentPage={Number(filters.page)}
+        />
       </Container>
       <AnimatedOutlet />
     </>
