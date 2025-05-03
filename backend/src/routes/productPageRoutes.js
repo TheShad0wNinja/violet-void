@@ -1,6 +1,7 @@
 const express = require("express");
 
 const Game = require("../models/Game");
+
 const category = require("../models/Category");
 const router = express.Router();
 
@@ -8,7 +9,13 @@ const router = express.Router();
 router.get("/:id", async (req, res) => {
   console.log("pepeppe", req.params);
   try {
-    const gamedata = await Game.findById(req.params.id).populate("categories","relatedGames");
+    const gamedata = await Game.findById(req.params.id).populate("categories").populate({
+      path: "relatedGames.game",
+      model: "Game"
+    }).populate({
+      path: "features",
+      model: "Feature"
+    })
     console.log(gamedata);
 
 
