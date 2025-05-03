@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router";
 import Branding from "./Branding";
 import { IconMenu2, IconX } from "@tabler/icons-react";
-import { useAuth } from "@modules/authorization/App";
+import { AuthContext } from "@modules/authorization/utils/AuthContext";
 import { Button, Divider } from "../App";
 
 function Header() {
-  const { user } = useAuth();
+  // const { user } = useAuth();
+    const {  user } = useContext(AuthContext);
+  
   const [borgorOpen, setBorgorOpen] = useState(false);
 
   const links = [
@@ -29,7 +31,6 @@ function Header() {
     }
   ];
 
-  console.log(user);
 
   return (
     <header className="grid grid-cols-4 p-6">

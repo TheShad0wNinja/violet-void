@@ -12,7 +12,6 @@ function GameHolderBox({ gameName, gamePrice, gameDetails, gameImage, smallerHei
           src={gameImage}
           alt={gameName}
         />
-        {/* Price Badge */}
       </div>
 
       {/* Game Info */}
