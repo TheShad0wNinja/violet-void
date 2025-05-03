@@ -45,7 +45,9 @@ import {
   GuidePostPopUp
 } from "@modules/community/App";
 
-import { AuthPage, AuthProvider } from "@modules/authorization/App";
+import { AuthPage } from "@modules/authorization/App";
+import { AuthProvider } from "@modules/authorization/utils/AuthContext";
+
 import AccountPage from "@modules/store/pages/AccountPage";
 
 const storeRoutes = [

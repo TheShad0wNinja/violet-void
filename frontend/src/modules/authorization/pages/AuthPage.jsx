@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import authobackground from "../assets/authobackground.png";
 import Signuppage from "./Signuppage";
 import Login from "./Login";
 import { useParams } from "react-router";
 import { BrowserRouter as Router, Route, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useAuth } from "../App";
+// import { useAuth } from "../App";
+import { AuthContext } from "../utils/AuthContext";
 
 function AuthPage() {
+    const AuthCon = useContext(AuthContext);
+  
   const [authMethod, setAuthMethod] = useState(false);
   const { page } = useParams();
   const navigate = useNavigate();
-  const { user, logout } = useAuth();
+  const { user, logout } = AuthCon;
 
   useEffect(() => {
     if (!["login", "signup"].includes(page)) navigate("/auth/signup");

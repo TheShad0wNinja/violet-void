@@ -5,8 +5,13 @@ import WhiteDobBox from "../components/WhiteDobBox";
 import { Button } from "@modules/_shared/App";
 import * as Yup from "yup";
 import { motion } from "framer-motion";
+import axios from "axios";
+import { useNavigate } from "react-router";
 
 function Signuppage({ switchPage }) {
+  const navigate = useNavigate();
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -40,8 +45,22 @@ function Signuppage({ switchPage }) {
 
       return isValidDate;
     }),
-    onSubmit: values => {
+    onSubmit: async values => {
       console.log("Form submitted:", values);
+      try { 
+        const response = await axios.post(`${backendUrl}/api/auth/register`, {
+          username: formik.values.username,
+          email: formik.values.email,
+          password: formik.values.password
+        });
+        // add birthday later
+        navigate("/");
+      } catch (error) {
+        if (error.response) {
+          console.error(error.response);
+          console.log("something went wrong. please try again");
+        }
+      }
     }
   });
 

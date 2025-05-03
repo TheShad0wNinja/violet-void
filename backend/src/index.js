@@ -1,16 +1,20 @@
 require("dotenv").config();
 require('module-alias/register')
+const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require('cors')
 const discussionRouter = require("@routes/discussionRoute");
 
 const app = express();
 app.use(cors())
 app.use(express.json());
+app.use(express.static("public"))
 app.use("/discussions", discussionRouter)
 const gameRoutes = require("../src/routes/productPageRoutes");
-app.use("/api", gameRoutes);
+const authRoutes = require("./controllers/AuthController");
+
+app.use("/api/auth", authRoutes);
+app.use("/api/games", gameRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI || "")
