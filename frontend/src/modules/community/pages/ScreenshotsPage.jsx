@@ -1,7 +1,7 @@
 import { AnimatedOutlet, Container, Divider, Pagination, Title } from "@modules/_shared/App";
 import { getScreenshotData } from "../utils/mockScreenshotsData";
 import useUrlFilters from "@modules/store/hooks/useUrlFilters";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { IconPlus } from "@tabler/icons-react";
 
 const ScreenshotData = getScreenshotData();
@@ -20,7 +20,8 @@ export default function ScreenshotsPage() {
         <Divider direction="center" className="mt-1 mb-4" />
         <div className="flex flex-wrap gap-5">
           {items.map(panel => (
-            <div
+            <Link
+              to={`${panel.id}`}
               className="hover:border-accent border-secondary flex w-full cursor-pointer overflow-hidden rounded-2xl border-2 transition-all duration-200 sm:w-[calc(50%-10px)]"
               key={panel.title}
             >
@@ -38,7 +39,7 @@ export default function ScreenshotsPage() {
                   {"by " + panel.author}
                 </p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         <Link
