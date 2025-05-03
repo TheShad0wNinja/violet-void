@@ -1,7 +1,7 @@
 const express = require("express");
 
-const Game = require("../controllers/Game");
-const category = require("../controllers/Category");
+const Game = require("../models/Game");
+const category = require("../models/Category");
 const router = express.Router();
 
 //get game by id
