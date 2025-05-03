@@ -43,6 +43,7 @@ useEffect(() => {
     
     async function fetchGameData() {
       try {
+        setGameData(null);
         const res = await axios.get(`${backendUrl}/api/games/${id}`);
         setGameData(res.data);
       } catch (err) {
@@ -63,7 +64,7 @@ useEffect(() => {
         <div className="mb-3.5 flex gap-5">
           <h1 className="text-3xl font-bold">{gameData.title}</h1>
           <div className="bg-secondary flex items-center justify-center gap-1.5 rounded-md pr-1.5 pl-1.5">
-            <h1 className="text-accent text-xl font-semibold">{gameData.rating}</h1>
+            <h1 className="text-accent text-xl font-semibold">{gameData.rating}</h1> {/*change it to pull from reviews section */}
             <IconStarFilled className="text-accent" size={22} />
           </div>
         </div>
@@ -119,7 +120,7 @@ useEffect(() => {
               >
                 {gameData.detailedDescription}
               </motion.h1>
-              <GameRating rating={gameData.rating} />
+              <GameRating rating={5} /> {/*change it to pull from reviews section */}
             </div>
           </motion.div>
 
@@ -137,10 +138,11 @@ useEffect(() => {
         >
           <h1 className="mt-5 text-2xl font-bold">System requirements</h1>
           <GameRequirements requirements={gameData.requirements} />
-          <GamesHolder type2games Sectionname="Game DLCS" detailsOn games={gameData.dlcs} />
+          <GamesHolder type2games Sectionname="Similar Games" detailsOn   games={gameData.similarGames.map((rel) => rel.game)}
+ />
           <GamesHolder
             type2games
-            Sectionname="Games similar to"
+            Sectionname="Games related to"
             detailsOn
             games={gameData.relatedGames.map((rel) => rel.game)}
             />

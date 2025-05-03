@@ -26,7 +26,7 @@ function GamesHolder({
   };
 
   if (!games || games.length === 0) {
-    return <h1>No games available</h1>;
+    return null;
   }
 
   const visibleGames = type2games
@@ -63,10 +63,12 @@ function GamesHolder({
           ? visibleGames.map((game, i) => (
               <GameHolderBox
                 key={i}
+                gameID={game._id}
+
                 gameName={game.title}
                 gamePrice={game.price}
                 gameDetails={detailsOn ? game.description : game.rating}
-                gameImage={game.images} // Fixed: use `game.images` not `games.images`
+                gameImage={game.images}
                 smallerHeight
               />
               

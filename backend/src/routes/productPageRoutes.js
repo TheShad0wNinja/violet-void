@@ -9,15 +9,19 @@ const router = express.Router();
 router.get("/:id", async (req, res) => {
   console.log("pepeppe", req.params);
   try {
-    const gamedata = await Game.findById(req.params.id).populate("categories").populate({
-      path: "relatedGames.game",
-      model: "Game"
-    }).populate({
-      path: "features",
-      model: "Feature"
-    })
-    console.log(gamedata);
+    const gamedata = await Game.findById(req.params.id)
+      .populate("categories")
+      .populate({
+        path: "relatedGames.game",
+        model: "Game"
+      })
+      .populate({
+        path: "features",
+        model: "Feature"
+      })
+      .populate("similarGames");
 
+    console.log(gamedata);
 
     if (!gamedata) {
       console.log(req.params);
@@ -29,14 +33,14 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-router.post('/relatedgames', async (req, res) => {
-    try {
-      const { ids } = req.body;
-      const games = await Game.find({ '_id': { $in: ids } }); 
-      res.json(games); 
-    } catch (err) {
-      res.status(500).json({ error: 'Failed to fetch games' });
-    }
-  });
-  
+router.post("/relatedgames", async (req, res) => {
+  try {
+    const { ids } = req.body;
+    const games = await Game.find({ _id: { $in: ids } });
+    res.json(games);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch games" });
+  }
+});
+
 module.exports = router;
