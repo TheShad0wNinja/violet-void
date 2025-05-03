@@ -137,3 +137,6 @@ dist
 
 # Macos
 .DS_Store
+
+# Assets
+*/public

@@ -1,18 +1,19 @@
 require("dotenv").config();
-const cors = require('cors');
+require('module-alias/register')
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require('cors')
+const discussionRouter = require("@routes/discussionRoute");
 
 const app = express();
-app.use(cors()); 
+app.use(cors())
 app.use(express.json());
-
-// ADD THE ROUTES HERE
+app.use("/discussions", discussionRouter)
 const gameRoutes = require("../src/routes/productPageRoutes");
 app.use("/api", gameRoutes);
 
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI || "")
   .then(() => {
     console.log("Connected to MongoDB Succesfully");
     app.listen(process.env.PORT, () =>

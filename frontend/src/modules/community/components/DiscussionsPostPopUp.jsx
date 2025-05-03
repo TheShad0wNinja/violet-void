@@ -4,6 +4,8 @@ import { IconX, IconHeartFilled, IconMessageCircleFilled, IconShare } from "@tab
 import { useNavigate, useParams } from "react-router";
 import { getDiscussions } from "../utils/disscusionData";
 import { PageModal, SkeletonBox } from "@modules/_shared/App";
+import axios from "axios";
+import { DateTime } from "luxon";
 
 export default function DiscussionPostPopUp() {
   const { id } = useParams();
@@ -11,12 +13,18 @@ export default function DiscussionPostPopUp() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setPost(getDiscussions().find(i => i.id === Number(id)));
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/discussions/${id}`)
+      .then(res => setPost(res.data))
+      .catch(e => {
+        console.log(e);
+        navigate(-1);
+      });
   }, [id]);
 
   return (
     <PageModal>
-      <div className="bg-secondary-800 relative flex mx-auto max-h-[90vh] w-full max-w-4xl flex-col rounded-xl p-2 shadow-2xl">
+      <div className="bg-secondary-800 relative mx-auto flex max-h-[90vh] w-full max-w-4xl flex-col rounded-xl p-2 shadow-2xl">
         {!post ? (
           <>
             <button
@@ -83,7 +91,7 @@ export default function DiscussionPostPopUp() {
                     {post.subreddit}
                   </span>
                   <span>•</span>
-                  <span>{post.time}</span>
+                  <span>{DateTime.fromISO(post.createdAt).toRelative()}</span>
                 </div>
                 <h2 className="mt-1 text-2xl font-bold">{post.title}</h2>
               </div>

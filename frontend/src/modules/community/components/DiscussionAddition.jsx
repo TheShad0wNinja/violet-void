@@ -36,7 +36,7 @@ export default function DiscussionAddition() {
         <h2 className="mt-10">Discussion Title</h2>
         <TextInput
           name="title"
-          value={formik.value.title}
+          value={formik.values.title}
           onChange={formik.handleChange}
           errormessage={formik.errors.title}
           condition={formik.touched.title && formik.errors.title}
@@ -47,7 +47,7 @@ export default function DiscussionAddition() {
         <h2 className="mt-10">Body</h2>
         <TextInput
           name="body"
-          value={formik.value.body}
+          value={formik.values.body}
           onChange={formik.handleChange}
           errormessage={formik.errors.body}
           condition={formik.touched.body && formik.errors.body}
@@ -58,7 +58,7 @@ export default function DiscussionAddition() {
         <h2 className="mt-10">Image</h2>
         <TextInput
           name="image"
-          value={formik.value.image}
+          value={formik.values.image}
           onChange={formik.handleChange}
           errormessage={formik.errors.image}
           condition={formik.touched.image && formik.errors.image}
@@ -69,7 +69,7 @@ export default function DiscussionAddition() {
         <h2 className="mt-10">User Name</h2>
         <TextInput
           name="username"
-          value={formik.value.username}
+          value={formik.values.username}
           onChange={formik.handleChange}
           errormessage={formik.errors.username}
           condition={formik.touched.username && formik.errors.username}
