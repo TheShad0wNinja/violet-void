@@ -18,12 +18,14 @@ export default function ScreenshotItemModal() {
       <div className="flex max-h-screen max-w-screen">
         <img
           src={panel.imageSrc}
-          className="mx-auto max-h-screen max-w-screen rounded-lg sm:my-auto sm:max-h-[calc(100vh-50px)]"
+          className="mx-auto rounded-lg sm:my-auto sm:max-h-[calc(100vh-50px)]"
         />
         <div className="bg-secondary border-accent-400 relative ml-auto h-screen w-1/4 flex-col border-l-2 p-5 text-center">
-          <h1 className="text-2xl font-semibold">{panel.title}</h1>
-          <p className="h-1/2 content-center text-start">{panel.description}</p>
-          <h3 className="text-accent h-50 content-end">{panel.author}</h3>
+          <h1 className="h-1/8 content-center text-4xl font-semibold">{panel.title}</h1>
+          <p className="border-accent-400 h-1/3 content-center border-b text-start text-lg">
+            {panel.description}
+          </p>
+          <h3 className="text-accent h-1/2 content-end">{`by ${panel.author}`}</h3>
         </div>
       </div>
     </PageModal>

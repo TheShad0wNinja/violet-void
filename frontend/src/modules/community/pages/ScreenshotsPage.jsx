@@ -1,8 +1,8 @@
 import { AnimatedOutlet, Container, Divider, Pagination, Title } from "@modules/_shared/App";
-import { getScreenshotData } from "../utils/mockScreenshotsData";
 import useUrlFilters from "@modules/store/hooks/useUrlFilters";
-import { Link } from "react-router-dom";
 import { IconPlus } from "@tabler/icons-react";
+import { Link } from "react-router-dom";
+import { getScreenshotData } from "../utils/mockScreenshotsData";
 
 const ScreenshotData = getScreenshotData();
 export default function ScreenshotsPage() {
@@ -22,13 +22,13 @@ export default function ScreenshotsPage() {
           {items.map(panel => (
             <Link
               to={`${panel.id}`}
-              className="hover:border-accent border-secondary flex w-full cursor-pointer overflow-hidden rounded-2xl border-2 transition-all duration-200 sm:w-[calc(50%-10px)]"
+              className="hover:border-accent bg-secondary border-secondary m-auto flex w-full cursor-pointer overflow-hidden rounded-2xl border-2 transition-all duration-200 sm:w-[calc(50%-10px)]"
               key={panel.title}
             >
               <img
                 src={panel.imageSrc}
                 alt={panel.title + " by " + panel.author}
-                className="bg-background-50 h-48 object-cover sm:h-auto sm:max-h-90 sm:w-2/3"
+                className="bg-background-50 my-auto h-48 object-cover sm:h-auto sm:max-h-90 sm:w-2/3"
               />
               <div className="bg-secondary flex w-full flex-col">
                 <h2 className="m-2 flex h-full items-center justify-center text-center text-2xl font-semibold sm:h-auto">
