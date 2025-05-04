@@ -93,6 +93,7 @@ function Signuppage({ switchPage }) {
           onChange={formik.handleChange}
           errormessage={formik.errors.username}
           condition={formik.touched.username && formik.errors.username}
+          fullwidth
         />
         <WhiteTextInputBox
           name="email"
@@ -102,6 +103,7 @@ function Signuppage({ switchPage }) {
           onChange={formik.handleChange}
           errormessage={formik.errors.email}
           condition={formik.touched.email && formik.errors.email}
+          fullwidth
         />
         <WhiteTextInputBox
           name="password"
@@ -111,6 +113,7 @@ function Signuppage({ switchPage }) {
           onChange={formik.handleChange}
           errormessage={formik.errors.password}
           condition={formik.touched.password && formik.errors.password}
+          fullwidth
         />
         <WhiteDobBox
           datevalue={formik.values.day}
