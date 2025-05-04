@@ -1,19 +1,24 @@
 import { AnimatedOutlet, Container, Divider, Title } from "@modules/_shared/App";
-import { getShuffledArtworks } from "../utils/mockUserData";
-import { useMemo, useState } from "react";
+import axios from "axios";
 import { motion } from "motion/react";
-import { Link, Navigate, useParams } from "react-router";
-
-const rawArtworks = getShuffledArtworks();
+import { useMemo, useState } from "react";
+import { Link, useLocation, useParams } from "react-router";
 
 export default function ArtworkPage() {
   const params = useParams();
 
-  const artworks = useMemo(() => {
-    if (params.artist && params.artist === "all") return rawArtworks;
+  const [artworks, setArtwork] = useState([]);
+  const location = useLocation();
 
-    return rawArtworks.filter(artwork => artwork.handle.includes(params.artist || ""));
-  }, [params.artist]);
+  useMemo(() => {
+    if (location.pathname.includes("/artworks/")) return;
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/artworks`)
+      .then(res => {
+        setArtwork(res.data.shuffledArtworks);
+      })
+      .catch(e => console.log(e));
+  }, [location.pathname]);
 
   return (
     <>
@@ -33,7 +38,7 @@ export default function ArtworkPage() {
         <div className="grid grid-flow-dense auto-rows-auto gap-4 sm:grid-cols-3 md:grid-cols-5 2xl:grid-cols-7">
           {artworks.map((artwork, index) => (
             <ArtworkItem
-              key={artwork.art}
+              key={artwork._id}
               artwork={artwork}
               index={index}
               isFiltered={!!params.artist}
@@ -52,7 +57,7 @@ function ArtworkItem({ artwork, index, isFiltered }) {
 
   const handleImageLoad = () => {
     const img = new Image();
-    img.src = artwork.art;
+    img.src = artwork.imageSrc;
     img.onload = () => {
       const aspectRatio = img.naturalWidth / img.naturalHeight;
       const rowSpan = aspectRatio < 0.8 ? 2 : 1;
@@ -80,7 +85,7 @@ function ArtworkItem({ artwork, index, isFiltered }) {
       >
         <Link to={isFiltered ? `${artwork.id}` : `all/${artwork.id}`}>
           <img
-            src={artwork.art}
+            src={artwork.imageSrc}
             alt={artwork.game + " by " + artwork.name}
             className="h-full w-full object-cover"
             onLoad={handleImageLoad}
