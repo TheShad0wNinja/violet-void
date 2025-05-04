@@ -16,7 +16,7 @@ async function getScreenshot(req, res) {
   const id = req.params.id;
   if (!id) return res.status(400).json({ message: "Invalid body" });
   try {
-    const screenshot = Screenshot.find(id);
+    const screenshot = await Screenshot.findById(id).populate("author", "game");
     res.status(200).json({ screenshot });
   } catch (e) {
     res.status(400).json({ message: e.message });
