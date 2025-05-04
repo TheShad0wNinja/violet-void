@@ -149,7 +149,7 @@ const accountRoutes = [
     element: <AccountPage />
   },
   {
-    path: "wishlist",
+    path: "wishlist/:id",
     element: <WishlistPage />
   },
   {

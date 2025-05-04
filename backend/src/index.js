@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const discussionRouter = require("@routes/discussionRoute");
 const authRouter = require("@routes/authRoute")
 const gameRoutes = require("../src/routes/productPageRoutes");
+const wishlistRoute = require("../src/routes/wishlistRoute");
 const cookieParser = require("cookie-parser");
 
 const app = express();
@@ -29,6 +30,7 @@ app.use("/discussions", discussionRouter)
 
 app.use("/api/auth", authRouter);
 app.use("/api/games", gameRoutes);
+app.use("/api/wishlist", wishlistRoute);
 
 mongoose
   .connect(process.env.MONGO_URI || "")
