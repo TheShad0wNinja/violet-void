@@ -1,13 +1,17 @@
 require("dotenv").config();
 require('module-alias/register')
-const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require('cors')
+const cookieParser = require("cookie-parser");
 const discussionRouter = require("@routes/discussionRoute");
 const authRouter = require("@routes/authRoute")
 const gameRoutes = require("../src/routes/productPageRoutes");
 const wishlistRoute = require("../src/routes/wishlistRoute");
-const cookieParser = require("cookie-parser");
+const artworkRouter = require("@routes/artworkRoute");
+const screenshotRouter = require("@routes/screenshotRoute");
+const guidesRouter = require("@routes/guideRoute");
+const newsRouter = require("@routes/newsRoute");
 
 const app = express();
 app.use(cors({
@@ -26,8 +30,12 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static("public"))
-app.use("/discussions", discussionRouter)
 
+app.use("/api/discussions", discussionRouter);
+app.use("/api/artworks", artworkRouter);
+app.use("/api/screenshots", screenshotRouter);
+app.use("/api/guides", guidesRouter);
+app.use("/api/news", newsRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/games", gameRoutes);
 app.use("/api/wishlist", wishlistRoute);

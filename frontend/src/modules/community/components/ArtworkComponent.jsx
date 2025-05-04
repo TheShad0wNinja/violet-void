@@ -1,12 +1,19 @@
-import { Carousel, Container, Divider, SkeletonBox, Title } from "@modules/_shared/App";
-import { getShuffledArtworks } from "../utils/mockUserData";
+import { Carousel, Container, SkeletonBox } from "@modules/_shared/App";
 import { MoreButton } from "@modules/community/App";
-import { Link } from "react-router";
-import { useState } from "react";
-
-const artworks = getShuffledArtworks();
+import { useMemo, useState } from "react";
+import axios from "axios";
 
 export default function ArtworkComponent() {
+  const [artworks, setArtwork] = useState([]);
+
+  useMemo(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/artworks`)
+      .then(res => {
+        setArtwork(res.data.shuffledArtworks);
+      })
+      .catch(e => console.log(e));
+  }, []);
   return (
     <>
       <Container>
@@ -19,7 +26,7 @@ export default function ArtworkComponent() {
           showIndicators={false}
           itemClass="bg-secondary-800 flex justify-center"
           containerClass="mx-auto w-full rounded-2xl block sm:hidden"
-					infiniteLoop={true}
+          infiniteLoop={true}
         />
         <Carousel
           items={artworks}
@@ -29,7 +36,7 @@ export default function ArtworkComponent() {
           showIndicators={false}
           itemClass="bg-secondary-800 flex justify-center"
           containerClass="mx-auto w-full rounded-2xl hidden sm:block md:hidden"
-					infiniteLoop={true}
+          infiniteLoop={true}
         />
         <Carousel
           items={artworks.slice(0, 12)}
@@ -39,10 +46,9 @@ export default function ArtworkComponent() {
           showIndicators={true}
           itemClass="bg-secondary-800 flex justify-center"
           containerClass="mx-auto w-full rounded-2xl hidden md:block"
-					infiniteLoop={true}
+          infiniteLoop={true}
         />
       </Container>
-      {/* <div className="bg-secondary-800 flex justify-center" /> */}
     </>
   );
 }
@@ -52,10 +58,10 @@ function CarouselItem({ panel }) {
 
   return (
     <div className="max-h[400px] grid w-full grid-cols-1 justify-center px-2 py-2">
-      {loading && <SkeletonBox className="min-h-44 h-full w-full" />}
+      {loading && <SkeletonBox className="h-full min-h-44 w-full" />}
       <img
-        key={panel.art}
-        src={panel.art}
+        key={panel._id}
+        src={panel.imageSrc}
         onLoad={() => setLoading(false)}
         className={`${loading ? "hidden" : ""} bg-secondary-800 h-full w-full rounded-2xl object-cover`}
       />

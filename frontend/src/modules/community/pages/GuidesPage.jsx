@@ -1,26 +1,42 @@
 import { AnimatedOutlet, Container, Divider, TextInput, Title } from "@modules/_shared/App";
-import { getGuides } from "../utils/guidesData";
-import { Link } from "react-router";
-import MoreButton from "../components/MoreButton";
 import {
+  IconEyeFilled,
   IconHeartFilled,
+  IconMessageCircleFilled,
+  IconPlus,
   IconSearch,
   IconStarFilled,
-  IconMessageCircleFilled,
-  IconEyeFilled,
-  IconStarHalfFilled,
-  IconPlus
+  IconStarHalfFilled
 } from "@tabler/icons-react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router";
+import MoreButton from "../components/MoreButton";
+import { getGuides } from "../utils/guidesData";
 
 export default function GuidesPage({ isDiscoverPage }) {
+  const [guides, setGuides] = useState([]);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname.includes("/api/guides/")) return;
+
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/guides`)
+      .then(res => {
+        setGuides(res.data.guide);
+      })
+      .catch(e => console.log(e));
+  });
+
   if (isDiscoverPage)
     return (
       <Container>
         <MoreButton to="guides" className="my-6 ml-auto" />
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-          {getGuides().map((guide, index) => (
-            <GuideCard key={guide.id} guide={guide} index={index} />
+          {guides.map((guide, index) => (
+            <GuideCard isDiscoverPage={isDiscoverPage} key={guide.id} guide={guide} index={index} />
           ))}
         </div>
       </Container>
@@ -32,13 +48,12 @@ export default function GuidesPage({ isDiscoverPage }) {
         <div className="mb-4 flex items-center justify-between">
           <Title>Guides</Title>
 
-          <TextInput rightSection={<IconSearch size={22} />} placeholder="Search Guides..." />
         </div>
         <Divider className="mb-4" />
       </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-        {getGuides().map((guide, index) => (
+        {guides.map((guide, index) => (
           <GuideCard key={guide.id} guide={guide} index={index} isDiscoverPage={isDiscoverPage} />
         ))}
       </div>
@@ -60,7 +75,7 @@ function GuideCard({ guide, index, isDiscoverPage }) {
         index % 4 === 0 ? "sm:col-span-3" : ""
       }`}
     >
-      <Link to={`${isDiscoverPage ? "guides/" : ""}${guide.id}`}>
+      <Link to={`${isDiscoverPage ? "guides/" : ""}${guide._id}`}>
         <div className="mb-2 flex items-start justify-between">
           <h2 className="line-clamp-1 text-xl font-bold">{guide.title}</h2>
           <span className="text-xs text-gray-400">{guide.date}</span>
@@ -70,7 +85,7 @@ function GuideCard({ guide, index, isDiscoverPage }) {
 
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <span className="flex items-center gap-1 text-yellow-400">
+            <span className="text-accent flex items-center gap-1">
               <IconStarFilled size={18} />
               <IconStarFilled size={18} />
               <IconStarFilled size={18} />

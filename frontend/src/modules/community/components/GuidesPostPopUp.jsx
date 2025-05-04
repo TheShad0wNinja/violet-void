@@ -9,22 +9,34 @@ import {
   IconStarFilled,
   IconStarHalfFilled
 } from "@tabler/icons-react";
-import { useNavigate, useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 import { getGuides } from "../utils/guidesData";
+import axios from "axios";
 
 export default function GuidesPostPopUp() {
   const { id } = useParams();
-  const [guide, setGuide] = useState(null);
-  const navigate = useNavigate();
+  const [guides, setGuides] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
-    setGuide(getGuides().find(g => g.id === Number(id)));
+    if (location.pathname.includes("/api/guides/")) return;
+
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/guides`)
+      .then(res => {
+        setGuides(res.data.guide);
+      })
+      .catch(e => console.log(e));
+  });
+
+  useEffect(() => {
+    setGuides(getGuides().find(g => g.id === Number(id)));
   }, [id]);
 
   return (
     <PageModal>
       <div className="bg-secondary-800 relative mx-auto flex max-h-[90vh] w-full max-w-4xl flex-col rounded-xl p-2 shadow-2xl">
-        {!guide ? (
+        {!guides ? (
           <>
             <div className="border-secondary-700 bg-secondary-900 sticky top-0 z-10 flex items-center justify-between border-b p-4">
               <SkeletonBox className="h-7 w-48" />

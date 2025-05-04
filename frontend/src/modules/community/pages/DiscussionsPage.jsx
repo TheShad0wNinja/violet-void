@@ -24,12 +24,12 @@ export default function DiscussionPage({ isDiscoverPage }) {
   const { filters, setFilter } = useUrlFilters({ page: 1 });
 
   useEffect(() => {
-    if (location.pathname.includes("/discussions/"))
+    if (location.pathname.includes("/api/discussions/"))
       return;
 
     axios
       .get(
-        `${import.meta.env.VITE_API_URL}/discussions${isDiscoverPage ? `?limit=${DISCOVER_ITEM_LIMIT}` : `?limit=${ITEM_LIMIT}&page=${filters.page}`}`
+        `${import.meta.env.VITE_BACKEND_URL}/api/discussions${isDiscoverPage ? `?limit=${DISCOVER_ITEM_LIMIT}` : `?limit=${ITEM_LIMIT}&page=${filters.page}`}`
       )
       .then(res => {
         setDiscussion(res.data.discussions);
@@ -52,7 +52,7 @@ export default function DiscussionPage({ isDiscoverPage }) {
   return (
     <>
       <Container>
-        <div className={`bg-background ${isDiscoverPage ? "sticky" : ""} top-0 z-10`}>
+        <div className={`bg-background ${isDiscoverPage ? "spcky" : ""} top-0 z-10`}>
           <div className="p-6">
             <div className="mb-4 flex items-center justify-between">
               {isDiscoverPage ? (
@@ -63,10 +63,7 @@ export default function DiscussionPage({ isDiscoverPage }) {
                 <Title>Discussions</Title>
               )}
 
-              <TextInput
-                placeholder="Search discussions..."
-                rightSection={<IconSearch size={22} />}
-              />
+         
             </div>
 
             <Divider className="mb-4" />
