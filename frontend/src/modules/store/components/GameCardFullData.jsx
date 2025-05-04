@@ -8,7 +8,7 @@ function GameCardFullData({ game }) {
   return (
     <Link to={`/store/product/${game._id}`}>
 
-    <div className="flex flex-col h-[400px] rounded-lg bg-gray-900 text-white md:flex-row">
+    <div className="flex flex-col h-[400px] rounded-lg bg-secondary-900 text-white md:flex-row">
       {/* Image Section */}
       <div className="relative w-full  md:w-1/2">
        
