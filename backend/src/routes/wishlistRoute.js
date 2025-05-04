@@ -6,33 +6,41 @@ const Game = require("../models/Game");
 const router = express.Router();
 
 //get user by id
-router.get("/:id", async (req, res) => {
+router.get("/Games/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id).populate("wishlist");
 
+    const baseGame = user.wishlist.filter(game => game.type === "Base Game");
     if (!user) {
       console.log(req.params);
       return res.status(404).json({ message: "User not found" });
     }
-    // console.log(user);
+    // console.log(baseGame);
 
-    res.json(user.wishlist);
+    res.json(baseGame);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: err.message });
   }
 });
 
-// Assuming you're using Express and Mongoose
-router.get("/filtergames", async (req, res) => {
-    try {
-      const gameIds = req.query.ids; // Expects an array of IDs
-      const games = await Game.find({ _id: { $in: gameIds } });
-      res.json(games);
-    } catch (err) {
-      res.status(500).json({ message: "Failed to fetch games" });
+router.get("/AddOns/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).populate("wishlist");
+
+    const addons = user.wishlist.filter(game => game.type !== "Base Game");
+    if (!user) {
+      console.log(req.params);
+      return res.status(404).json({ message: "User not found" });
     }
-  });
-  
+    // console.log(addons);
+
+    res.json(addons);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: err.message });
+  }
+});
+
 
 module.exports = router;

@@ -8,22 +8,25 @@ import { motion } from "framer-motion";
 import { useParams } from "react-router";
 import axios from "axios";
 
+
 function WishlistPage() {
-  const [Games, setGames] = useState([]);
-  const [dlcs, setDlcs] = useState([]);
+  const [games, setGames] = useState([]);
+  const [addOns, setAddOns] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
   const { id } = useParams();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
-  const { filters, setFilter } = useUrlFilters({ page: 1, pagedlc: 1 });
-
-  const Rankedgames = getRankingGamesList();
-  const allGames = getGamesList();
+  const { filters, setFilter } = useUrlFilters({ 
+    gamesPage: 1, 
+    addOnsPage: 1 
+  });
 
   const itemsPerPage = 8;
-  const [gamesTotalCount, setGamesTotalCount] = useState(0);
   const [gamesPageData, setGamesPageData] = useState([]);
-  const gameDetails =[];
+  const [gamesTotalCount, setGamesTotalCount] = useState(0);
+  const [addOnsPageData, setAddOnsPageData] = useState([]);
+  const [addOnsTotalCount, setAddOnsTotalCount] = useState(0);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -31,49 +34,56 @@ function WishlistPage() {
   useEffect(() => {
     async function fetchWishlist() {
       try {
-        // Fetch the wishlist which contains game IDs
-        const res = await axios.get(`${backendUrl}/api/wishlist/${id}`);
-        const gameIds = res.data || [];
-        console.log("made it ehere");
-
-        if (gameIds.length > 0) {
-          
-          for (const gameId of gameIds) {
-            try {
-                const response = await axios.get(`${backendUrl}/api/games/${gameId}`);
-                gameDetails.push(response.data);
-            } catch (error) {
-                console.error(`Error fetching details for game ID ${gameId}:`, error);
-            }
-        }          // Separate the games into base games and DLCs
-          const baseGamesList = gameDetails.data.filter(game => game.type !== "dlc");
-          const dlcsList = gameDetails.data.filter(game => game.type === "dlc");
-          console.log(baseGamesList);
-          setGames(baseGamesList);
-          setDlcs(dlcsList);
-        }
+        const res = await axios.get(`${backendUrl}/api/wishlist/Games/${id}`);
+        setGames(res.data);
+        setGamesTotalCount(res.data.length);
       } catch (err) {
-        console.error("Failed to load wishlist:", err);
+        console.error("Failed to load wishlist games:", err);
+        setGames([]);
+        setGamesTotalCount(0);
       }
     }
-
     fetchWishlist();
-  }, [id]);
+  }, [id, backendUrl]);
 
- 
-  // Handle pagination for games (mock data)
   useEffect(() => {
-    const page = Number(filters.page ?? 1);
-    const filteredGames = allGames.filter(game =>
+    async function fetchAddons() {
+      try {
+        const res = await axios.get(`${backendUrl}/api/wishlist/AddOns/${id}`);
+        setAddOns(res.data);
+        setAddOnsTotalCount(res.data.length);
+      } catch (err) {
+        console.error("Failed to load wishlist add-ons:", err);
+        setAddOns([]);
+        setAddOnsTotalCount(0);
+      }
+    }
+    fetchAddons();
+  }, [id, backendUrl]);
+
+  // Handle pagination for games
+  useEffect(() => {
+    const page = Number(filters.gamesPage ?? 1);
+    const filteredGames = games.filter(game =>
       game.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
-
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-
     setGamesPageData(filteredGames.slice(startIndex, endIndex));
     setGamesTotalCount(filteredGames.length);
-  }, [filters.page, searchQuery]);
+  }, [filters.gamesPage, searchQuery, games]);
+
+  // Handle pagination for add-ons
+  useEffect(() => {
+    const page = Number(filters.addOnsPage ?? 1);
+    const filteredAddOns = addOns.filter(addOn =>
+      addOn.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    setAddOnsPageData(filteredAddOns.slice(startIndex, endIndex));
+    setAddOnsTotalCount(filteredAddOns.length);
+  }, [filters.addOnsPage, searchQuery, addOns]);
 
   return (
     <Container>
@@ -85,11 +95,14 @@ function WishlistPage() {
             value={searchQuery}
             setValue={setSearchQuery}
             placeholder="Search..."
-            onEnter={() => setFilter("page", 1)}
+            onEnter={() => {
+              setFilter("gamesPage", 1);
+              setFilter("addOnsPage", 1);
+            }}
           />
         </div>
 
-        {/* RANKED GAMES */}
+        {/* RANKED GAMES (keep this section the same) */}
         <motion.div
           initial={{ scale: 0.8, y: 30, opacity: 0 }}
           whileInView={{ scale: 1, y: 0, opacity: 1 }}
@@ -110,7 +123,7 @@ function WishlistPage() {
             }}
             className="flex h-fit w-full flex-wrap justify-start gap-14"
           >
-            {Rankedgames.map((game, index) => (
+            {/* {Rankedgames.map((game, index) => (
               <div
                 key={game.title}
                 className="relative"
@@ -120,36 +133,43 @@ function WishlistPage() {
               >
                 <GameCardRanking game={game} />
               </div>
-            ))}
+            ))} */}
           </motion.div>
         </motion.div>
 
-        {/* GAMES WISHLIST */}
+        {/* GAMES WISHLIST - 8 items per page */}
         <div className="mt-12 w-full">
           <Title>Wishlist Games</Title>
           <div className="mt-5 grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-            {Games.length > 0 ? (
-              Games.map(game => <GameCard game={game} key={game._id || game.title} />)
-            ) : (
-              <p className="col-span-full text-center text-gray-400">No games in wishlist.</p>
-            )}
-          </div>
-        </div>
-        {/* DLC WISHLIST  */}
-
-        <div className="mt-12 w-full">
-          <Title>Wishlist Dlc</Title>
-          <div className="mt-5 grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-            {dlcs.map(game => (
-              <GameCard game={game} key={game.title} />
+            {gamesPageData.map(game => (
+              <GameCard key={game.id} game={game} />
             ))}
           </div>
           <Pagination
             totalItems={gamesTotalCount}
             itemsPerPage={itemsPerPage}
-            onPageChange={page => setFilter("page", page)}
-            currentPage={Number(filters.page)}
+            onPageChange={page => setFilter("gamesPage", page)}
+            currentPage={Number(filters.gamesPage)}
             maxVisiblePages={7}
+            className="mt-4"
+          />
+        </div>
+        
+        {/* ADD-ONS WISHLIST - 8 items per page */}
+        <div className="mt-12 w-full">
+          <Title>Wishlist Add-Ons</Title>
+          <div className="mt-5 grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+            {addOnsPageData.map(addOn => (
+              <GameCard key={addOn.id} game={addOn} />
+            ))}
+          </div>
+          <Pagination
+            totalItems={addOnsTotalCount}
+            itemsPerPage={itemsPerPage}
+            onPageChange={page => setFilter("addOnsPage", page)}
+            currentPage={Number(filters.addOnsPage)}
+            maxVisiblePages={7}
+            className="mt-4"
           />
         </div>
       </div>
@@ -158,3 +178,5 @@ function WishlistPage() {
 }
 
 export default WishlistPage;
+
+
