@@ -5,16 +5,8 @@ function GameRequirements({ requirements }) {
   const { minimum, recommended } = requirements;
 
   return (
-     <motion.div
-            initial={{ scale: 0.8, y: 30, opacity: 0 }}
-            whileInView={{ scale: 1, y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-
-            transition={{
-              duration: 1.5,
-              ease: [0.16, 1, 0.3, 1]
-              
-            }} className="mt-8 bg-secondary-900 w-full rounded-2xl p-4">
+     <div
+           className="mt-8 bg-secondary-900 w-full rounded-2xl p-4">
       <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-8 my-8">
         {/* Minimum Requirements */}
         <div className="ml-4">
@@ -42,7 +34,7 @@ function GameRequirements({ requirements }) {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 

@@ -86,69 +86,39 @@ useEffect(() => {
         <div className="from-accent via-accent to-background h-[1px] w-[90] bg-gradient-to-r"></div>
         {/*faded line*/}
         <div className="sm:flex-n items-start gap-4 md:flex">
-          <motion.div
-            initial={{ scale: 0.8, y: 30, opacity: 0 }}
-            whileInView={{ scale: 1, y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 1.5,
-              ease: [0.16, 1, 0.3, 1]
-            }}
+          <div
+           
             className="md:flex-3/4"
           >
             <PhotoCollage images={gameData.images} />
             <div>
-              <motion.h1
-                initial={{ scale: 0.8, y: 30, opacity: 0 }}
-                viewport={{ once: true }}
-                whileInView={{ scale: 1, y: 0, opacity: 1 }}
-                transition={{
-                  duration: 1.5,
-                  ease: [0.16, 1, 0.3, 1]
-                }}
+              <h1
+                
                 className="mt-4"
               >
                 {gameData.description}
-              </motion.h1>
+              </h1>
               <GenreHolder tags={gameData.categories} features={gameData.features} />
-              <motion.h1
-                initial={{ scale: 0.8, y: 30, opacity: 0 }}
-                whileInView={{ scale: 1, y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 1.5,
-                  ease: [0.16, 1, 0.3, 1]
-                }}
+              <h1
+               
                 className="mt-5 w-fit text-2xl font-bold"
               >
                 More about {gameData.name}
-              </motion.h1>
-              <motion.h1
-                initial={{ scale: 0.8, y: 30, opacity: 0 }}
-                whileInView={{ scale: 1, y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 1.5,
-                  ease: [0.16, 1, 0.3, 1]
-                }}
+              </h1>
+              <h1
+                
                 className="text-text-dark m-2 w-fit"
               >
                 {gameData.detailedDescription}
-              </motion.h1>
-              <GameRating rating={5} /> {/*change it to pull from reviews section */}
+              </h1>
+              <GameRating gameName={gameData.title} rating={5} /> {/*change it to pull from reviews section */}
             </div>
-          </motion.div>
+          </div>
 
           <PurchaseDetails game={gameData} />
         </div>
-        <motion.div
-          initial={{ scale: 0.8, y: 30, opacity: 0 }}
-          whileInView={{ scale: 1, y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 1.5,
-            ease: [0.16, 1, 0.3, 1]
-          }}
+        <div
+       
           className="my-4"
         >
           <h1 className="mt-5 text-2xl font-bold">System requirements</h1>
@@ -161,7 +131,7 @@ useEffect(() => {
             detailsOn
             games={gameData.relatedGames.map((rel) => rel.game)}
             />
-        </motion.div>
+        </div>
       </div>
     </Container>
   );
