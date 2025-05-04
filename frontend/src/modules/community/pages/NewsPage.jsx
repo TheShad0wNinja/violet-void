@@ -40,7 +40,6 @@ export default function NewsPage({ isDiscoverPage }) {
         <div className="mb-4 flex items-center justify-between">
           <Title>News</Title>
 
-          <TextInput rightSection={<IconSearch size={22} />} placeholder="Search News...." />
         </div>
         <Divider className="mb-4" />
 
@@ -58,7 +57,7 @@ export default function NewsPage({ isDiscoverPage }) {
 function NewsCard({ news, isDiscoverPage }) {
   return (
     <Link
-      to={`${isDiscoverPage ? "news/" : ""}${news.id}`}
+      to={`${isDiscoverPage ? "news/" : ""}${news._id}`}
       className={`bg-secondary-900 hover:bg-secondary-800 rounded-2xl p-6 transition-colors duration-200`}
     >
       <div className="cursor-pointer">
