@@ -5,9 +5,58 @@ const Game = require("../models/Game");
 const category = require("../models/Category");
 const router = express.Router();
 
-//get game by id
+const Review = require('../models/Review');
+
+
+router.get('/topRanked', async (req, res) => {
+  try {
+    // Step 1: Get the list of all games from the "games" collection
+    const allGames = await Game.find();
+
+    // Step 2: Fetch the top-ranked games based on reviews
+    const topGames = await Review.aggregate([
+      {
+        $group: {
+          _id: "$game", // Group by game ID
+          averageRating: { $avg: "$rating" }, // Calculate the average rating
+          totalReviews: { $sum: 1 } // Count the number of reviews
+        }
+      },
+      { 
+        $sort: { averageRating: -1 } // Sort by average rating in descending order
+      },
+      { 
+        $limit: 5 // Limit to top 5 games
+      },
+    ]);
+
+    // Step 3: Match top games with game data
+    const topRankedGames = topGames.map((gameData) => {
+      // Find the matching game from the allGames array by matching game ID
+      const game = allGames.find((game) => game._id.toString() === gameData._id.toString());
+
+      if (game) {
+        return {
+          gameId: game._id,
+          gameTitle: game.title,
+          averageRating: gameData.averageRating,
+          totalReviews: gameData.totalReviews,
+          gameDetails: game // Include full game details
+        };
+      }
+    }).filter(Boolean); // Remove any undefined entries if no match is found
+
+    console.log('Top ranked games: ', topRankedGames); // Log the result for debugging
+    res.status(200).json(topRankedGames); // Return the top-ranked games with full details
+  } catch (err) {
+    console.error(err); // Log any errors
+    res.status(500).json({ error: 'Server error' }); // Return a server error message
+  }
+});
+
+// get game by id
 router.get("/:id", async (req, res) => {
-  console.log("pepeppe", req.params);
+  console.log( req.params);
   try {
     const gamedata = await Game.findById(req.params.id)
       .populate("categories")
@@ -43,4 +92,18 @@ router.post("/relatedgames", async (req, res) => {
   }
 });
 
+router.post("/allGames", async (req, res) => {
+  try {
+    const { ids } = req.body;
+    const games = await Game.find();
+    res.json(games);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch games" });
+  }
+});
+
+
+
 module.exports = router;
+
+
