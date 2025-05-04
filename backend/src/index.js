@@ -12,11 +12,11 @@ const newsRouter = require("@routes/newsRoute");
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use("/discussions", discussionRouter);
-app.use("/artworks", artworkRouter);
-app.use("/screenshots", screenshotRouter);
-app.use("/guides", guidesRouter);
-app.use("/news", newsRouter);
+app.use("/api/discussions", discussionRouter);
+app.use("/api/artworks", artworkRouter);
+app.use("/api/screenshots", screenshotRouter);
+app.use("/api/guides", guidesRouter);
+app.use("/api/news", newsRouter);
 
 mongoose
   .connect(process.env.MONGO_URI || "")

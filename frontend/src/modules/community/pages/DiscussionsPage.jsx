@@ -24,12 +24,12 @@ export default function DiscussionPage({ isDiscoverPage }) {
   const { filters, setFilter } = useUrlFilters({ page: 1 });
 
   useEffect(() => {
-    if (location.pathname.includes("/discussions/"))
+    if (location.pathname.includes("/api/discussions/"))
       return;
 
     axios
       .get(
-        `${import.meta.env.VITE_BACKEND_URL}/discussions${isDiscoverPage ? `?limit=${DISCOVER_ITEM_LIMIT}` : `?limit=${ITEM_LIMIT}&page=${filters.page}`}`
+        `${import.meta.env.VITE_BACKEND_URL}/api/discussions${isDiscoverPage ? `?limit=${DISCOVER_ITEM_LIMIT}` : `?limit=${ITEM_LIMIT}&page=${filters.page}`}`
       )
       .then(res => {
         setDiscussion(res.data.discussions);

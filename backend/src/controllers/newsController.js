@@ -1,4 +1,4 @@
-const { news } = require("@model/index");
+const { News } = require("@model/index");
 const { getPaginationConstraints } = require("@utils/pagination");
 
 const DEFAULT_PAGE_LIMIT = 5;

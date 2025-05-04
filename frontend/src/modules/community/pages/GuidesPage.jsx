@@ -19,10 +19,10 @@ export default function GuidesPage({ isDiscoverPage }) {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname.includes("/guides/")) return;
+    if (location.pathname.includes("/api/guides/")) return;
 
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/guides`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/guides`)
       .then(res => {
         setGuides(res.data.guide);
       })

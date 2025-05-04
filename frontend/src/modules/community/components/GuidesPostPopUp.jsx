@@ -19,10 +19,10 @@ export default function GuidesPostPopUp() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname.includes("/guides/")) return;
+    if (location.pathname.includes("/api/guides/")) return;
 
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/guides`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/guides`)
       .then(res => {
         setGuides(res.data.guide);
       })
@@ -36,7 +36,7 @@ export default function GuidesPostPopUp() {
   return (
     <PageModal>
       <div className="bg-secondary-800 relative mx-auto flex max-h-[90vh] w-full max-w-4xl flex-col rounded-xl p-2 shadow-2xl">
-        {!guide ? (
+        {!guides ? (
           <>
             <div className="border-secondary-700 bg-secondary-900 sticky top-0 z-10 flex items-center justify-between border-b p-4">
               <SkeletonBox className="h-7 w-48" />
