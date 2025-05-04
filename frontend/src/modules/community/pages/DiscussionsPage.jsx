@@ -63,10 +63,7 @@ export default function DiscussionPage({ isDiscoverPage }) {
                 <Title>Discussions</Title>
               )}
 
-              <TextInput
-                placeholder="Search discussions..."
-                rightSection={<IconSearch size={22} />}
-              />
+         
             </div>
 
             <Divider className="mb-4" />

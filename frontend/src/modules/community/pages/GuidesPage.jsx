@@ -48,7 +48,6 @@ export default function GuidesPage({ isDiscoverPage }) {
         <div className="mb-4 flex items-center justify-between">
           <Title>Guides</Title>
 
-          <TextInput rightSection={<IconSearch size={22} />} placeholder="Search Guides..." />
         </div>
         <Divider className="mb-4" />
       </div>

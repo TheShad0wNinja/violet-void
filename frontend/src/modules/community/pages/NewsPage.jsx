@@ -40,7 +40,6 @@ export default function NewsPage({ isDiscoverPage }) {
         <div className="mb-4 flex items-center justify-between">
           <Title>News</Title>
 
-          <TextInput rightSection={<IconSearch size={22} />} placeholder="Search News...." />
         </div>
         <Divider className="mb-4" />
 
