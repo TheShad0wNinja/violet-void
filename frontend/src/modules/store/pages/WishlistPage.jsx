@@ -5,39 +5,75 @@ import { GameCard, GameCardRanking } from "../App";
 import useUrlFilters from "../hooks/useUrlFilters";
 import { IconSearch } from "@tabler/icons-react";
 import { motion } from "framer-motion";
+import { useParams } from "react-router";
+import axios from "axios";
 
-function mockPagination(page, limit = 8) {
-  const games = getGamesList();
-
-  const pagedGameList = games.slice(page * limit, page * limit + limit);
-
-  return { totalGameCount: games.length, gameList: pagedGameList };
-}
 function WishlistPage() {
+  const [Games, setGames] = useState([]);
+  const [dlcs, setDlcs] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const { id } = useParams();
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const { filters, setFilter } = useUrlFilters({ page: 1, pagedlc: 1 });
+
+  const Rankedgames = getRankingGamesList();
+  const allGames = getGamesList();
+
+  const itemsPerPage = 8;
+  const [gamesTotalCount, setGamesTotalCount] = useState(0);
+  const [gamesPageData, setGamesPageData] = useState([]);
+  const gameDetails =[];
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const [games, setGames] = useState([]);
-  const [dlcs, setDlcs] = useState([]);
-
-  const Rankedgames = getRankingGamesList();
-  const [searchQuery, setSearchQuery] = useState("");
-  const { filters, setFilter } = useUrlFilters({ page: 1, pagedlc: 1 });
-  const [gamesTotalCount, setGamesTotalCount] = useState(20);
-  const [dlcsTotalCount, setDlcsTotalCount] = useState(20);
-
   useEffect(() => {
-    const { totalGameCount, gameList } = mockPagination(Number(filters.page ?? 1) - 1);
-    setGamesTotalCount(totalGameCount);
-    setGames(gameList);
-  }, [filters.page]);
+    async function fetchWishlist() {
+      try {
+        // Fetch the wishlist which contains game IDs
+        const res = await axios.get(`${backendUrl}/api/wishlist/${id}`);
+        const gameIds = res.data || [];
+        console.log("made it ehere");
 
+        if (gameIds.length > 0) {
+          
+          for (const gameId of gameIds) {
+            try {
+                const response = await axios.get(`${backendUrl}/api/games/${gameId}`);
+                gameDetails.push(response.data);
+            } catch (error) {
+                console.error(`Error fetching details for game ID ${gameId}:`, error);
+            }
+        }          // Separate the games into base games and DLCs
+          const baseGamesList = gameDetails.data.filter(game => game.type !== "dlc");
+          const dlcsList = gameDetails.data.filter(game => game.type === "dlc");
+          console.log(baseGamesList);
+          setGames(baseGamesList);
+          setDlcs(dlcsList);
+        }
+      } catch (err) {
+        console.error("Failed to load wishlist:", err);
+      }
+    }
+
+    fetchWishlist();
+  }, [id]);
+
+ 
+  // Handle pagination for games (mock data)
   useEffect(() => {
-    const { totalGameCount, gameList } = mockPagination(Number(filters.pagedlc ?? 1) - 1);
-    setDlcsTotalCount(totalGameCount);
-    setDlcs(gameList);
-  }, [filters.pagedlc]);
+    const page = Number(filters.page ?? 1);
+    const filteredGames = allGames.filter(game =>
+      game.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+
+    setGamesPageData(filteredGames.slice(startIndex, endIndex));
+    setGamesTotalCount(filteredGames.length);
+  }, [filters.page, searchQuery]);
 
   return (
     <Container>
@@ -47,11 +83,13 @@ function WishlistPage() {
           <TextInput
             rightSection={<IconSearch size={20} />}
             value={searchQuery}
-            setValue={val => setSearchQuery(val)}
+            setValue={setSearchQuery}
             placeholder="Search..."
-            onEnter={() => setFilter("search", searchQuery)}
+            onEnter={() => setFilter("page", 1)}
           />
         </div>
+
+        {/* RANKED GAMES */}
         <motion.div
           initial={{ scale: 0.8, y: 30, opacity: 0 }}
           whileInView={{ scale: 1, y: 0, opacity: 1 }}
@@ -70,14 +108,14 @@ function WishlistPage() {
               duration: 1.8,
               ease: [0.16, 1, 0.3, 1]
             }}
-            className="flex h-fit w-full flex-wrap justify-center gap-8"
+            className="flex h-fit w-full flex-wrap justify-start gap-14"
           >
             {Rankedgames.map((game, index) => (
               <div
                 key={game.title}
                 className="relative"
                 style={{
-                  marginTop: game.ranking > 3 ? "80px" : `${(index % 3) * 40}px` // Cascading effect for Rank > 3
+                  marginTop: game.ranking > 3 ? "80px" : `${(index % 3) * 40}px`
                 }}
               >
                 <GameCardRanking game={game} />
@@ -85,47 +123,32 @@ function WishlistPage() {
             ))}
           </motion.div>
         </motion.div>
-        <div className="mt-4">
-          <Title>Games</Title>
 
-          <motion.div
-            initial={{ scale: 0.8, y: 30, opacity: 0 }}
-            whileInView={{ scale: 1, y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 1.2,
-              ease: [0.16, 1, 0.3, 1]
-            }}
-            className="mt-5 grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
-          >
-            {games.length > 0 && games.map(game => <GameCard game={game} key={game.title} />)}
-          </motion.div>
+        {/* GAMES WISHLIST */}
+        <div className="mt-12 w-full">
+          <Title>Wishlist Games</Title>
+          <div className="mt-5 grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+            {Games.length > 0 ? (
+              Games.map(game => <GameCard game={game} key={game._id || game.title} />)
+            ) : (
+              <p className="col-span-full text-center text-gray-400">No games in wishlist.</p>
+            )}
+          </div>
+        </div>
+        {/* DLC WISHLIST  */}
+
+        <div className="mt-12 w-full">
+          <Title>Wishlist Dlc</Title>
+          <div className="mt-5 grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+            {dlcs.map(game => (
+              <GameCard game={game} key={game.title} />
+            ))}
+          </div>
           <Pagination
             totalItems={gamesTotalCount}
-            itemsPerPage={8}
+            itemsPerPage={itemsPerPage}
             onPageChange={page => setFilter("page", page)}
-            currentPage={Number(filters["page"])}
-            maxVisiblePages={7}
-          />
-
-          <Title>Add ons</Title>
-          <motion.div
-            initial={{ scale: 0.8, y: 30, opacity: 0 }}
-            whileInView={{ scale: 1, y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 1.2,
-              ease: [0.16, 1, 0.3, 1]
-            }}
-            className="grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
-          >
-            {dlcs.length > 0 && dlcs.map(game => <GameCard game={game} key={game.title} />)}
-          </motion.div>
-          <Pagination
-            totalItems={dlcsTotalCount}
-            itemsPerPage={8}
-            onPageChange={pagedlc => setFilter("pagedlc", pagedlc)}
-            currentPage={Number(filters["pagedlc"])}
+            currentPage={Number(filters.page)}
             maxVisiblePages={7}
           />
         </div>

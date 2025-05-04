@@ -21,7 +21,7 @@ router.get("/:id", async (req, res) => {
       })
       .populate("similarGames");
 
-    console.log(gamedata);
+    // console.log(gamedata);
 
     if (!gamedata) {
       console.log(req.params);

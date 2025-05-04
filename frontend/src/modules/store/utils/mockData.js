@@ -110,15 +110,7 @@ const GameRanking = [
     title: "God of War",
     price: 49.99
   },
-  {
-    coverImageUrl: "https://upload.wikimedia.org/wikipedia/en/2/22/Death_Stranding.jpg",
-    bannerImageUrl: "https://cdn2.steamgriddb.com/hero_thumb/c81e728d9d4c2f636f067f89cc14862c.jpg",
-    type: "Base Game",
-    ranking: "4",
 
-    title: "Death Stranding",
-    price: 34.99
-  }
 ];
 
 const gamesPageData = [
