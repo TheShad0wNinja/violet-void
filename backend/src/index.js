@@ -14,7 +14,7 @@ app.use(cors({
     if(!origin) return callback(null, true);
     
     // Allow any origin that contains localhost or your domain
-    if(origin.includes('localhost') || origin.includes('yourdomain.com')) {
+    if(origin.includes('localhost')) {
       return callback(null, true);
     }
     

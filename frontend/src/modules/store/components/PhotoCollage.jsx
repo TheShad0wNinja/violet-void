@@ -8,9 +8,8 @@ function PhotoCollage({images}) {
   // const { previews } = images;  
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
- const previews = images.previews.map(p =>
-  backendUrl + p
- )
+ const previews = images.previews;
+
   const handleChangeImage = (index) => {
     setFade(true);
     setTimeout(() => {

@@ -1,5 +1,6 @@
 import React from "react";
 import { WishlistButton, CartButton, useCart } from "../App";
+import { DateTime } from "luxon";
 
 function PurchaseDetails({ game }) {
   const { addCartItem, cartItems } = useCart();
@@ -27,7 +28,9 @@ function PurchaseDetails({ game }) {
             <h1 className="text-md text-text-dark w-auto text-right">{game.publisher}</h1>
 
             <h1 className="text-md text-text-dark w-auto">Release Date</h1>
-            <h1 className="text-md text-text-dark w-auto text-right">{game.releaseDate}</h1>
+            <h1 className="text-md text-text-dark w-auto text-right">
+              {DateTime.fromISO(game.releaseDate).toLocaleString(DateTime.DATE_MED)}
+            </h1>
           </div>
         </div>
 

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function GameHolderBox({ gameID, gameName, gamePrice, gameDetails, gameImage, smallerHeight }) {
   
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
-  const coverImage = `${backendUrl}${gameImage?.banner}`;
+  const coverImage = `${gameImage?.banner}`;
 
   
   return (
