@@ -36,7 +36,7 @@ export default function GuidesPage({ isDiscoverPage }) {
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           {guides.map((guide, index) => (
-            <GuideCard key={guide.id} guide={guide} index={index} />
+            <GuideCard key={guide._id} guide={guide} index={index} />
           ))}
         </div>
       </Container>
@@ -54,7 +54,7 @@ export default function GuidesPage({ isDiscoverPage }) {
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
         {guides.map((guide, index) => (
-          <GuideCard key={guide.id} guide={guide} index={index} isDiscoverPage={isDiscoverPage} />
+          <GuideCard key={guide._id} guide={guide} index={index} isDiscoverPage={isDiscoverPage} />
         ))}
       </div>
       <Link
@@ -75,7 +75,7 @@ function GuideCard({ guide, index, isDiscoverPage }) {
         index % 4 === 0 ? "sm:col-span-3" : ""
       }`}
     >
-      <Link to={`${isDiscoverPage ? "guides/" : ""}${guide.id}`}>
+      <Link to={`${isDiscoverPage ? "guides/" : ""}${guide._id}`}>
         <div className="mb-2 flex items-start justify-between">
           <h2 className="line-clamp-1 text-xl font-bold">{guide.title}</h2>
           <span className="text-xs text-gray-400">{guide.date}</span>

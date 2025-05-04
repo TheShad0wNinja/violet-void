@@ -15,8 +15,9 @@ import axios from "axios";
 
 export default function GuidesPostPopUp() {
   const { id } = useParams();
-  const [guides, setGuides] = useState([]);
+  const [guide, setGuides] = useState([]);
   const location = useLocation();
+  
 
   useEffect(() => {
     if (location.pathname.includes("/api/guides/")) return;
@@ -30,13 +31,13 @@ export default function GuidesPostPopUp() {
   });
 
   useEffect(() => {
-    setGuides(getGuides().find(g => g.id === Number(id)));
+    setGuides(guide.find(g => g._id === Number(id)));
   }, [id]);
 
   return (
     <PageModal>
       <div className="bg-secondary-800 relative mx-auto flex max-h-[90vh] w-full max-w-4xl flex-col rounded-xl p-2 shadow-2xl">
-        {!guides ? (
+        {!guide ? (
           <>
             <div className="border-secondary-700 bg-secondary-900 sticky top-0 z-10 flex items-center justify-between border-b p-4">
               <SkeletonBox className="h-7 w-48" />
@@ -143,7 +144,7 @@ export default function GuidesPostPopUp() {
                 <h3 className="text-accent-400 mb-4 text-lg font-medium">{guide.subtitle}</h3>
                 <p className="mb-6 whitespace-pre-line">{guide.content}</p>
 
-                {guide.sections.map((section, i) => (
+                {guide.sections?.map((section, i) => (
                   <div key={`section_${i}`} className="mb-8">
                     <h4 className="border-secondary-700 mb-3 border-b pb-2 text-lg font-semibold">
                       {section.heading}
