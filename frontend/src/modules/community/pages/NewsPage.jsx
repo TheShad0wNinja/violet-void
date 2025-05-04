@@ -11,12 +11,12 @@ export default function NewsPage({ isDiscoverPage }) {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname.includes("/api/guides/")) return;
+    if (location.pathname.includes("/api/news/")) return;
 
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/api/guides`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/news`)
       .then(res => {
-        setNews(res.data.guide);
+        setNews(res.data.news);
       })
       .catch(e => console.log(e));
   });
