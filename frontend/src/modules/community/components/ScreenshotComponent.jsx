@@ -1,11 +1,20 @@
-import { Carousel, Container, Divider, Title } from "@modules/_shared/App";
+import { Carousel, Container } from "@modules/_shared/App";
 import { MoreButton } from "@modules/community/App";
-import { getShuffledScreenshotData } from "../utils/mockScreenshotsData";
-import { Link } from "react-router";
-
-const screenshots = getShuffledScreenshotData();
+import { useMemo, useState } from "react";
+import axios from "axios";
 
 export default function ScreenshotComponent() {
+  const [screenshots, setScreenshot] = useState([]);
+
+  useMemo(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/screenshots`)
+      .then(res => {
+        setScreenshot(res.data.screenshots);
+      })
+      .catch(e => console.log(e));
+  }, []);
+
   const desktopView = [];
   for (let i = 0; i < screenshots.length; i += 2) {
     desktopView.push(screenshots.slice(i, i + 2));
@@ -14,7 +23,7 @@ export default function ScreenshotComponent() {
   return (
     <>
       <Container>
-				<MoreButton to="screenshots" className="my-6 ml-auto" />
+        <MoreButton to="screenshots" className="my-6 ml-auto" />
         <Carousel
           items={screenshots}
           renderItem={panel => <CarouselItem post={panel} />}
@@ -39,7 +48,7 @@ function CarouselItem({ post }) {
       <img src={post.imageSrc} className="h-48 w-full object-cover" />
       <div className="bg-secondary p-4">
         <h2 className="mb-2 text-center text-xl font-semibold">{post.title}</h2>
-        <p className="text-accent-200 mb-2">{post.author}</p>
+        <p className="text-accent-200 mb-2">{post.author.displayName}</p>
         <p className="line-clamp-3 pb-5">{post.description}</p>
       </div>
     </div>
@@ -54,21 +63,10 @@ function DesktopCarouselItem({ group }) {
           <img src={post.imageSrc} className="h-90 w-full object-contain" />
           <div className="bg-secondary/90 absolute bottom-0 left-0 max-w-1/2 rounded-tr-4xl p-4">
             <h2 className="mb-2 text-xl font-semibold">{post.title}</h2>
-            <p className="text-accent">{post.author}</p>
+            <p className="text-accent">{post.author.displayName}</p>
           </div>
         </div>
       ))}
-      {/* <div className="space-y-4"> */}
-      {/*   {group.slice(2, 4).map(post => ( */}
-      {/*     <div className="bg-background-900 relative overflow-hidden rounded-xl"> */}
-      {/*       <img src={post.imageSrc} className="h-90 w-full object-contain" /> */}
-      {/*       <div className="bg-secondary/90 absolute bottom-0 left-0 max-w-1/2 rounded-tr-4xl p-4"> */}
-      {/*         <h2 className="mb-2 text-xl font-semibold">{post.title}</h2> */}
-      {/*         <p className="text-accent">{post.author}</p> */}
-      {/*       </div> */}
-      {/*     </div> */}
-      {/*   ))} */}
-      {/* </div> */}
     </div>
   );
 }
