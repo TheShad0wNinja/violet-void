@@ -80,7 +80,7 @@ router.get('/topRanked', async (req, res) => {
       }
     }).filter(Boolean); 
 
-    // console.log('Top ranked games: ', topRankedGames); 
+    console.log('Top ranked games: ', topRankedGames); 
     res.status(200).json(topRankedGames); 
   } catch (err) {
     console.error(err); 

@@ -44,13 +44,13 @@ function GameCardFullData({ game }) {
           <span>{game.rating.toFixed(1)}</span>
         </div>
         
-        {/* <div className="mb-4 flex flex-wrap gap-2">
-          {game.tags.map((tag, index) => (
+        <div className="mb-4 flex flex-wrap gap-2">
+          {game.categories.map((tag, index) => (
             <span key={index} className="rounded bg-gray-700 px-3 py-1 text-sm">
               {tag}
             </span>
           ))}
-        </div> */}
+        </div>
        
         
         

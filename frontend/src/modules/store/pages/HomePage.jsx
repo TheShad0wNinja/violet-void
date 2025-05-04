@@ -19,7 +19,6 @@ import axios from "axios";
 const games = getGamesPageData();
 const imagesgames = getGamesList();
 
-const artworks = getShuffledArtworks();
 
 function Home() {
   const [gameData, setGameData] = useState(null);
@@ -48,6 +47,8 @@ function Home() {
           images: game.gameDetails?.images || { cover: '/default-cover.jpg' },
           description: game.gameDetails?.description || '',
           ageRating: game.gameDetails?.ageRating || '',
+          categories: game.gameDetails?.categories || '',
+
           developer: game.gameDetails?.developer || '',
           releaseDate: game.gameDetails?.releaseDate || '',
 

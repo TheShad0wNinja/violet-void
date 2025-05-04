@@ -1,5 +1,6 @@
 import React from "react";
 import { getGameCategories } from "../utils/mockData";
+import { Link } from "react-router";
 
 const CategoriesGrid = () => {
   const categories = getGameCategories(); // Get actual categories data
@@ -7,6 +8,7 @@ const CategoriesGrid = () => {
   return (
     <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-3 md:gap-4">
       {categories.map((category) => (
+        <Link to="">
         <div
           key={category.id}
           className="group relative h-20 w-full cursor-pointer overflow-hidden rounded-xl transition-all duration-300 hover:scale-[1.02] md:h-25"
@@ -31,6 +33,7 @@ const CategoriesGrid = () => {
             </span>
           </div>
         </div>
+        </Link>
       ))}
     </div>
   );
