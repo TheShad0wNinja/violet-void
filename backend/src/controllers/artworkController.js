@@ -10,9 +10,7 @@ async function getArtwork(req, res) {
   const id = req.params.id;
   if (!id) return res.status(400).json({ message: "Invalid body" });
   try {
-    const artwork = await Artwork.findById(id);
-    await User.populate(artwork, { path: "artist" });
-    await Game.populate(artwork, { path: "game" });
+    const artwork = await Artwork.findById(id).populate("artist", "game");
     res.status(200).json(artwork);
   } catch (e) {
     res.status(400).json({ message: e.message });
