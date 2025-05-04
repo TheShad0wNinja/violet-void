@@ -88,8 +88,7 @@ function WishlistPage() {
   return (
     <Container>
       <div className="flex flex-col items-center p-5">
-        <div className="flex w-full justify-between p-2">
-          <Title>Wishlist</Title>
+        <div className="flex w-full justify-end p-2">
           <TextInput
             rightSection={<IconSearch size={20} />}
             value={searchQuery}
@@ -102,43 +101,9 @@ function WishlistPage() {
           />
         </div>
 
-        {/* RANKED GAMES (keep this section the same) */}
-        <motion.div
-          initial={{ scale: 0.8, y: 30, opacity: 0 }}
-          whileInView={{ scale: 1, y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 1.2,
-            ease: [0.16, 1, 0.3, 1]
-          }}
-          className="bg-secondary-900 mt-8 flex h-fit w-full justify-center rounded-2xl p-10"
-        >
-          <motion.div
-            initial={{ y: 150, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 1.8,
-              ease: [0.16, 1, 0.3, 1]
-            }}
-            className="flex h-fit w-full flex-wrap justify-start gap-14"
-          >
-            {/* {Rankedgames.map((game, index) => (
-              <div
-                key={game.title}
-                className="relative"
-                style={{
-                  marginTop: game.ranking > 3 ? "80px" : `${(index % 3) * 40}px`
-                }}
-              >
-                <GameCardRanking game={game} />
-              </div>
-            ))} */}
-          </motion.div>
-        </motion.div>
 
         {/* GAMES WISHLIST - 8 items per page */}
-        <div className="mt-12 w-full">
+        <div className="mt-2 w-full">
           <Title>Wishlist Games</Title>
           <div className="mt-5 grid grid-cols-2 items-start justify-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
             {gamesPageData.map(game => (

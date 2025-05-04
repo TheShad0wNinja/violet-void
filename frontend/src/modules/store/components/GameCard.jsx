@@ -4,7 +4,7 @@ export default function GameCard({ game, withoutPrice = false, withoutType = fal
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const coverimg = backendUrl + game.images.cover;
   return (
-    <Link to="">
+    <Link to={`/store/product/${game._id}`}>
     <div onMouseOver={onMouseOver} className="flex w-full cursor-pointer flex-col items-center justify-center transition-transform hover:brightness-75">
       <div className="relative h-[300px] w-full overflow-hidden rounded-xl sm:h-[280px] xl:h-[300px]">
         <img
