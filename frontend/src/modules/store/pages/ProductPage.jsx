@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Container from "@modules/_shared/components/Container";
 import { GamesHolder } from "@modules/_shared/App";
 import {
@@ -13,11 +13,14 @@ import {
 import axios from "axios";
 import { motion } from "framer-motion";
 import { IconStarFilled } from "@tabler/icons-react";
+import { useNavigate } from 'react-router-dom';
 
 function ProductPage() {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const { id } = useParams();
+  const [loading, setLoading] = useState(true); 
   const [gameData, setGameData] = useState(null);
+  const navigate = useNavigate(); 
 
   const [relatedGames, setRelatedGames] = useState([]);
 
@@ -28,7 +31,7 @@ useEffect(() => {
       const response = await axios.post(`${backendUrl}/api/games/multiple`, {
         ids, // Pass the array of game IDs to the backend
       });
-      setRelatedGames(response.data); // Assuming response.data contains the full game objects
+      setRelatedGames(response.data); 
     } catch (error) {
       console.error("Failed to fetch related games", error);
     }
@@ -43,20 +46,32 @@ useEffect(() => {
     
     async function fetchGameData() {
       try {
+        setLoading(true);
         setGameData(null);
+
         const res = await axios.get(`${backendUrl}/api/games/${id}`);
         setGameData(res.data);
+        setLoading(false);
+
       } catch (err) {
         console.error(err);
+        setLoading(false);
+
       }
     }
     fetchGameData()
   },[id]);
 
-  if (!gameData) {
-    return <h1>Game not found</h1>; // switch to 404 page later
-  }
+  useEffect(() => {
+    if (!gameData && !loading) {
+      navigate("*"); // Navigate to 404 route
+    }
+  }, [gameData,navigate,loading]);
 
+
+  if (!gameData) {// need to set inital value otherwise data shows as undefined and doesnt work
+    return <div>Game not found!</div>; 
+  }
 
   return (
     <Container>
