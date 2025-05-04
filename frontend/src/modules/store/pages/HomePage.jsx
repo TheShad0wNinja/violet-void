@@ -24,6 +24,7 @@ const artworks = getShuffledArtworks();
 function Home() {
   const [gameData, setGameData] = useState(null);
   const [topGames, setTopGames] = useState([]);
+  const [latestGames, setLatestGames] = useState([]);
 
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -58,6 +59,20 @@ function Home() {
     }
     fetchTopData();
   }, []);
+
+  useEffect(() => {
+    const fetchLatestGames = async () => {
+      try {
+        const response = await fetch(`${backendUrl}/api/games/latestGames`);
+        const data = await response.json();
+        setLatestGames(data);
+      } catch (err) {
+        console.error('Error fetching latest games:', err);
+      }
+    };
+
+    fetchLatestGames();
+  }, []);
   return (
     <>
       <Container>
@@ -72,7 +87,7 @@ function Home() {
 					<div className="hidden md:block">
 						<GamesHolder Sectionname="Trending games" games={topGames} />
 					</div>
-          {/* <GamesHolder Sectionname="Lastest Games" type2games games={games} smallerHeight />
+          <GamesHolder Sectionname="Lastest Games" type2games games={latestGames} smallerHeight />
           <div className="mt-5 mb-3 flex flex-col gap-2">
             <h1 className="text-2xl font-bold">Browse by genre</h1>
             <CategoriesGrid />
@@ -81,7 +96,7 @@ function Home() {
             <GameSection games={games} sectionName="Upcoming" />
             <GameSection games={games} sectionName="Under $20" />
             <GameSection games={games} sectionName="On sale" />
-          </div> */}
+          </div>
           <ArtworkComponent />
         </div>
       </Container>

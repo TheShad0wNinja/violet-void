@@ -26,11 +26,10 @@ router.get('/topRanked', async (req, res) => {
         $sort: { averageRating: -1 } // Sort by average rating in descending order
       },
       { 
-        $limit: 5 // Limit to top 5 games
+        $limit: 5 
       },
     ]);
 
-    // Step 3: Match top games with game data
     const topRankedGames = topGames.map((gameData) => {
       // Find the matching game from the allGames array by matching game ID
       const game = allGames.find((game) => game._id.toString() === gameData._id.toString());
@@ -41,19 +40,31 @@ router.get('/topRanked', async (req, res) => {
           gameTitle: game.title,
           averageRating: gameData.averageRating,
           totalReviews: gameData.totalReviews,
-          gameDetails: game // Include full game details
+          gameDetails: game 
         };
       }
-    }).filter(Boolean); // Remove any undefined entries if no match is found
+    }).filter(Boolean); 
 
-    console.log('Top ranked games: ', topRankedGames); // Log the result for debugging
-    res.status(200).json(topRankedGames); // Return the top-ranked games with full details
+    console.log('Top ranked games: ', topRankedGames); 
+    res.status(200).json(topRankedGames); 
   } catch (err) {
-    console.error(err); // Log any errors
-    res.status(500).json({ error: 'Server error' }); // Return a server error message
+    console.error(err); 
+    res.status(500).json({ error: 'Server error' }); 
   }
 });
+router.get('/latestGames', async (req, res) => {
+  try {
+  
+    const latestGames = await Game.find()
+      .sort({ releaseDate: -1 })  // Sort by releaseDate (latest first)
+      .limit(5);  // Limit to the latest 5 games 
 
+    res.status(200).json(latestGames);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 // get game by id
 router.get("/:id", async (req, res) => {
   console.log( req.params);
