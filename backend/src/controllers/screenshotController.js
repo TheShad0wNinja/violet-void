@@ -7,6 +7,7 @@ async function getAllScreenshots(req, res) {
   const { offset, limit } = getPaginationConstraints(req, DEFAULT_PAGE_LIMIT);
   const screenshots = await Screenshot.find({}).skip(offset).limit(limit);
   const totalCount = await Screenshot.countDocuments();
+  await User.populate(screenshots, { path: "author" });
   res.status(200).json({ totalCount, screenshots });
 }
 

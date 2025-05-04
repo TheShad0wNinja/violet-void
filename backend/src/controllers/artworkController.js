@@ -1,4 +1,4 @@
-const { Artwork } = require("@model/index");
+const { Artwork, User } = require("@model/index");
 
 async function getAllArtworks(req, res) {
   const artworks = await Artwork.find();
@@ -20,6 +20,7 @@ async function getArtwork(req, res) {
 async function getShuffledArtworks(req, res) {
   const totalCount = await Artwork.countDocuments();
   const shuffledArtworks = await Artwork.aggregate([{ $sample: { size: totalCount } }]);
+  await User.populate(shuffledArtworks, { path: "artist" });
   res.status(200).json({ totalCount, shuffledArtworks });
 }
 

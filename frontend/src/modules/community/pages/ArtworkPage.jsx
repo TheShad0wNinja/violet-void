@@ -83,23 +83,23 @@ function ArtworkItem({ artwork, index, isFiltered }) {
         }}
         viewport={{ once: true, margin: "0% 0px 40% 0px" }}
       >
-        <Link to={isFiltered ? `${artwork.id}` : `all/${artwork.id}`}>
+        <Link to={isFiltered ? `${artwork._id}` : `all/${artwork._id}`}>
           <img
             src={artwork.imageSrc}
-            alt={artwork.game + " by " + artwork.name}
+            alt={artwork.game.title + " by " + artwork.artist.displayName}
             className="h-full w-full object-cover"
             onLoad={handleImageLoad}
           />
         </Link>
         <Link
-          to={`${artwork.handle}`}
+          to={`${artwork.artist.username}`}
           className={`bg-secondary-500 absolute inset-x-0 bottom-0 z-10 flex items-center gap-3 p-3 transition-transform duration-200 ease-in sm:translate-y-0 md:translate-y-full group-hover:md:translate-y-0`}
         >
-          <img className="h-10 w-10 rounded-full sm:h-12 sm:w-12" src={artwork.profilePic} />
+          <img className="h-10 w-10 rounded-full sm:h-12 sm:w-12" src={artwork.artist.avatar} />
           <div className="flex flex-col">
-            <span className="font-medium">{artwork.name}</span>
+            <span className="font-medium">{artwork.artist.displayName}</span>
             <span className="bg-accent-400 w-min rounded-2xl px-2 py-0.5 text-sm xl:text-base">
-              {"@" + artwork.handle}
+              {"@" + artwork.artist.username}
             </span>
           </div>
         </Link>

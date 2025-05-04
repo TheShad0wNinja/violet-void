@@ -32,13 +32,13 @@ export default function ScreenshotsPage() {
         <div className="flex flex-wrap gap-5">
           {screenshot.map(panel => (
             <Link
-              to={`${panel.id}`}
+              to={`${panel._id}`}
               className="hover:border-accent bg-secondary border-secondary m-auto flex w-full cursor-pointer overflow-hidden rounded-2xl border-2 transition-all duration-200 sm:w-[calc(50%-10px)]"
-              key={panel.id}
+              key={panel._id}
             >
               <img
                 src={panel.imageSrc}
-                alt={panel.title + " by " + panel.author}
+                alt={panel.title + " by " + panel.author.displayName}
                 className="bg-background-50 my-auto h-48 object-cover sm:h-auto sm:max-h-90 sm:w-2/3"
               />
               <div className="bg-secondary flex w-full flex-col">
@@ -47,7 +47,7 @@ export default function ScreenshotsPage() {
                 </h2>
                 <p className="m-4 mt-0 hidden sm:block">{panel.description}</p>
                 <p className="text-accent-200 m-2 ml-auto hidden h-full content-end sm:block">
-                  {"by " + panel.author}
+                  {"by " + panel.author.displayName}
                 </p>
               </div>
             </Link>
