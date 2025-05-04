@@ -48,7 +48,8 @@ router.get('/onSaleGames', async (req, res) => {
 
 router.get('/topRanked', async (req, res) => {
   try {
-    const allGames = await Game.find();
+    const allGames = await Game.find().populate("categories")
+
 
     const topGames = await Review.aggregate([
       {

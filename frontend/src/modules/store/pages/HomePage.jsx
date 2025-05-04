@@ -47,7 +47,7 @@ function Home() {
           images: game.gameDetails?.images || { cover: '/default-cover.jpg' },
           description: game.gameDetails?.description || '',
           ageRating: game.gameDetails?.ageRating || '',
-          categories: game.gameDetails?.categories || '',
+          categories: game.gameDetails?.categories.name || [],
 
           developer: game.gameDetails?.developer || '',
           releaseDate: game.gameDetails?.releaseDate || '',
