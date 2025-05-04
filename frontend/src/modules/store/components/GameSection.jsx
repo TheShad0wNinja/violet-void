@@ -3,7 +3,7 @@ import GameCardHorizontal from "./GameCardHorizontal";
 
 
 // GameSection.jsx
-const GameSection = ({ games = [], sectionName = "" }) => {
+const GameSection = ({ games, sectionName = "" }) => {
     return (
       <div className="mb-10">
         <h1 className="text-2xl font-bold mb-5">{sectionName}</h1>

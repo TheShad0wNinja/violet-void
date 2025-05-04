@@ -7,19 +7,54 @@ const router = express.Router();
 
 const Review = require('../models/Review');
 
+router.get('/freeGames', async (req, res) => {
+  try {
+  
+    const latestGames = await Game.find({price:0})
+      .limit(3);  // Limit to the free 3 games 
+
+    res.status(200).json(latestGames);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+router.get('/under20Games', async (req, res) => {
+  try {
+  
+    const latestGames = await Game.find({ price: { $lt: 20 ,  $gt: 0}})
+      .limit(3);  // Limit to the free 3 games 
+    // console.log('under20Games: ', latestGames); 
+
+    res.status(200).json(latestGames);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+router.get('/onSaleGames', async (req, res) => {
+  try {
+  
+    const latestGames = await Game.find({ price: { $gt: 0 } })
+      .limit(3);  // Limit to the free 3 games 
+
+    res.status(200).json(latestGames);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 
 router.get('/topRanked', async (req, res) => {
   try {
-    // Step 1: Get the list of all games from the "games" collection
     const allGames = await Game.find();
 
-    // Step 2: Fetch the top-ranked games based on reviews
     const topGames = await Review.aggregate([
       {
         $group: {
           _id: "$game", // Group by game ID
           averageRating: { $avg: "$rating" }, // Calculate the average rating
-          totalReviews: { $sum: 1 } // Count the number of reviews
         }
       },
       { 
@@ -45,13 +80,15 @@ router.get('/topRanked', async (req, res) => {
       }
     }).filter(Boolean); 
 
-    console.log('Top ranked games: ', topRankedGames); 
+    // console.log('Top ranked games: ', topRankedGames); 
     res.status(200).json(topRankedGames); 
   } catch (err) {
     console.error(err); 
     res.status(500).json({ error: 'Server error' }); 
   }
+
 });
+//lastest Games
 router.get('/latestGames', async (req, res) => {
   try {
   
@@ -81,7 +118,7 @@ router.get("/:id", async (req, res) => {
       })
       .populate("similarGames");
 
-    console.log(gamedata);
+    // console.log(gamedata);
 
     if (!gamedata) {
       console.log(req.params);
@@ -97,16 +134,6 @@ router.post("/relatedgames", async (req, res) => {
   try {
     const { ids } = req.body;
     const games = await Game.find({ _id: { $in: ids } });
-    res.json(games);
-  } catch (err) {
-    res.status(500).json({ error: "Failed to fetch games" });
-  }
-});
-
-router.post("/allGames", async (req, res) => {
-  try {
-    const { ids } = req.body;
-    const games = await Game.find();
     res.json(games);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch games" });
