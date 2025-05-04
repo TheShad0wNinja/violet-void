@@ -1,7 +1,6 @@
 import { PageModal } from "@modules/_shared/App";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
-import { getShuffledArtworks } from "../utils/mockUserData";
 import axios from "axios";
 
 export default function ArtworkItemModal() {
@@ -11,7 +10,7 @@ export default function ArtworkItemModal() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname.includes(`${id}`)) return;
+    if (location.pathname.includes(`/api/artworks/all/${id}`)) return;
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/artworks/${id}`)
       .then(res => {
