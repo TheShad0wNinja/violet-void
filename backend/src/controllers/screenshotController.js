@@ -1,4 +1,4 @@
-const { Screenshot } = require("@model/index");
+const { Screenshot, User, Game } = require("@model/index");
 const { getPaginationConstraints } = require("@utils/pagination");
 
 const DEFAULT_PAGE_LIMIT = 6;
@@ -8,6 +8,7 @@ async function getAllScreenshots(req, res) {
   const screenshots = await Screenshot.find({}).skip(offset).limit(limit);
   const totalCount = await Screenshot.countDocuments();
   await User.populate(screenshots, { path: "author" });
+  await Game.populate(screenshots, { path: "game" });
   res.status(200).json({ totalCount, screenshots });
 }
 
