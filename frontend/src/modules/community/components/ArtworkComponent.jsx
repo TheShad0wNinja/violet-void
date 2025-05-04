@@ -8,7 +8,7 @@ export default function ArtworkComponent() {
 
   useMemo(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/artworks`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/artworks`)
       .then(res => {
         setArtwork(res.data.shuffledArtworks);
       })

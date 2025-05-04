@@ -11,9 +11,9 @@ export default function ArtworkPage() {
   const location = useLocation();
 
   useMemo(() => {
-    if (location.pathname.includes("/artworks/")) return;
+    if (location.pathname.includes("/api/artworks/")) return;
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/artworks`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/artworks`)
       .then(res => {
         setArtwork(res.data.shuffledArtworks);
       })
