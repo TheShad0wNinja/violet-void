@@ -1,10 +1,27 @@
 import { AnimatedOutlet, Container, Divider, TextInput, Title } from "@modules/_shared/App";
 import { getNews } from "../utils/newsData";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import MoreButton from "../components/MoreButton";
 import { IconHeartFilled, IconSearch, IconEyeFilled, IconShare } from "@tabler/icons-react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function NewsPage({ isDiscoverPage }) {
+
+    const [news, setNews] = useState([]);
+    const location = useLocation();
+  
+    useEffect(() => {
+      if (location.pathname.includes("/guides/")) return;
+  
+      axios
+        .get(`${import.meta.env.VITE_BACKEND_URL}/guides`)
+        .then(res => {
+          setNews(res.data.guide);
+        })
+        .catch(e => console.log(e));
+    });
+
   if (isDiscoverPage)
     return (
       <Container>

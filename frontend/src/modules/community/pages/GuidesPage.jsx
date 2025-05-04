@@ -1,25 +1,41 @@
 import { AnimatedOutlet, Container, Divider, TextInput, Title } from "@modules/_shared/App";
-import { getGuides } from "../utils/guidesData";
-import { Link } from "react-router";
-import MoreButton from "../components/MoreButton";
 import {
+  IconEyeFilled,
   IconHeartFilled,
+  IconMessageCircleFilled,
+  IconPlus,
   IconSearch,
   IconStarFilled,
-  IconMessageCircleFilled,
-  IconEyeFilled,
-  IconStarHalfFilled,
-  IconPlus
+  IconStarHalfFilled
 } from "@tabler/icons-react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router";
+import MoreButton from "../components/MoreButton";
+import { getGuides } from "../utils/guidesData";
 
 export default function GuidesPage({ isDiscoverPage }) {
+  const [guides, setGuides] = useState([]);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname.includes("/guides/")) return;
+
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/guides`)
+      .then(res => {
+        setGuides(res.data.guide);
+      })
+      .catch(e => console.log(e));
+  });
+
   if (isDiscoverPage)
     return (
       <Container>
         <MoreButton to="guides" className="my-6 ml-auto" />
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-          {getGuides().map((guide, index) => (
+          {guides.map((guide, index) => (
             <GuideCard key={guide.id} guide={guide} index={index} />
           ))}
         </div>
@@ -38,7 +54,7 @@ export default function GuidesPage({ isDiscoverPage }) {
       </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-        {getGuides().map((guide, index) => (
+        {guides.map((guide, index) => (
           <GuideCard key={guide.id} guide={guide} index={index} isDiscoverPage={isDiscoverPage} />
         ))}
       </div>

@@ -6,6 +6,8 @@ const cors = require("cors");
 const discussionRouter = require("@routes/discussionRoute");
 const artworkRouter = require("@routes/artworkRoute");
 const screenshotRouter = require("@routes/screenshotRoute");
+const guidesRouter = require("@routes/guideRoute");
+const newsRouter = require("@routes/newsRoute");
 
 const app = express();
 app.use(cors());
@@ -13,6 +15,8 @@ app.use(express.json());
 app.use("/discussions", discussionRouter);
 app.use("/artworks", artworkRouter);
 app.use("/screenshots", screenshotRouter);
+app.use("/guides", guidesRouter);
+app.use("/news", newsRouter);
 
 mongoose
   .connect(process.env.MONGO_URI || "")

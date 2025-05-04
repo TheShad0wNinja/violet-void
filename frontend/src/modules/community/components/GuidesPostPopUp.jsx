@@ -9,16 +9,28 @@ import {
   IconStarFilled,
   IconStarHalfFilled
 } from "@tabler/icons-react";
-import { useNavigate, useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 import { getGuides } from "../utils/guidesData";
+import axios from "axios";
 
 export default function GuidesPostPopUp() {
   const { id } = useParams();
-  const [guide, setGuide] = useState(null);
-  const navigate = useNavigate();
+  const [guides, setGuides] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
-    setGuide(getGuides().find(g => g.id === Number(id)));
+    if (location.pathname.includes("/guides/")) return;
+
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/guides`)
+      .then(res => {
+        setGuides(res.data.guide);
+      })
+      .catch(e => console.log(e));
+  });
+
+  useEffect(() => {
+    setGuides(getGuides().find(g => g.id === Number(id)));
   }, [id]);
 
   return (

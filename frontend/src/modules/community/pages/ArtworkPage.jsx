@@ -13,7 +13,7 @@ export default function ArtworkPage() {
   useMemo(() => {
     if (location.pathname.includes("/artworks/")) return;
     axios
-      .get(`${import.meta.env.VITE_API_URL}/artworks`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/artworks`)
       .then(res => {
         setArtwork(res.data.shuffledArtworks);
       })

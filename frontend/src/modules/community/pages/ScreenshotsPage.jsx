@@ -16,7 +16,7 @@ export default function ScreenshotsPage() {
   useEffect(() => {
     if (location.pathname.includes("/screenshots/")) return;
     axios
-      .get(`${import.meta.env.VITE_API_URL}/screenshots?limit=${itemsPerPage}&page=${filters.page}`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/screenshots?limit=${itemsPerPage}&page=${filters.page}`)
       .then(res => {
         setScreenshot(res.data.screenshots);
         setCount(res.data.totaCount);
