@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const logout = () => {
+    localStorage.removeItem("token"); 
     setUser(null);
     navigate("/", { replace: true }); // come back and make sure route is correct
   };
