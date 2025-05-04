@@ -12,19 +12,13 @@ function GenreHolder({ tags, features }) {
   const limitedFeatures = getLimitedFeatures(features, showAll); // Get features based on showAll state
 
   return (
-    <motion.div
-      initial={{ scale: 0.8, y: 30, opacity: 0 }}
-      whileInView={{ scale: 1, y: 0, opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{
-        duration: 1.5,
-        ease: [0.16, 1, 0.3, 1],
-      }}
+    <div
+     
       className="bg-secondary-900 mt-8 flex h-fit w-full rounded-2xl p-4"
     >
       <div className="w-1/2">
         <h1 className="mb-2 text-2xl font-bold">Genre</h1>
-        <div className="flex flex-wrap gap-2.5">
+        <div  className="flex flex-wrap gap-2.5">
           {tags.map((game) => (
             <PurpleHolder key={game._id} propName={game.name} />
           ))}
@@ -44,13 +38,14 @@ function GenreHolder({ tags, features }) {
             </div>
           )}
         </div>
-        <div className="flex flex-wrap gap-2.5">
+        <div   className="flex flex-wrap gap-2.5">
           {limitedFeatures.map((game) => (
             <PurpleHolder key={game._id} propName={game.name} />
           ))}
+              </div>
+
         </div>
       </div>
-    </motion.div>
   );
 }
 
