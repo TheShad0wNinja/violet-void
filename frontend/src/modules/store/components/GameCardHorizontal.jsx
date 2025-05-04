@@ -8,7 +8,7 @@ const GameCardHorizontal = ({ game }) => {
   return (
     <Link to={`/store/product/${game._id}`}>
 
-    <div className="flex w-full max-w-md overflow-hidden">
+    <div className="flex mt-4 w-full max-w-md  overflow-hidden">
       {/* Image on the left */}
       <div className="w-1/3 h-[200px]">
         <img
