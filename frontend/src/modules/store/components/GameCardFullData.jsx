@@ -1,10 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 function GameCardFullData({ game }) {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const coverImage = `${backendUrl}${game.images?.cover}`;
 
   return (
+    <Link to={`/store/product/${game._id}`}>
+
     <div className="flex flex-col h-[400px] rounded-lg bg-gray-900 text-white md:flex-row">
       {/* Image Section */}
       <div className="relative w-full  md:w-1/2">
@@ -56,6 +59,7 @@ function GameCardFullData({ game }) {
         
       </div>
     </div>
+    </Link>
   );
 }
 

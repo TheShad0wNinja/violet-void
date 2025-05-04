@@ -1,10 +1,13 @@
 import React from "react";
+import { Link } from "react-router";
 
 const GameCardHorizontal = ({ game }) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const coverImages = backendUrl + game.images?.cover;
   return (
+    <Link to={`/store/product/${game._id}`}>
+
     <div className="flex w-full max-w-md overflow-hidden">
       {/* Image on the left */}
       <div className="w-1/3 h-[200px]">
@@ -26,6 +29,7 @@ const GameCardHorizontal = ({ game }) => {
         </div>
       </div>
     </div>
+    </Link>
   );
 };
 
