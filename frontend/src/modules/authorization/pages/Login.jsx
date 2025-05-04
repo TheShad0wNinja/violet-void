@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import WhiteTextInputBox from "../components/WhiteTextInputBox";
 import WhiteDobBox from "../components/WhiteDobBox";
@@ -12,6 +12,7 @@ import { useAuth } from "../App";
 function Login({ switchPage }) {
   const { login } = useAuth();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const [errorMessage, setErrorMessage] = useState("");
 
   const formik = useFormik({
     initialValues: {
@@ -40,6 +41,7 @@ function Login({ switchPage }) {
             formik.setFieldError("password", msg);
         }
         console.error("Login Error:", error);
+        setErrorMessage(error.response.data.message);
       }
     }
   });
@@ -96,7 +98,9 @@ function Login({ switchPage }) {
           condition={formik.touched.password && formik.errors.password}
           fullwidth
         />
-
+        {errorMessage && (
+          <div className="mt-4 text-center text-sm text-red-500">{errorMessage}</div>
+        )}
         <div className="mt-5 flex items-center justify-center">
           <Button
             onClick={formik.handleSubmit}

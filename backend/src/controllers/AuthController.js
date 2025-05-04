@@ -11,14 +11,12 @@ async function register(req, res) {
     console.log(existingEmail);
     if (existingEmail) return res.status(400).json({ message: "Email already exists" });
 
-    const existingUsername = await User.findOne({ username });
     if (existingUsername) return res.status(400).json({ message: "Username already exists" });
-    console.log(existingUsername);
 
     // hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = new User({ username, email, password: hashedPassword });
+    const newUser = new User({ username, email, password: hashedPassword, birthday });
     await newUser.save();
 
     // generate JWT token
@@ -37,7 +35,7 @@ async function register(req, res) {
       }
     });
   } catch (err) {
-    res.status(500).status({ message: "Server Error" });
+    res.status(500).json({ message: "Server Error" });
   }
 }
 

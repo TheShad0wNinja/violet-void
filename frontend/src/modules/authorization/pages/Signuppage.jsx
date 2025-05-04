@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import WhiteTextInputBox from "../components/WhiteTextInputBox";
 import WhiteDobBox from "../components/WhiteDobBox";
@@ -13,6 +13,7 @@ function Signuppage({ switchPage }) {
   const navigate = useNavigate();
   const {login} = useAuth();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const [errorMessage, setErrorMessage] = useState("");
 
   const formik = useFormik({
     initialValues: {
@@ -49,11 +50,14 @@ function Signuppage({ switchPage }) {
     }),
     onSubmit: async values => {
       console.log("Form submitted:", values);
-      try { 
+      const birthday = `${values.year.padStart(4, "0")}-${values.month.padStart(2, "0")}-${values.day.padStart(2, "0")}`;
+
+      try {
         const response = await axios.post(`${backendUrl}/api/auth/register`, {
-          username: formik.values.username,
-          email: formik.values.email,
-          password: formik.values.password
+          username: values.username,
+          email: values.email,
+          password: values.password,
+          birthday:birthday
         });
         console.log(response.data);
         // login(response.data)
@@ -135,7 +139,11 @@ function Signuppage({ switchPage }) {
           }
           errormessage={formik.errors.day || formik.errors.month || formik.errors.year}
         />
-        <div className="mt-5 flex items-center justify-center">
+         {errorMessage && (
+            <div className="mt-4 text-center text-sm text-red-500">{errorMessage}</div>
+          )}
+        <div className="mt-5 flex flex-col items-center justify-center">
+         
           <Button
             onClick={formik.handleSubmit}
             children="Sign up"
