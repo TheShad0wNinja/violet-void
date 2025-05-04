@@ -1,17 +1,28 @@
 import { AnimatedOutlet, Container, Divider, Pagination, Title } from "@modules/_shared/App";
 import useUrlFilters from "@modules/store/hooks/useUrlFilters";
 import { IconPlus } from "@tabler/icons-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { getScreenshotData } from "../utils/mockScreenshotsData";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const ScreenshotData = getScreenshotData();
 export default function ScreenshotsPage() {
-  const { filters, setFilter } = useUrlFilters({ page: 1 });
   const itemsPerPage = 6;
-
-  const lastItem = Number(filters.page) * itemsPerPage;
-  const firstItem = lastItem - itemsPerPage;
-  const items = ScreenshotData.slice(firstItem, lastItem);
+  const { filters, setFilter } = useUrlFilters({ page: 1 });
+  const [screenshot, setScreenshot] = useState([]);
+  const [count, setCount] = useState();
+  const location = useLocation();
+  useEffect(() => {
+    if (location.pathname.includes("/screenshots/")) return;
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/screenshots?limit=${itemsPerPage}&page=${filters.page}`)
+      .then(res => {
+        setScreenshot(res.data.screenshots);
+        setCount(res.data.totaCount);
+      })
+      .catch(e => console.log(e));
+  }, [filters.page, location.pathname]);
 
   return (
     <>
@@ -19,11 +30,11 @@ export default function ScreenshotsPage() {
         <Title>Screenshots</Title>
         <Divider direction="center" className="mt-1 mb-4" />
         <div className="flex flex-wrap gap-5">
-          {items.map(panel => (
+          {screenshot.map(panel => (
             <Link
               to={`${panel.id}`}
               className="hover:border-accent bg-secondary border-secondary m-auto flex w-full cursor-pointer overflow-hidden rounded-2xl border-2 transition-all duration-200 sm:w-[calc(50%-10px)]"
-              key={panel.title}
+              key={panel.id}
             >
               <img
                 src={panel.imageSrc}
@@ -49,7 +60,7 @@ export default function ScreenshotsPage() {
           <IconPlus size={50} />
         </Link>
         <Pagination
-          totalItems={ScreenshotData.length}
+          totalItems={count}
           itemsPerPage={itemsPerPage}
           onPageChange={page => setFilter("page", page)}
           currentPage={Number(filters.page)}
