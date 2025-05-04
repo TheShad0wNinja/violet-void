@@ -8,6 +8,7 @@ const artworkRouter = require("@routes/artworkRoute");
 const screenshotRouter = require("@routes/screenshotRoute");
 const guidesRouter = require("@routes/guideRoute");
 const newsRouter = require("@routes/newsRoute");
+const reviewsRouter = require("@routes/reviewsRoute");
 
 const app = express();
 app.use(cors());
@@ -17,6 +18,8 @@ app.use("/api/artworks", artworkRouter);
 app.use("/api/screenshots", screenshotRouter);
 app.use("/api/guides", guidesRouter);
 app.use("/api/news", newsRouter);
+app.use("/api/reviews", newsReviews);
+
 
 mongoose
   .connect(process.env.MONGO_URI || "")

@@ -129,7 +129,7 @@ export default function GuidesPostPopUp() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="flex items-center gap-1 text-yellow-400">
+                  <span className="flex items-center gap-1 text-accent">
                     <IconStarFilled size={18} />
                     <IconStarFilled size={18} />
                     <IconStarFilled size={18} />

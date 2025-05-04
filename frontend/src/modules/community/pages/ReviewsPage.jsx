@@ -2,6 +2,9 @@ import { Container, Divider, Pagination, Title } from "@modules/_shared/App";
 import { getReviews } from "../utils/reviewData";
 import { IconStar, IconStarFilled, IconStarHalfFilled } from "@tabler/icons-react";
 import useUrlFilters from "@modules/store/hooks/useUrlFilters";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useLocation } from "react-router";
 
 const games = getReviews();
 const itemsPerPage = 2;
@@ -11,7 +14,20 @@ export default function ReviewsPage() {
 
   const lastItem = Number(filters.page) * itemsPerPage;
   const firstItem = lastItem - itemsPerPage;
-  const items = games.slice(firstItem, lastItem);
+
+  const [reviews, setReviews] = useState([]);
+  const location = useLocation();
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/reviews`)
+      .then(res => {
+        setReviews(res.data.reviews);
+      })
+      .catch(e => console.log(e));
+  }, [location.pathname]);
+
+  const items = reviews.slice(firstItem, lastItem);
 
   return (
     <Container>

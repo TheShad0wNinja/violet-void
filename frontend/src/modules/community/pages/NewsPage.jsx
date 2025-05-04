@@ -21,6 +21,7 @@ export default function NewsPage({ isDiscoverPage }) {
       .catch(e => console.log(e));
   });
   
+  
 
   if (isDiscoverPage)
     return (
