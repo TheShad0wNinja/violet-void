@@ -7,27 +7,27 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function NewsPage({ isDiscoverPage }) {
+  const [news, setNews] = useState([]);
+  const location = useLocation();
 
-    const [news, setNews] = useState([]);
-    const location = useLocation();
+  useEffect(() => {
+    if (location.pathname.includes("/api/guides/")) return;
+
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/guides`)
+      .then(res => {
+        setNews(res.data.guide);
+      })
+      .catch(e => console.log(e));
+  });
   
-    useEffect(() => {
-      if (location.pathname.includes("/api/guides/")) return;
-  
-      axios
-        .get(`${import.meta.env.VITE_BACKEND_URL}/api/guides`)
-        .then(res => {
-          setNews(res.data.guide);
-        })
-        .catch(e => console.log(e));
-    });
 
   if (isDiscoverPage)
     return (
       <Container>
         <MoreButton to="news" className="my-6 ml-auto" />
         <div className="grid grid-cols-1 gap-6">
-          {getNews().map(news => (
+          {news.map(news => (
             <NewsCard isDiscoverPage={isDiscoverPage} key={news.id} news={news} />
           ))}
         </div>
@@ -45,7 +45,7 @@ export default function NewsPage({ isDiscoverPage }) {
         <Divider className="mb-4" />
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {getNews().map(news => (
+          {news.map(news => (
             <NewsCard isDiscoverPage={isDiscoverPage} news={news} />
           ))}
         </div>
