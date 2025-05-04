@@ -1,13 +1,12 @@
-import { useContext, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router";
+import { useState } from "react";
+import { Link, NavLink } from "react-router";
 import Branding from "./Branding";
 import { IconMenu2, IconX } from "@tabler/icons-react";
-import { AuthContext } from "@modules/authorization/utils/AuthContext";
-import { Button, Divider } from "../App";
+import { useAuth } from "@modules/authorization/App";
+import Divider from "./Divider";
 
 function Header() {
-  // const { user } = useAuth();
-    const {  user } = useContext(AuthContext);
+  const { user, logout } = useAuth();
   
   const [borgorOpen, setBorgorOpen] = useState(false);
 
@@ -19,7 +18,7 @@ function Header() {
     {
       label: "Admin",
       href: "/admin",
-      disabled: !user || user?.name !== "NeonNinja"
+      disabled: !user || user?.role !== "admin"
     },
     {
       label: "Store",
@@ -60,12 +59,12 @@ function Header() {
           {user !== null ? (
             <div className="flex w-full flex-col items-center justify-center gap-6 sm:hidden">
               <UserIcon user={user} />
-              <Link
-                to="/auth/logout"
+              <button
                 className="bg-secondary hover:bg-primary-500 block h-min w-full cursor-pointer rounded-md px-4 py-2 text-center font-semibold tracking-wide text-nowrap uppercase duration-200 active:scale-95"
+                onClick={() => logout()}
               >
                 Logout
-              </Link>
+              </button>
             </div>
           ) : (
             <div className="flex w-full flex-col justify-end gap-2 sm:hidden">
@@ -88,12 +87,12 @@ function Header() {
       {user !== null ? (
         <div className="hidden w-full justify-end items-center gap-2 sm:flex">
           <UserIcon user={user} />
-          <Link
-            to="/auth/logout"
+          <button
+            onClick={() => logout()}
             className="bg-secondary hover:bg-primary-500 block h-min w-fit cursor-pointer rounded-md px-4 py-2 text-nowrap duration-200 active:scale-95"
           >
             Logout
-          </Link>
+          </button>
         </div>
       ) : (
         <div className="hidden w-full justify-end gap-2 sm:flex">

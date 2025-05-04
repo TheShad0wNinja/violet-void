@@ -5,13 +5,12 @@ import WhiteDobBox from "../components/WhiteDobBox";
 import { Button } from "@modules/_shared/App";
 import * as Yup from "yup";
 import { motion } from "framer-motion";
-import { AuthContext } from "../utils/AuthContext";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import { useAuth } from "../App";
 
 function Login({ switchPage }) {
-  const { login, user } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { login } = useAuth();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const formik = useFormik({
@@ -25,20 +24,21 @@ function Login({ switchPage }) {
     }),
     onSubmit: async values => {
       console.log("Form submitted:", values);
-      // const user = getGamingProfiles().find(
-      //   a => a.profile.name.toLowerCase() === values.username.toLowerCase()
-      // );
-      // if (!user) formik.setErrors({ username: "No user with this name " });
       try {
         const response = await axios.post(`${backendUrl}/api/auth/login`, {
           username: values.username,
           password: values.password
         });
-        const data = await response.data;
-
-        login(data.token);
-        navigate("/");
+        login(response.data)
       } catch (error) {
+        if (error.response) {
+          const msg = error.response.data?.message;
+          console.log(msg);
+          if (msg && msg.toLowerCase().includes("user"))
+            formik.setFieldError("username", msg)
+          else if (msg && msg.toLowerCase().includes("password"))
+            formik.setFieldError("password", msg);
+        }
         console.error("Login Error:", error);
       }
     }
@@ -108,7 +108,6 @@ function Login({ switchPage }) {
       <h1 className="mt-3 text-center text-sm">
         Don’t have an account?
         <span className="text-primary-400 cursor-pointer font-bold" onClick={() => switchPage()}>
-          {" "}
           Sign up
         </span>
       </h1>

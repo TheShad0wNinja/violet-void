@@ -7,9 +7,11 @@ import * as Yup from "yup";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { useAuth } from "../App";
 
 function Signuppage({ switchPage }) {
   const navigate = useNavigate();
+  const {login} = useAuth();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const formik = useFormik({
@@ -53,12 +55,16 @@ function Signuppage({ switchPage }) {
           email: formik.values.email,
           password: formik.values.password
         });
-        // add birthday later
-        navigate("/");
+        console.log(response.data);
+        // login(response.data)
+        // navigate("/");
       } catch (error) {
         if (error.response) {
-          console.error(error.response);
-          console.log("something went wrong. please try again");
+          const msg = error.response.data?.message?.toLowerCase();
+          if (msg && msg?.includes("email"))
+            formik.setFieldError("email", msg)
+          else if (msg && msg?.includes("username"))
+            formik.setFieldError("username", msg)
         }
       }
     }

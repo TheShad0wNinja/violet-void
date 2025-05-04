@@ -46,7 +46,7 @@ import {
 } from "@modules/community/App";
 
 import { AuthPage } from "@modules/authorization/App";
-import { AuthProvider } from "@modules/authorization/utils/AuthContext";
+import { AuthProvider } from "@modules/authorization/App";
 
 import AccountPage from "@modules/store/pages/AccountPage";
 
