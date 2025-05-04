@@ -18,9 +18,7 @@ function GamesHolder({
   const handleNext = () => {
     setFade(true);
     setTimeout(() => {
-      setIndex((prevIndex) =>
-        (prevIndex + gamesPerPage) % games.length
-      );
+      setIndex(prevIndex => (prevIndex + gamesPerPage) % games.length);
       setFade(false);
     }, 300);
   };
@@ -29,16 +27,11 @@ function GamesHolder({
     return null;
   }
 
-  const visibleGames = type2games
-    ? games.slice(index, index + gamesPerPage)
-    : games;
-      console.log("Visible games:", visibleGames);
-
+  const visibleGames = type2games ? games.slice(index, index + gamesPerPage) : games;
+  console.log("Visible games:", visibleGames);
 
   return (
-    <div
-   
-    >
+    <div>
       <div className="mt-5 mb-3 flex items-end gap-2">
         <h1 className="text-2xl font-bold">{Sectionname}</h1>
         {type2games && games.length > gamesPerPage && (
@@ -58,22 +51,17 @@ function GamesHolder({
               <GameHolderBox
                 key={i}
                 gameID={game._id}
-
                 gameName={game.title}
                 gamePrice={game.price}
                 gameDetails={detailsOn ? game.description : game.rating}
                 gameImage={game.images}
                 smallerHeight
               />
-              
             ))
-          : games.map((game, i) => (
-              <GameCardFullData key={game.id || i} game={game} />
-            ))}
+          : games.map((game, i) => <GameCardFullData key={game.id || i} game={game} />)}
       </div>
     </div>
   );
 }
-
 
 export default GamesHolder;
