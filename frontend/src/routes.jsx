@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router";
-import { NotFoundPage, RootLayout } from "@modules/_shared/App";
+import { NotFoundPage, PageModal, RootLayout } from "@modules/_shared/App";
 import {
   ProductPage,
   BrowsePage,
@@ -11,17 +11,22 @@ import {
   LibraryPage,
   StoreLayout
 } from "@modules/store/App";
-import { AdminHomePage, AdminProductsPage, AdminLayout, CreateProductPage } from "@modules/admin/App";
+import {
+  AdminHomePage,
+  AdminProductsPage,
+  AdminLayout,
+  CreateProductPage
+} from "@modules/admin/App";
 
 const adminRoutes = [
   {
     path: "products",
     element: <AdminProductsPage />
   },
-	{
-		path: "products/create",
-		element: <CreateProductPage />
-	},
+  {
+    path: "products/create",
+    element: <CreateProductPage />
+  },
   {
     path: "",
     element: <AdminHomePage />
@@ -42,11 +47,12 @@ import {
   GuideAddition,
   NewsPostPopUp,
   DiscussionPostPopUp,
-  GuidePostPopUp
+  GuidePostPopUp,
+  ScreenshotItemModal
 } from "@modules/community/App";
 
 import { AuthPage } from "@modules/authorization/App";
-import { AuthProvider } from "@modules/authorization/utils/AuthContext";
+import { AuthProvider } from "@modules/authorization/App";
 
 import AccountPage from "@modules/store/pages/AccountPage";
 
@@ -138,6 +144,10 @@ const communityRoutes = [
       {
         path: "add",
         element: <ScreenshotAddingModal />
+      },
+      {
+        path: ":id",
+        element: <ScreenshotItemModal />
       }
     ]
   }
@@ -149,7 +159,7 @@ const accountRoutes = [
     element: <AccountPage />
   },
   {
-    path: "wishlist",
+    path: "wishlist/:id",
     element: <WishlistPage />
   },
   {

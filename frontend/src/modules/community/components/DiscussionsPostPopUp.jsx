@@ -14,7 +14,7 @@ export default function DiscussionPostPopUp() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/discussions/${id}`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/discussions/${id}`)
       .then(res => setPost(res.data))
       .catch(e => {
         console.log(e);

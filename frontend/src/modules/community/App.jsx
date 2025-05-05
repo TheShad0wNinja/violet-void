@@ -19,3 +19,4 @@ export { default as NewsPostPopUp } from "./components/NewsPostPopUp";
 export { default as DiscussionPostPopUp } from "./components/DiscussionsPostPopUp";
 export { default as GuidePostPopUp } from "./components/GuidesPostPopUp";
 export { default as SearchComponent } from "./components/SearchComponent";
+export { default as ScreenshotItemModal } from "./components/ScreenshotItemModal";

@@ -3,15 +3,29 @@ import { IconShare, IconX } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import { IconHeartFilled, IconMessageCircleFilled, IconEyeFilled } from "@tabler/icons-react";
 import { getNews } from "../utils/newsData";
-import { useNavigate, useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
+import axios from "axios";
 
 export default function NewsPostPopUp() {
   const { id } = useParams();
-  const [news, setNews] = useState(null);
-  const navigate = useNavigate();
+  const [news, setNews] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
-    setNews(getNews().find(news => news.id === Number(id)) || null);
+    if (location.pathname.includes(`/api/news/${id}`)) return;
+
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/news/${id}`)
+      .then(res => {
+        setNews(res.data);
+      })
+      .catch(e => console.log(e));
+  });
+  
+
+
+  useEffect(() => {
+    setNews(getNews().find(news => news._id === Number(id)) || null);
   }, [id]);
 
   return (
@@ -87,7 +101,7 @@ export default function NewsPostPopUp() {
               <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div>
-                    <p className="font-medium">{news.subReddit || "Unknown Author"}</p>
+                    <p className="font-medium">{news.subtitle || "Unknown Author"}</p>
                     <p className="text-sm text-gray-400">{news.time}</p>
                   </div>
                 </div>

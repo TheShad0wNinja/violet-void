@@ -8,9 +8,8 @@ function PhotoCollage({images}) {
   // const { previews } = images;  
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
- const previews = images.previews.map(p =>
-  backendUrl + p
- )
+ const previews = images.previews;
+
   const handleChangeImage = (index) => {
     setFade(true);
     setTimeout(() => {
@@ -18,6 +17,7 @@ function PhotoCollage({images}) {
       setFade(false);
     }, 300);
   };
+  const limitedPreviews = previews.slice(0, 4);
 
   return (
     <motion.div
@@ -43,7 +43,7 @@ function PhotoCollage({images}) {
 
         {/* Thumbnails */}
         <div className="flex md:flex-col  flex-row w-full md:w-1/4 gap-2">
-          {previews.map((img, index) => (
+          {limitedPreviews.map((img, index) => (
             <button
               key={index}
               style={{ backgroundImage: `url(${img})` }}

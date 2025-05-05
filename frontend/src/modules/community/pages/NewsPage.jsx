@@ -1,16 +1,33 @@
 import { AnimatedOutlet, Container, Divider, TextInput, Title } from "@modules/_shared/App";
 import { getNews } from "../utils/newsData";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import MoreButton from "../components/MoreButton";
 import { IconHeartFilled, IconSearch, IconEyeFilled, IconShare } from "@tabler/icons-react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function NewsPage({ isDiscoverPage }) {
+  const [news, setNews] = useState([]);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname.includes("/api/news/")) return;
+
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/news`)
+      .then(res => {
+        setNews(res.data.news);
+      })
+      .catch(e => console.log(e));
+  });
+  
+
   if (isDiscoverPage)
     return (
       <Container>
         <MoreButton to="news" className="my-6 ml-auto" />
         <div className="grid grid-cols-1 gap-6">
-          {getNews().map(news => (
+          {news.map(news => (
             <NewsCard isDiscoverPage={isDiscoverPage} key={news.id} news={news} />
           ))}
         </div>
@@ -23,12 +40,11 @@ export default function NewsPage({ isDiscoverPage }) {
         <div className="mb-4 flex items-center justify-between">
           <Title>News</Title>
 
-          <TextInput rightSection={<IconSearch size={22} />} placeholder="Search News...." />
         </div>
         <Divider className="mb-4" />
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {getNews().map(news => (
+          {news.map(news => (
             <NewsCard isDiscoverPage={isDiscoverPage} news={news} />
           ))}
         </div>
@@ -41,7 +57,7 @@ export default function NewsPage({ isDiscoverPage }) {
 function NewsCard({ news, isDiscoverPage }) {
   return (
     <Link
-      to={`${isDiscoverPage ? "news/" : ""}${news.id}`}
+      to={`${isDiscoverPage ? "news/" : ""}${news._id}`}
       className={`bg-secondary-900 hover:bg-secondary-800 rounded-2xl p-6 transition-colors duration-200`}
     >
       <div className="cursor-pointer">

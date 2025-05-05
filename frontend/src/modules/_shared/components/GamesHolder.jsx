@@ -18,33 +18,20 @@ function GamesHolder({
   const handleNext = () => {
     setFade(true);
     setTimeout(() => {
-      setIndex((prevIndex) =>
-        (prevIndex + gamesPerPage) % games.length
-      );
+      setIndex(prevIndex => (prevIndex + gamesPerPage) % games.length);
       setFade(false);
     }, 300);
   };
 
   if (!games || games.length === 0) {
-    return <h1>No games available</h1>;
+    return null;
   }
 
-  const visibleGames = type2games
-    ? games.slice(index, index + gamesPerPage)
-    : games;
-      console.log("Visible games:", visibleGames);
-
+  const visibleGames = type2games ? games.slice(index, index + gamesPerPage) : games;
+  console.log("Visible games:", visibleGames);
 
   return (
-    <motion.div
-      initial={{ scale: 0.8, y: 30, opacity: 0 }}
-      whileInView={{ scale: 1, y: 0, opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{
-        duration: 1.5,
-        ease: [0.16, 1, 0.3, 1]
-      }}
-    >
+    <div>
       <div className="mt-5 mb-3 flex items-end gap-2">
         <h1 className="text-2xl font-bold">{Sectionname}</h1>
         {type2games && games.length > gamesPerPage && (
@@ -63,21 +50,18 @@ function GamesHolder({
           ? visibleGames.map((game, i) => (
               <GameHolderBox
                 key={i}
+                gameID={game._id}
                 gameName={game.title}
                 gamePrice={game.price}
                 gameDetails={detailsOn ? game.description : game.rating}
-                gameImage={game.images} // Fixed: use `game.images` not `games.images`
+                gameImage={game.images}
                 smallerHeight
               />
-              
             ))
-          : games.map((game, i) => (
-              <GameCardFullData key={game.id || i} game={game} />
-            ))}
+          : games.map((game, i) => <GameCardFullData key={game.id || i} game={game} />)}
       </div>
-    </motion.div>
+    </div>
   );
 }
-
 
 export default GamesHolder;

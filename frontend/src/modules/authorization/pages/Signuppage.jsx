@@ -7,9 +7,11 @@ import * as Yup from "yup";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { useAuth } from "../App";
 
 function Signuppage({ switchPage }) {
   const navigate = useNavigate();
+  const {login} = useAuth();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -57,10 +59,17 @@ function Signuppage({ switchPage }) {
           password: values.password,
           birthday:birthday
         });
-        navigate("/");
+        console.log(response.data);
+        // login(response.data)
+        // navigate("/");
       } catch (error) {
-          setErrorMessage(error.response.data.message);
-        
+        if (error.response) {
+          const msg = error.response.data?.message?.toLowerCase();
+          if (msg && msg?.includes("email"))
+            formik.setFieldError("email", msg)
+          else if (msg && msg?.includes("username"))
+            formik.setFieldError("username", msg)
+        }
       }
     }
   });
@@ -94,6 +103,7 @@ function Signuppage({ switchPage }) {
           onChange={formik.handleChange}
           errormessage={formik.errors.username}
           condition={formik.touched.username && formik.errors.username}
+          fullwidth
         />
         <WhiteTextInputBox
           name="email"
@@ -103,6 +113,7 @@ function Signuppage({ switchPage }) {
           onChange={formik.handleChange}
           errormessage={formik.errors.email}
           condition={formik.touched.email && formik.errors.email}
+          fullwidth
         />
         <WhiteTextInputBox
           name="password"
@@ -112,6 +123,7 @@ function Signuppage({ switchPage }) {
           onChange={formik.handleChange}
           errormessage={formik.errors.password}
           condition={formik.touched.password && formik.errors.password}
+          fullwidth
         />
         <WhiteDobBox
           datevalue={formik.values.day}

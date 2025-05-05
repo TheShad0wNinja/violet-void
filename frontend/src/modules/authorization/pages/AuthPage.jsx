@@ -5,29 +5,12 @@ import Login from "./Login";
 import { useParams } from "react-router";
 import { BrowserRouter as Router, Route, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-// import { useAuth } from "../App";
-import { AuthContext } from "../utils/AuthContext";
 
 function AuthPage() {
-    const AuthCon = useContext(AuthContext);
-  
   const [authMethod, setAuthMethod] = useState(false);
+
   const { page } = useParams();
   const navigate = useNavigate();
-  const { user, logout } = AuthCon;
-
-  useEffect(() => {
-    if (!["login", "signup"].includes(page)) navigate("/auth/signup");
-
-    if (user !== null) navigate("/");
-
-		if (page === "logout")
-			logout();	
-  }, [page]);
-
-  // if (!page || !["login", "signup"].includes(page)) {
-  //   return null; // or a loader if you want
-  // }
 
   const handlePageChange = newpage => {
     console.log("auth page param:", page);

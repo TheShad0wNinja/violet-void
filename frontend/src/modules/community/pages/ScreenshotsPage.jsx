@@ -1,17 +1,28 @@
 import { AnimatedOutlet, Container, Divider, Pagination, Title } from "@modules/_shared/App";
-import { getScreenshotData } from "../utils/mockScreenshotsData";
 import useUrlFilters from "@modules/store/hooks/useUrlFilters";
-import { Link } from "react-router";
 import { IconPlus } from "@tabler/icons-react";
+import { Link, useLocation } from "react-router-dom";
+import { getScreenshotData } from "../utils/mockScreenshotsData";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const ScreenshotData = getScreenshotData();
 export default function ScreenshotsPage() {
-  const { filters, setFilter } = useUrlFilters({ page: 1 });
   const itemsPerPage = 6;
-
-  const lastItem = Number(filters.page) * itemsPerPage;
-  const firstItem = lastItem - itemsPerPage;
-  const items = ScreenshotData.slice(firstItem, lastItem);
+  const { filters, setFilter } = useUrlFilters({ page: 1 });
+  const [screenshot, setScreenshot] = useState([]);
+  const [count, setCount] = useState();
+  const location = useLocation();
+  useEffect(() => {
+    if (location.pathname.includes("/api/screenshots/")) return;
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/screenshots?limit=${itemsPerPage}&page=${filters.page}`)
+      .then(res => {
+        setScreenshot(res.data.screenshots);
+        setCount(res.data.totaCount);
+      })
+      .catch(e => console.log(e));
+  }, [filters.page, location.pathname]);
 
   return (
     <>
@@ -19,15 +30,16 @@ export default function ScreenshotsPage() {
         <Title>Screenshots</Title>
         <Divider direction="center" className="mt-1 mb-4" />
         <div className="flex flex-wrap gap-5">
-          {items.map(panel => (
-            <div
-              className="hover:border-accent border-secondary flex w-full cursor-pointer overflow-hidden rounded-2xl border-2 transition-all duration-200 sm:w-[calc(50%-10px)]"
-              key={panel.title}
+          {screenshot.map(panel => (
+            <Link
+              to={`${panel._id}`}
+              className="hover:border-accent bg-secondary border-secondary m-auto flex w-full cursor-pointer overflow-hidden rounded-2xl border-2 transition-all duration-200 sm:w-[calc(50%-10px)]"
+              key={panel._id}
             >
               <img
                 src={panel.imageSrc}
-                alt={panel.title + " by " + panel.author}
-                className="bg-background-50 h-48 object-cover sm:h-auto sm:max-h-90 sm:w-2/3"
+                alt={panel.title + " by " + panel.author.displayName}
+                className="bg-background-50 my-auto h-48 object-cover sm:h-auto sm:max-h-90 sm:w-2/3"
               />
               <div className="bg-secondary flex w-full flex-col">
                 <h2 className="m-2 flex h-full items-center justify-center text-center text-2xl font-semibold sm:h-auto">
@@ -35,10 +47,10 @@ export default function ScreenshotsPage() {
                 </h2>
                 <p className="m-4 mt-0 hidden sm:block">{panel.description}</p>
                 <p className="text-accent-200 m-2 ml-auto hidden h-full content-end sm:block">
-                  {"by " + panel.author}
+                  {"by " + panel.author.displayName}
                 </p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         <Link
@@ -48,7 +60,7 @@ export default function ScreenshotsPage() {
           <IconPlus size={50} />
         </Link>
         <Pagination
-          totalItems={ScreenshotData.length}
+          totalItems={count}
           itemsPerPage={itemsPerPage}
           onPageChange={page => setFilter("page", page)}
           currentPage={Number(filters.page)}
