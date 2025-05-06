@@ -1,10 +1,12 @@
-import React, { use, useEffect, useState } from "react";
+import React, { use, useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Container } from "@modules/_shared/App";
 import { getGamingProfiles } from "../utils/mockData";
 import { useParams, Link } from "react-router";
 import { GameCard, GameCardRanking, Friendsbox, EditProfile } from "../App";
 import axios from "axios";
+import { AuthContext } from "@modules/authorization/utils/AuthContext";
+import { jwtDecode } from "jwt-decode";
 
 function AccountPage() {
   const [openEditProfile, setOpenEditProfile] = useState(false);
@@ -12,6 +14,18 @@ function AccountPage() {
   const { id } = useParams();
 
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const { token } = useContext(AuthContext); // assuming token is stored here
+  const [isOwner, setIsOwner] = useState(false);
+
+  useEffect(() => {
+    if (token) {
+      console.log("made it here ");
+      const decoded = jwtDecode(token);
+
+      setIsOwner(decoded.userId === id);
+    }
+  }, [id]);
+
 
   useEffect(() => {
     async function fetchUserData() {
@@ -73,6 +87,7 @@ function AccountPage() {
             </div>
           </motion.div>
           <div className="flex h-full w-full flex-3/4 flex-col items-center justify-center gap-5 rounded-2xl">
+          {isOwner &&
             <motion.div
               initial={{ x: 150, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
@@ -91,6 +106,7 @@ function AccountPage() {
                 Edit profile
               </button>
             </motion.div>
+            }
           </div>
         </div>
       </motion.div>
@@ -107,20 +123,23 @@ function AccountPage() {
               ease: [0.16, 1, 0.3, 1]
             }}
           >
-            {" "}
             <div className="flex w-full items-center justify-between">
               <h1 className="text-2xl font-bold">Friends</h1>
-             
             </div>
             <div className="mt-5 flex flex-wrap justify-center gap-2 md:justify-start">
-              {user.friends.map(friend => (
-                <Friendsbox
-                  key={friend.id}
-                  friendName={friend.username}
-                  friendImage={friend.avatar}
-                  status={friend.status}
-                />
-              ))}
+              {user.friends?.length > 0 ? (
+                user.friends.map(friend => (
+                  <Friendsbox
+                    key={friend.id}
+                    friendName={friend.username}
+                    friendImage={friend.avatar}
+                    status={friend.status}
+                    friend={friend}
+                  />
+                ))
+              ) : (
+                <h1 className="text-gray-700">No friends </h1>
+              )}
             </div>
           </motion.div>
           {/* Recently Played Section */}
@@ -163,18 +182,23 @@ function AccountPage() {
           >
             <div className="mt-5 flex w-full items-center justify-between">
               <h1 className="text-2xl font-bold">Wish list</h1>
-              {user.wishlist?.length > 5 && (
-                <Link to={`/account/wishlist/${id}`}>
-                <button className="hover:bg-secondary-600 bg-secondary h-fit w-fit cursor-pointer rounded-md p-2 text-center">
-                    View all
-                  </button>
-                </Link>
-              )}
+              {user.wishlist?.length >
+                (
+                  <Link to={`/account/wishlist/${id}`}>
+                    <button className="hover:bg-secondary-600 bg-secondary h-fit w-fit cursor-pointer rounded-md p-2 text-center">
+                      View all
+                    </button>
+                  </Link>
+                )}
             </div>
             <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-              {user.wishlist?.slice(0, 5).map(game => (
-                <GameCardRanking ImageHeight game={game} key={game.id} />
-              ))}
+              {user.wishlist?.length > 0 ? (
+                user.wishlist
+                  ?.slice(0, 5)
+                  .map(game => <GameCardRanking ImageHeight game={game} key={game.id} />)
+              ) : (
+                <h1 className="text-gray-700">No wishlist </h1>
+              )}
             </div>
           </motion.div>
         </div>
