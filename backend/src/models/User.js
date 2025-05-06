@@ -7,6 +7,7 @@ const UserSchema = new Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     avatar: { type: String },
+    cover: { type: String },
     displayName: { type: String },
     bio: { type: String },
     birthdate: { type: Schema.Types.Date },

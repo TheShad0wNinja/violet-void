@@ -12,9 +12,11 @@ app.use(express.static("public"))
 app.use("/discussions", discussionRouter)
 const gameRoutes = require("../src/routes/productPageRoutes");
 const authRoutes = require("./controllers/AuthController");
+const UserRoutes = require("../src/routes/accounRoute");
 
 app.use("/api/auth", authRoutes);
 app.use("/api/games", gameRoutes);
+app.use("/api/user", UserRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI || "")

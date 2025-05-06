@@ -145,7 +145,7 @@ const communityRoutes = [
 
 const accountRoutes = [
   {
-    path: ":account",
+    path: ":id",
     element: <AccountPage />
   },
   {
